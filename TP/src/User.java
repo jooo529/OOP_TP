@@ -29,18 +29,12 @@ public class User {// USER HAS ALL THE INFORMATION OF USER IN
 	JButton cancel = new JButton("Cancel");
 	protected JInternalFrame login_frame;
 	protected JInternalFrame join_frame;
-	protected boolean Success = false;
-	protected boolean Cancel = false;
-	protected boolean end = false;
 
 	private String ID;
 	private String PW;
 
 	private int earnedMoney;
 	private int level;
-	
-	private int nofFRAM; // THE NUMBERS OF FRAME
-	private int nofAFRAM; // THE NUMBERS OF ANOTHR FRAME
 
 	String GetID() {
 		return ID;
@@ -67,22 +61,6 @@ public class User {// USER HAS ALL THE INFORMATION OF USER IN
 	}
 
 
-	int GetnofAFRAM() {
-		return nofAFRAM;
-	}
-
-	void SetnofAFRAM(int AFRAM) {
-		nofAFRAM = AFRAM;
-	}
-
-	int GetnofFRAM() {
-		return nofFRAM;
-	}
-
-	void SetnofFRAM(int FRAM) {
-		nofFRAM = FRAM;
-	}
-
 	public int getLevel() {
 		return level;
 	}
@@ -91,13 +69,6 @@ public class User {// USER HAS ALL THE INFORMATION OF USER IN
 		this.level = level;
 	}
 
-	public boolean getEnd() {
-		return end;
-	}
-
-	public boolean getSuccess() {
-		return Success;
-	}
 
 	public User() {
 
@@ -119,13 +90,11 @@ public class User {// USER HAS ALL THE INFORMATION OF USER IN
 		cancel.setVisible(true);
 		cancel.setBounds(280, 150, 85, 20);
 		cancel.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				RANK.dispose();
 			}
-
 		}
 
 		);		
@@ -149,7 +118,6 @@ public class User {// USER HAS ALL THE INFORMATION OF USER IN
 					} 
 				}
 			}
-
 		});
 		RANK.add(box);
 
@@ -178,7 +146,7 @@ public class User {// USER HAS ALL THE INFORMATION OF USER IN
 		BufferedWriter B = new BufferedWriter(W);
 
 		try {
-			W.write(GetID() + " " + GetPW() + " " + getLevel() + " " + GetearnedMoney() + " " + GetnofAFRAM() + " " + GetnofFRAM()	+ " \n");
+			W.write(GetID() + " " + GetPW() + " " + getLevel() + " " + GetearnedMoney() + " " + " \n");
 			for (int i = 0; i < top; i++) {
 				if (IsMyID(GetID(), DAT[i].NAME)) {
 					continue;
