@@ -23,9 +23,14 @@ public class LoginFrame extends JFrame{
 		panel0.setLayout(new BorderLayout());
 		this.add(panel0);
 		
-		JPanel panel1 = new JPanel();
-		panel1.setLayout(null);
-		panel1.setBounds(0, 0, 1700, 500);
+		JPanel panel1 = new JPanel(); //그림을 넣고 싶다!
+		JTextArea ta = new JTextArea("------\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n-");
+		
+		//panel1.setLayout(null);
+		JPanel panel1ta = new JPanel();
+		panel1ta.add(ta);
+		panel1.add(panel1ta);
+		//panel1.setBounds(0, 0, 1700, 500);
 		panel0.add(BorderLayout.NORTH,panel1);
 		
 		//내부 왼쪽 TextField 2개
@@ -87,6 +92,7 @@ public class LoginFrame extends JFrame{
 	class LoginButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event)
 		{
+			setVisible(false);
 			MainDisplay md = new MainDisplay();
 			md.go();
 		}
@@ -103,6 +109,10 @@ public class LoginFrame extends JFrame{
 		public void actionPerformed(ActionEvent event)
 		{
 			//new display && register && new user
+			JInternalFrame sign_iFr = new JInternalFrame("Sign Up");
+			  
+			add(sign_iFr);
+		
 		}
 	}
 

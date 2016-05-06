@@ -5,7 +5,7 @@ public class LoginDisplay {
 	LoginFrame log_fr = new LoginFrame();
 	
 	public void go(){
-		log_fr.setSize(400,200);
+		log_fr.setSize(400,600);
 		log_fr.setTitle("Farming Game");
 		log_fr.setVisible(true);
 		log_fr.setResizable(true);
