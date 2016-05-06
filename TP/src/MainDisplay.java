@@ -53,12 +53,6 @@ public class MainDisplay extends JFrame{
 		fr.getContentPane().add(BorderLayout.CENTER,mainbackground);
 		
 	}
-
-	public static void main(String[] args) {
-		MainDisplay md = new MainDisplay();
-		md.go();
-		
-	}
 	
 	class HomeButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event)
