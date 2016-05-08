@@ -4,7 +4,6 @@ import javax.swing.*;
 
 public class SignButtonListener implements ActionListener{
 	
-	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		go();
@@ -13,7 +12,6 @@ public class SignButtonListener implements ActionListener{
 	void go(){
 		SignFrame sign_fr = new SignFrame();
 
-		System.out.println("HELLO");
 		sign_fr.setSize(500,300);
 		sign_fr.setVisible(true);
 		sign_fr.setResizable(false);
@@ -45,7 +43,6 @@ class SignFrame extends JFrame{
 	 
 	 public void makeSignScreen(){
 	  
-	  //North - 윗쪽 문구한 줄
 	  this.setLayout(new BorderLayout());
 	  this.add(BorderLayout.NORTH,new JLabel("Put your Info"));
 	  

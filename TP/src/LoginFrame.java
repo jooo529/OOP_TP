@@ -115,7 +115,7 @@ public class LoginFrame extends JFrame{
 		{
 			String inputID = id_tf.getText();
 			String inputPWD = pw_tf.getText();
-			if(inputID.equals("hello")){
+			if(inputID.equals("guest")){
 				setVisible(false);
 				MainDisplay md = new MainDisplay();
 				md.go();
@@ -125,13 +125,6 @@ public class LoginFrame extends JFrame{
 		}
 	}
 	
-	class FindButtonListener implements ActionListener{
-		public void actionPerformed(ActionEvent event)
-		{
-			//question get password or change password
-		}
-	}
-
 	class RankButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event)
 		{
