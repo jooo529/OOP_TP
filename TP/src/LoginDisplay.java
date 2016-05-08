@@ -13,7 +13,6 @@ public class LoginDisplay {
 		
 		//전체 창 사이즈
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		System.out.println(screenSize.width+","+screenSize.height);
 		  
 		//창을 중앙에 위치시킬 수 있다.
 		int xPos = screenSize.width/2 - log_fr.getSize().width/2 ;

@@ -131,17 +131,6 @@ public class LoginFrame extends JFrame{
 			//question get password or change password
 		}
 	}
-	
-	class SignButtonListener implements ActionListener{
-		public void actionPerformed(ActionEvent event)
-		{
-			//new display && register && new user
-			JInternalFrame sign_iFr = new JInternalFrame("Sign Up");
-			  
-			getContentPane().add(sign_iFr);
-		
-		}
-	}
 
 	class RankButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event)
