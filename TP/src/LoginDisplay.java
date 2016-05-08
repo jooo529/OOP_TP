@@ -8,7 +8,7 @@ public class LoginDisplay {
 		log_fr.setSize(400,600);
 		log_fr.setTitle("Farming Game");
 		log_fr.setVisible(true);
-		log_fr.setResizable(true);
+		log_fr.setResizable(false);
 		log_fr.setDefaultCloseOperation(LoginFrame.EXIT_ON_CLOSE);
 		
 		//전체 창 사이즈

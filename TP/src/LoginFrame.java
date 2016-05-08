@@ -8,93 +8,120 @@ public class LoginFrame extends JFrame{
 	}
 
 	JButton login_bu;
-	JTextField id_tf, pw_tf;
+	JLabel id_lb, pw_lb;
+	JTextField id_tf;
+	TextField pw_tf;
 	JButton find_bu;
 	JButton sign_bu;
 	JButton rank_bu;
-//	JLabel save_lb;
 	JCheckBox save_chb;
+	
+	ImageIcon im;
+	Container con;
 	
 	public void makeLogScreen() {
 		
-		setLayout(new BorderLayout());
+		con = this.getContentPane();
+		con.setLayout(new BorderLayout());
 		
-		JPanel panel0 = new JPanel();
-		panel0.setLayout(new BorderLayout());
-		this.add(panel0);
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new BorderLayout());
+		con.add(BorderLayout.CENTER,panel1);
 		
-		JPanel panel1 = new JPanel(); //그림을 넣고 싶다!
-		JTextArea ta = new JTextArea("------\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n-");
+		im = new ImageIcon("login.png");
+		JPanel panel1a = new JPanel(){ 
+		 public void paintComponent(Graphics g) {
+             g.drawImage(im.getImage(), 0, 0, null); 
+        }};
+		panel1.add(BorderLayout.CENTER,panel1a);
 		
-		//panel1.setLayout(null);
-		JPanel panel1ta = new JPanel();
-		panel1ta.add(ta);
-		panel1.add(panel1ta);
-		//panel1.setBounds(0, 0, 1700, 500);
-		panel0.add(BorderLayout.NORTH,panel1);
+		JPanel panel1b = new JPanel();
+		panel1b.setLayout(new BorderLayout());
+		panel1.add(BorderLayout.SOUTH,panel1b); 
 		
-		//내부 왼쪽 TextField 2개
-		JPanel panel2 = new JPanel();
-		panel2.setLayout(new GridLayout(2,1));
-		panel0.add(BorderLayout.WEST,panel2); 
-		  
-		JPanel panel2up = new JPanel();
-		id_tf = new JTextField("ID",20);
-		panel2up.add(id_tf);
-		id_tf.addActionListener(new IdTextFieldListener());
-		panel2.add(panel2up);
-		 
-		JPanel panel2down = new JPanel();
-		pw_tf = new JTextField("PASSWORD",20);
-		panel2down.add(pw_tf);
-		panel2.add(panel2down);
+		JPanel panel1b1 = new JPanel();
+		panel1b1.setLayout(new BorderLayout());
+		panel1b.add(BorderLayout.WEST,panel1b1); 
+		
+		JPanel panel1b1a = new JPanel();
+		panel1b1a.setLayout(new GridLayout(2,1,5,5));
+		panel1b1.add(BorderLayout.WEST,panel1b1a); 
+		
+		id_lb = new JLabel("          ID    ");
+		panel1b1a.add(id_lb);
+		pw_lb = new JLabel("          PWD    ");
+		panel1b1a.add(pw_lb);
+		
+		JPanel panel1b1b = new JPanel();
+		panel1b1b.setLayout(new GridLayout(2,1,5,0));
+		panel1b1.add(BorderLayout.CENTER,panel1b1b); 
+		
+		JPanel panel1b1up = new JPanel();
+		id_tf = new JTextField(20);
+		panel1b1up.add(id_tf);
+		panel1b1b.add(panel1b1up);
+		id_tf.addActionListener(new LoginListener());
+		
+		JPanel panel1b1down = new JPanel();
+		pw_tf = new TextField(27);
+		panel1b1down.add(pw_tf);
+		pw_tf.setEchoChar('*');
+		pw_tf.addActionListener(new LoginListener());
+		panel1b1b.add(panel1b1down);
 		
 		//내부 오른쪽 check + button
-		JPanel panel3 = new JPanel();
-		panel3.setLayout(new GridLayout(2,1));
-		panel0.add(BorderLayout.CENTER,panel3);
-
-		JPanel panel3up = new JPanel();
+		JPanel panel1b2 = new JPanel();
+		panel1b2.setLayout(new GridLayout(2,1,5,0));
+		panel1b.add(BorderLayout.EAST,panel1b2); 
+		
+		JPanel panel1b2up = new JPanel();
 		save_chb = new JCheckBox("save ID");
-		panel3up.add(save_chb);
-		panel3.add(panel3up);
+		panel1b2up.add(save_chb);
+		panel1b2.add(panel1b2up);
 		  
-		JPanel panel3down = new JPanel();
+		JPanel panel1b2down = new JPanel();
 		login_bu = new JButton("LogIN");
-		panel3down.add(login_bu);
-		login_bu.addActionListener(new LoginButtonListener());
-		panel3.add(panel3down);
+		panel1b2down.add(login_bu);
+		login_bu.addActionListener(new LoginListener());
 		
-		JPanel panel4 = new JPanel();
-		panel4.setLayout(new GridLayout(1,3));
-		panel0.add(BorderLayout.SOUTH,panel4);
+		panel1b2.add(panel1b2down);
 		
-		JPanel panel4left = new JPanel();
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(new GridLayout(1,3,5,5));
+		con.add(BorderLayout.SOUTH,panel2);
+		
+		JPanel panel2a = new JPanel();
 		find_bu = new JButton("Find");
-		panel4left.add(find_bu);
+		panel2a.add(find_bu);
 		find_bu.addActionListener(new FindButtonListener());
-		panel4.add(panel4left);
+		panel2.add(panel2a);
 		
-		JPanel panel4cent = new JPanel();
+		JPanel panel2b = new JPanel();
 		sign_bu = new JButton("Sign up");
-		panel4cent.add(sign_bu);
+		panel2b.add(sign_bu);
 		sign_bu.addActionListener(new SignButtonListener());
-		panel4.add(panel4cent);
+		panel2.add(panel2b);
 		
-		JPanel panel4right = new JPanel();
+		JPanel panel2c = new JPanel();
 		rank_bu = new JButton("Rank");
-		panel4right.add(rank_bu);
+		panel2c.add(rank_bu);
 		rank_bu.addActionListener(new RankButtonListener());
-		panel4.add(panel4right);
+		panel2.add(panel2c);
 		
 	}
 	
-	class LoginButtonListener implements ActionListener{
+	class LoginListener implements ActionListener{
 		public void actionPerformed(ActionEvent event)
 		{
-			setVisible(false);
-			MainDisplay md = new MainDisplay();
-			md.go();
+			String inputID = id_tf.getText();
+			String inputPWD = pw_tf.getText();
+			if(inputID.equals("hello")){
+				setVisible(false);
+				MainDisplay md = new MainDisplay();
+				md.go();
+			}else
+				JOptionPane.showMessageDialog(null, "CHECK ID or PW", "ERROR", JOptionPane.ERROR_MESSAGE);
+			
 		}
 	}
 	
@@ -111,7 +138,7 @@ public class LoginFrame extends JFrame{
 			//new display && register && new user
 			JInternalFrame sign_iFr = new JInternalFrame("Sign Up");
 			  
-			add(sign_iFr);
+			getContentPane().add(sign_iFr);
 		
 		}
 	}
@@ -120,26 +147,6 @@ public class LoginFrame extends JFrame{
 		public void actionPerformed(ActionEvent event)
 		{
 			//use users information -> get ranks
-		}
-	}
-
-	class IdTextFieldListener implements ActionListener{
-		public void actionPerformed(ActionEvent event)
-		{
-			System.out.println(id_tf.getText());
-			id_tf.setText("");
-			id_tf.selectAll();
-			id_tf.requestFocus();
-		}
-	}
-	
-	class PwTextFieldListener implements ActionListener{
-		public void actionPerformed(ActionEvent event)
-		{
-			System.out.println(pw_tf.getText());
-			pw_tf.setText("");
-			pw_tf.selectAll();
-			pw_tf.requestFocus();
 		}
 	}
 	
