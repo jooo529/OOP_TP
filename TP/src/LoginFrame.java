@@ -3,6 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class LoginFrame extends JFrame{
+	
 	public LoginFrame(){
 		makeLogScreen();
 	}
@@ -117,8 +118,8 @@ public class LoginFrame extends JFrame{
 			String inputPWD = pw_tf.getText();
 			if(inputID.equals("guest")){
 				setVisible(false);
-				MainDisplay md = new MainDisplay();
-				md.go();
+				MainFrame md = new MainFrame();
+				md.go_main();
 			}else
 				JOptionPane.showMessageDialog(null, "CHECK ID or PW", "ERROR", JOptionPane.ERROR_MESSAGE);
 			
