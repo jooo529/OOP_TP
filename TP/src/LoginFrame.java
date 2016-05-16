@@ -118,8 +118,8 @@ public class LoginFrame extends JFrame{
 			String inputPWD = pw_tf.getText();
 			if(inputID.equals("guest")){
 				setVisible(false);
-				MainFrame md = new MainFrame();
-				md.go_main();
+				MainDisplay md = new MainDisplay();
+				md.go();
 			}else
 				JOptionPane.showMessageDialog(null, "CHECK ID or PW", "ERROR", JOptionPane.ERROR_MESSAGE);
 			

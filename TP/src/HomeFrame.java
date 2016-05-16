@@ -20,7 +20,7 @@ public class HomeFrame extends JFrame{
         container.setLayout(new BorderLayout());
        
         
-		im = new ImageIcon("home.png");
+		im = new ImageIcon("HOME3.png");
 		JPanel back_ground = new JPanel(){ 
 		 public void paintComponent(Graphics g) {
              g.drawImage(im.getImage(), 0, 0, null); 
