@@ -21,9 +21,7 @@ public class MainFrame extends JFrame{
 		//p1.setBounds(0, 0, 900, 400);
 		//this.add(p1);
 		
-		
-		
-		
+		fr.setResizable(false);
         fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton home_button = new JButton("Home");
@@ -64,10 +62,6 @@ public class MainFrame extends JFrame{
 		quit_button.addActionListener(new SaveQuitButtonListener());
 		//p2.add(quit_button);
 		
-		
-		
-		
-		
 		fr.getContentPane().add(home_button);
 		fr.getContentPane().add(farm_button);
 		fr.getContentPane().add(store_button);
@@ -77,7 +71,7 @@ public class MainFrame extends JFrame{
 		fr.getContentPane().add(userMONEY_label);
 		fr.getContentPane().add(userLEVEL_label);
 		
-		im = new ImageIcon("MAIN.png");
+		im = new ImageIcon("main.png");
 		JPanel back_ground = new JPanel(){ 
 		 public void paintComponent(Graphics g) {
              g.drawImage(im.getImage(), 0, 0, null); 
@@ -105,6 +99,8 @@ public class MainFrame extends JFrame{
 		{
 			HomeDisplay home = new HomeDisplay();
 			home.go();
+			//HomeFrame home = new HomeFrame();
+			
 		}
 	}
 	class FarmButtonListener implements ActionListener{
@@ -112,6 +108,7 @@ public class MainFrame extends JFrame{
 		{
 			FarmDisplay farm = new FarmDisplay();
 			farm.go();
+			//FarmFrame farm = new FarmFrame();
 		}
 	}
 	class StoreButtonListener implements ActionListener{
@@ -119,6 +116,7 @@ public class MainFrame extends JFrame{
 		{
 			StoreDisplay store = new StoreDisplay();
 			store.go();
+			//StoreFrame store = new StoreFrame();
 		}
 	}
 	class SaveQuitButtonListener implements ActionListener

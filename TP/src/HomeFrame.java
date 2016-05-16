@@ -16,12 +16,11 @@ public class HomeFrame extends JFrame{
 	Container container;
 	public void go_home()
 	{
-        ////////////
         container = this.getContentPane();
         container.setLayout(new BorderLayout());
        
         
-		im = new ImageIcon("HOME3.png");
+		im = new ImageIcon("home.png");
 		JPanel back_ground = new JPanel(){ 
 		 public void paintComponent(Graphics g) {
              g.drawImage(im.getImage(), 0, 0, null); 
@@ -33,9 +32,7 @@ public class HomeFrame extends JFrame{
 		JButton goback = new JButton("back to main");
 		goback.addActionListener(new goback_listener());
 		
-		
-		
-		
+			
 		//메뉴패널 꾸며야될듯
 		JPanel menupanel = new JPanel();
 		

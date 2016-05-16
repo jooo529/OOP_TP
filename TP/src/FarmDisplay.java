@@ -11,7 +11,7 @@ public class FarmDisplay {
 		farm_fr.setTitle("Farming Game");
 		farm_fr.setVisible(true);
 		farm_fr.setResizable(false);
-		farm_fr.setDefaultCloseOperation(LoginFrame.EXIT_ON_CLOSE);
+		farm_fr.setDefaultCloseOperation(LoginFrame.DISPOSE_ON_CLOSE);
 		
 		//전체 창 사이즈
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

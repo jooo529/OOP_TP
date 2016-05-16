@@ -12,7 +12,7 @@ public class HomeDisplay {
 		home_fr.setTitle("Farming Game");
 		home_fr.setVisible(true);
 		home_fr.setResizable(false);
-		home_fr.setDefaultCloseOperation(LoginFrame.EXIT_ON_CLOSE);
+		home_fr.setDefaultCloseOperation(LoginFrame.DISPOSE_ON_CLOSE);
 		
 		//전체 창 사이즈
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 //import HomeFrame.goback_listener;
-
 //import Home.goback_listener;
 
 
@@ -34,7 +33,7 @@ public class FarmFrame extends JFrame{
         container.setLayout(new BorderLayout());
        
         
-		im = new ImageIcon("FARM.png");
+		im = new ImageIcon("farm.png");
 		JPanel back_ground = new JPanel(){ 
 		 public void paintComponent(Graphics g) {
              g.drawImage(im.getImage(), 0, 0, null); 

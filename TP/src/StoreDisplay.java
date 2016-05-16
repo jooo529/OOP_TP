@@ -10,7 +10,7 @@ public class StoreDisplay {
 		store_fr.setTitle("Farming Game");
 		store_fr.setVisible(true);
 		store_fr.setResizable(false);
-		store_fr.setDefaultCloseOperation(LoginFrame.EXIT_ON_CLOSE);
+		store_fr.setDefaultCloseOperation(LoginFrame.DISPOSE_ON_CLOSE);
 		
 		//전체 창 사이즈
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
