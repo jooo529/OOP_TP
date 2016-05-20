@@ -40,7 +40,7 @@ public class StoreFrame extends JFrame {
 		JButton goback = new JButton("back to main");
 		goback.addActionListener(new goback_listener());
 		
-JPanel menupanel = new JPanel();
+		JPanel menupanel = new JPanel();
 		
 		container.add(BorderLayout.NORTH,menupanel);
 		
@@ -50,10 +50,10 @@ JPanel menupanel = new JPanel();
 		
 
 		
-		JLabel userID_label = new JLabel("U s e r   :   "+ u.GetID());
+		JLabel userID_label = new JLabel("U s e r   :   "+ u.getId());
 		userID_label.setFont(font);
 		
-		JLabel userMONEY_label = new JLabel("           M o n e y   :   "+ u.GetearnedMoney());
+		JLabel userMONEY_label = new JLabel("           M o n e y   :   "+ u.getmoney());
 		userMONEY_label.setFont(font);
 		
 		JLabel userLEVEL_label = new JLabel("           L e v e l   :   "+ u.getLevel());

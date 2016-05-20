@@ -12,7 +12,7 @@ public class SignButtonListener implements ActionListener{
 	void go(){
 		SignFrame sign_fr = new SignFrame();
 
-		sign_fr.setSize(500,300);
+		sign_fr.setSize(750,370);
 		sign_fr.setVisible(true);
 		sign_fr.setResizable(false);
 		sign_fr.setDefaultCloseOperation(SignFrame.DISPOSE_ON_CLOSE);
@@ -32,7 +32,7 @@ public class SignButtonListener implements ActionListener{
 
 class SignFrame extends JFrame{
 
-	JTextField ID_tf,PW_tf,PWc_tf,Name_tf,Phone_tf1,Phone_tf2;
+	JTextField ID_tf,PW_tf,PWc_tf,Name_tf,Phone_tf1,Phone_tf2,ucQ_tf,ucA_tf;
 	JComboBox Phone_cb ;
 	JButton confirm;
 	
@@ -46,7 +46,7 @@ class SignFrame extends JFrame{
 	  this.setLayout(new BorderLayout());
 	  this.add(BorderLayout.NORTH,new JLabel("Put your Info"));
 	  
-	  JPanel panel = new JPanel(new GridLayout(6,2));
+	  JPanel panel = new JPanel(new GridLayout(8,2));
 	  this.add(BorderLayout.CENTER, panel);
 	  
 	  panel.add(new JLabel("ID",JLabel.CENTER));
@@ -86,10 +86,22 @@ class SignFrame extends JFrame{
 	  panel5.add(Phone_tf2);
 	  panel.add(panel5);
 	  
-	  JPanel panel6 = new JPanel();
+	  panel.add(new JLabel("UserCheck Question",JLabel.CENTER));
+	  JPanel panel6 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+	  ucQ_tf = new JTextField(30);
+	  panel6.add(ucQ_tf);
+	  panel.add(panel6);
+	  
+	  panel.add(new JLabel("UserCheck Answer",JLabel.CENTER));
+	  JPanel panel7 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+	  ucA_tf = new JTextField(30);
+	  panel7.add(ucA_tf);
+	  panel.add(panel7);
+	  
+	  JPanel panel8 = new JPanel();
 	  confirm = new JButton("Join Us");
-	  panel6.add(confirm);
-	  this.add(BorderLayout.SOUTH, panel6);
+	  panel8.add(confirm);
+	  this.add(BorderLayout.SOUTH, panel8);
 	 }
 	 
 }

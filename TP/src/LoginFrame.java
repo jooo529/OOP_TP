@@ -126,11 +126,4 @@ public class LoginFrame extends JFrame{
 		}
 	}
 	
-	class RankButtonListener implements ActionListener{
-		public void actionPerformed(ActionEvent event)
-		{
-			//use users information -> get ranks
-		}
-	}
-	
 }
