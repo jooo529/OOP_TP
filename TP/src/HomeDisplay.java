@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class HomeDisplay {
 
-
 	HomeFrame home_fr = new HomeFrame();
 	
 	public void go(){

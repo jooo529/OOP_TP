@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import java.util.*;
 import javax.swing.*;
 
 public class LoginFrame extends JFrame{
@@ -7,7 +9,7 @@ public class LoginFrame extends JFrame{
 	public LoginFrame(){
 		makeLogScreen();
 	}
-
+	
 	JButton login_bu;
 	JLabel id_lb, pw_lb;
 	JTextField id_tf;
@@ -16,6 +18,8 @@ public class LoginFrame extends JFrame{
 	JButton sign_bu;
 	JButton rank_bu;
 	JCheckBox save_chb;
+	
+	private int check=0;
 	
 	ImageIcon im;
 	Container con;
@@ -79,7 +83,13 @@ public class LoginFrame extends JFrame{
 		save_chb = new JCheckBox("save ID");
 		panel1b2up.add(save_chb);
 		panel1b2.add(panel1b2up);
-		  
+		save_chb.addItemListener(new ItemListener() {
+		    public void itemStateChanged(ItemEvent e) {
+		        if(e.getStateChange() == 1)	check=1;
+		        else check=0;
+		    }
+		});
+		
 		JPanel panel1b2down = new JPanel();
 		login_bu = new JButton("LogIN");
 		panel1b2down.add(login_bu);
@@ -94,43 +104,59 @@ public class LoginFrame extends JFrame{
 		JPanel panel2a = new JPanel();
 		find_bu = new JButton("Find");
 		panel2a.add(find_bu);
-		find_bu.addActionListener(new FindButtonListener());
+		find_bu.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				Find fr = new Find();
+				fr.go();
+			}
+		});
 		panel2.add(panel2a);
 		
 		JPanel panel2b = new JPanel();
 		sign_bu = new JButton("Sign up");
 		panel2b.add(sign_bu);
-		sign_bu.addActionListener(new SignButtonListener());
+		sign_bu.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				Sign fr = new Sign();
+				fr.go();
+			}
+		});
 		panel2.add(panel2b);
 		
 		JPanel panel2c = new JPanel();
 		rank_bu = new JButton("Rank");
 		panel2c.add(rank_bu);
-		rank_bu.addActionListener(new RankButtonListener());
+		rank_bu.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				Rank fr = new Rank();
+				fr.go();
+			}
+		});
 		panel2.add(panel2c);
-		
 	}
 	
-	class LoginListener implements ActionListener{
+	class LoginListener extends File implements ActionListener{
 		public void actionPerformed(ActionEvent event)
 		{
+			this.fileLoad();
+			Boolean login = false;
 			String inputID = id_tf.getText();
 			String inputPWD = pw_tf.getText();
-			if(inputID.equals("guest")){
+
+			for(int i=0; i<Users.size(); i++){
+				if((Users.get(i).getId().equals(inputID))&&(Users.get(i).getPwd().equals(inputPWD)))login=true;
+			}
+			if(login){
 				setVisible(false);
-				MainFrame md = new MainFrame();
-				md.go_main();
-			}else
+				MainDisplay md = new MainDisplay();
+				md.go();
+			}else{
 				JOptionPane.showMessageDialog(null, "CHECK ID or PW", "ERROR", JOptionPane.ERROR_MESSAGE);
-			
+				if(check==1) id_tf.setText(inputID);
+				else id_tf.setText(null);
+				pw_tf.setText(null);
+			}
 		}
 	}
-	
-	class RankButtonListener implements ActionListener{
-		public void actionPerformed(ActionEvent event)
-		{
-			//use users information -> get ranks
-		}
-	}
-	
+
 }
