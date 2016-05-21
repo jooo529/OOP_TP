@@ -35,10 +35,10 @@ public class User {
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
-	public int getmoney() {
+	public int getMoney() {
 		return money;
 	}
-	public void setEarnedMoney(int money) {
+	public void setMoney(int money) {
 		this.money = money;
 	}
 	public int getLevel() {
@@ -72,7 +72,5 @@ public class User {
 				+ money + ", level=" + level + ", logindata=" + logindata + ", usercheckQuestion="
 				+ usercheckQuestion + ", usercheckAnswer=" + usercheckAnswer + "]";
 	}
-
-	
 
 }

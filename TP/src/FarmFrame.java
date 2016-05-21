@@ -58,7 +58,7 @@ public class FarmFrame extends JFrame{
 		JLabel userID_label = new JLabel("U s e r   :   "+ u.getId());
 		userID_label.setFont(font);
 		
-		JLabel userMONEY_label = new JLabel("           M o n e y   :   "+ u.getmoney());
+		JLabel userMONEY_label = new JLabel("           M o n e y   :   "+ u.getMoney());
 		userMONEY_label.setFont(font);
 		
 		JLabel userLEVEL_label = new JLabel("           L e v e l   :   "+ u.getLevel());
