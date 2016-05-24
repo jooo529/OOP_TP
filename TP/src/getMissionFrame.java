@@ -1,5 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -8,110 +13,116 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.*;
 
 public class getMissionFrame extends JFrame {	
-
-	private Container container;
-	
-	private ImageIcon npcf;
-	
-	Font font = new Font("Dialog",Font.BOLD, 15);
 	
 	public getMissionFrame(){
-		go_gm();
+		go_getm();
 	}
 	
 	
-	void go_gm()
+	private Container container;
+    
+	private ImageIcon npcf;
+	private ImageIcon tb;
+	private JPanel window;
+	
+	      
+	JButton mission1;
+	JButton mission2;
+	JButton mission3;
+	JButton mission4;
+	JButton mission5;
+	Font font = new Font("Kristen ITC",Font.BOLD, 20); //30글자 크기
+	
+	void go_getm()
 	{
-		npcf = new ImageIcon("Char.PNG");
+		container = this.getContentPane();
+		container.setLayout(null);
+		
+		window = new JPanel();//여기에 대화창패널 ->그리드...?
+		window.setBackground(Color.GRAY);
+		window.setLayout(new GridLayout(5,1,0,0));
+		npcf = new ImageIcon("mom.PNG"); 
+		tb = new ImageIcon("textBallon_getm.png");
 		JPanel npc_face = new JPanel(){ //엔피씨 얼굴나오게 할 패널
 			 public void paintComponent(Graphics g) {
-		            g.drawImage(npcf.getImage(), 0, 0, null); 
+		            g.drawImage(npcf.getImage(), 3, 0, null); 
+		            g.drawImage(tb.getImage(), 180, 30, null); 
 			 }
 		};;
+		npc_face.setLayout(null);
 		
+		mission1 = new JButton();
+		mission1.setIcon(new ImageIcon("mission_b.png"));
+		mission1.addActionListener(new mission_b_listener());
+		mission1.setRolloverIcon(new ImageIcon(""));
+		JLabel label1 = new JLabel("            M  i  s  s  i  o  n  1  ");
+		label1.setFont(font);
+		mission1.add(label1);
 		
-		JLabel npc_info = new JLabel("  I'm your mother!!  ");
-		npc_info.setFont(font);
-		npc_face.setBackground(Color.lightGray);
-		npc_face.add(npc_info);
+		mission2 = new JButton();
+		mission2.setIcon(new ImageIcon("mission_b.png"));
+		mission2.addActionListener(new mission_b_listener());
+		mission2.setRolloverIcon(new ImageIcon(""));
+		JLabel label2 = new JLabel("            M  i  s  s  i  o  n  2  ");
+		label2.setFont(font);
+		mission2.add(label2);
 		
-		container = this.getContentPane();
+		mission3 = new JButton();
+		mission3.setIcon(new ImageIcon("mission_b.png"));
+		mission3.addActionListener(new mission_b_listener());
+		mission3.setRolloverIcon(new ImageIcon(""));
+		JLabel label3 = new JLabel("            M  i  s  s  i  o  n  3  ");
+		label3.setFont(font);
+		mission3.add(label3);
 		
-		////////////////////////////////////////////////////////////////////
-		JButton Exit = new JButton("Exit");
-
+		mission4 = new JButton();
+		mission4.setIcon(new ImageIcon("mission_b.png"));
+		mission4.addActionListener(new mission_b_listener());
+		mission4.setRolloverIcon(new ImageIcon(""));
+		JLabel label4 = new JLabel("            M  i  s  s  i  o  n  4  ");
+		label4.setFont(font);
+		mission4.add(label4);
 		
-		Exit.setContentAreaFilled(false);
-		Exit.setDefaultCapable(false);
-		Exit.setFocusPainted(false);
-		Exit.setToolTipText("exit");
-		Exit.setOpaque(false);
-		Exit.setIcon(new ImageIcon("button_exit.png"));
-		Exit.setRolloverIcon(new ImageIcon("button_exit_s.png"));
-		Exit.setBackground(null);
-		Exit.setBorderPainted(false);
-
+		mission5 = new JButton();
+		mission5.setIcon(new ImageIcon("mission_b.png"));
+		mission5.addActionListener(new mission_b_listener());
+		mission5.setRolloverIcon(new ImageIcon(""));
+		JLabel label5 = new JLabel("            M  i  s  s  i  o  n  5  ");
+		label5.setFont(font);
+		mission5.add(label5);
 		
-		Exit.setBounds(700, 420 - 250 + 270, 60, 60);
-
-		//Fire.addActionListener(this);
-		//Market.addActionListener(this);
-		Exit.addActionListener(new goback_listener());
-		////////////////////////////////////////////////////////////////////
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new GridLayout(5,1,0,0));
+		buttonPanel.add(mission1);
+		buttonPanel.add(mission2);
+		buttonPanel.add(mission3);
+		buttonPanel.add(mission4);
+		buttonPanel.add(mission5);
 		
-		
-		JButton mission1 = new JButton(" M I S S I O N  1 ");
-		JButton mission2 = new JButton(" M I S S I O N  2 ");
-		JButton mission3 = new JButton(" M I S S I O N  3 ");
-		JButton mission4 = new JButton(" M I S S I O N  4 ");
-		JButton mission5 = new JButton(" M I S S I O N  5 ");
-		JButton mission6 = new JButton(" M I S S I O N  6 ");
-		JButton mission7 = new JButton(" M I S S I O N  7 ");
-		mission1.setFont(font);
-		mission2.setFont(font);
-		mission3.setFont(font);
-		mission4.setFont(font);
-		mission5.setFont(font);
-		mission6.setFont(font);
-		mission7.setFont(font);
-		
-		JPanel mission_button_panel = new JPanel();
-		mission_button_panel.setLayout(new BoxLayout(mission_button_panel,BoxLayout.Y_AXIS));
-		mission_button_panel.add(mission1);
-		mission_button_panel.add(mission2);
-		mission_button_panel.add(mission3);
-		mission_button_panel.add(mission4);
-		mission_button_panel.add(mission5);
-		mission_button_panel.add(mission6);
-		mission_button_panel.add(mission7);
-		
-		JButton go_back = new JButton("Back");
-		go_back.setFont(font);
-		go_back.addActionListener(new goback_listener());
-		
-		JPanel eastPanel = new JPanel();
-		eastPanel.setLayout(new BorderLayout());
-		eastPanel.add(BorderLayout.NORTH,npc_face);
-		eastPanel.add(BorderLayout.SOUTH,Exit);
-		
-		container.add(BorderLayout.WEST,mission_button_panel);
-		container.add(BorderLayout.EAST,eastPanel);
-		
-		
-		
-		
-		
-	}
 	
-	private void addExitButton() {
+
+		window.add(mission1);
+		window.add(mission2);
+		window.add(mission3);
+		window.add(mission4);
+		window.add(mission5);
+
+
 		
+		window.setBounds(0, 0, 390, 310);
+		
+		npc_face.setBounds(390, 0, 300, 350);
+		
+		
+		
+		container.add(window);
+		container.add(npc_face);
 		
 
 	}
+	////////////////////////////////////////////////////////////
 	
-	
-	
-	
+	 ///////////////////////////////////////////////////////////
 	
 	class goback_listener implements ActionListener
 	{
@@ -121,56 +132,33 @@ public class getMissionFrame extends JFrame {
 		}
 	}
 	
-	class mission1_listener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			
-		}
-	}
-	class mission2_listener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			
-		}
-	}
-	class mission3_listener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			
-		}
-	}
-	class mission4_listener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			
-		}
-	}
-	class mission5_listener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			
-		}
-	}
-	class mission6_listener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			
-		}
-	}
-	class mission7_listener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			
-		}
-	}
 	
+	class mission_b_listener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			if(event.getSource() == mission1)
+			{
+				
+			}
+			else if(event.getSource() == mission2)
+			{
+				container.remove(window);
+			}
+			else if(event.getSource() == mission3)
+			{
+				container.remove(window);
+			}
+			else if(event.getSource() == mission4)
+			{
+				container.remove(window);
+			}
+			else if(event.getSource() == mission5)
+			{
+				container.remove(window);
+			}
+		}
+	}
 	
 }
 

@@ -14,6 +14,7 @@ public class NpcFrame extends JFrame{
 	private Container container;
     
 	private ImageIcon npcf;
+	private ImageIcon tb;
 	
 	private JPanel window;            
 	      
@@ -23,48 +24,61 @@ public class NpcFrame extends JFrame{
 		
 		
 		
-		Font font = new Font("Dialog",Font.BOLD, 15); //30글자 크기
-		Font font_italic = new Font("Serif",Font.ITALIC+Font.BOLD,18);
-		container = this.getContentPane();//보더레이아웃
-		container.setLayout(new BorderLayout());
+		Font font = new Font("Dialog",Font.BOLD, 12); //30글자 크기
+		Font font_italic = new Font("Serif",Font.ITALIC+Font.BOLD,14);
+		container = this.getContentPane();
+		container.setLayout(null);
 		window = new JPanel();//여기에 대화창패널 ->그리드...?
 		window.setBackground(Color.GRAY);
 		//window.setLayout(new BoxLayout(window,BoxLayout.Y_AXIS));
-		window.setLayout(new GridLayout(4,1,5,5));
-		npcf = new ImageIcon("Char.PNG"); 
+		window.setLayout(new GridLayout(4,1,0,0));
 		
+		npcf = new ImageIcon("mom.png");
+		tb = new ImageIcon("textBallon_hi.png");
 		JPanel npc_face = new JPanel(){ //엔피씨 얼굴나오게 할 패널
 			 public void paintComponent(Graphics g) {
-		            g.drawImage(npcf.getImage(), 0, 0, null); 
+		            g.drawImage(npcf.getImage(), 3, 0, null); 
+		            g.drawImage(tb.getImage(), 180, 30, null); 
 			 }
 		};;
 		
-		JLabel npc_info = new JLabel("  I'm your mother!!  ");
-		npc_info.setFont(font);
-		JButton helpButton = new JButton(" H E L P ( Explanation about game )");
+		npc_face.setLayout(null);
+		JButton helpButton = new JButton();
 		helpButton.setFont(font);
 		helpButton.addActionListener(new help_listener());
+		helpButton.setIcon(new ImageIcon("Help.png"));
+		
 		JButton give_mission = new JButton(" G e t  M i s s o i n ");
 		give_mission.setFont(font);
 		give_mission.addActionListener(new get_mission_listener());
+		give_mission.setIcon(new ImageIcon("get_mission.png"));
+		
 		JButton check_mission = new JButton(" C h e c k   M i s s i o n ");
 		check_mission.setFont(font);
+		check_mission.addActionListener(new check_mission_listener());
+		check_mission.setIcon(new ImageIcon("check_mission.png"));
+		
 		JButton close_window = new JButton(" S t o p   t a l k   w i t h   N P C");
+		close_window.setIcon(new ImageIcon("stop_npc.png"));
+		
 		close_window.setFont(font_italic);
 		close_window.addActionListener(new goback_listener());
 		
 	
-		
-		//window.add(info);
 		window.add(helpButton);
 		window.add(give_mission);
 		window.add(check_mission);
 		window.add(close_window);
-		npc_face.setBackground(Color.lightGray);
-		npc_face.add(npc_info);
+		window.setBounds(0, 0, 390, 310);
 		
-		container.add(BorderLayout.WEST,window);
-		container.add(BorderLayout.EAST,npc_face);
+		npc_face.setBackground(Color.LIGHT_GRAY);
+		npc_face.setBounds(390, 0, 300, 350);
+		
+		
+		
+		
+		container.add(window);
+		container.add(npc_face);
 		
 
 	}
@@ -92,6 +106,14 @@ public class NpcFrame extends JFrame{
 		{
 			getMissionDisplay gm = new getMissionDisplay();
 			gm.go();
+		}
+	}
+	class check_mission_listener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			checkDisplay cd = new checkDisplay();
+			cd.go();
 		}
 	}
 	

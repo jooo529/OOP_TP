@@ -15,6 +15,7 @@ public class HomeFrame extends JFrame{
 		go_home();
 	}
 	BufferedImage im_background;
+	private ImageIcon tb;
 	JButton Exit = new JButton("Exit");
 	JButton character = new JButton();
 	Container container;
@@ -29,12 +30,14 @@ public class HomeFrame extends JFrame{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		tb = new ImageIcon("textBallon_click.png");
         container = this.getContentPane();
        
 		JPanel back_ground = new JPanel(){ 
 		 public void paintComponent(Graphics g) {
             
 			 g.drawImage(im_background, 0, 0, 1000, 550, this);
+			 g.drawImage(tb.getImage(), 600, 150, null);
 	
         }};
       
@@ -62,11 +65,11 @@ public class HomeFrame extends JFrame{
 		character.setDefaultCapable(false);
 		character.setFocusPainted(false);
 		character.setToolTipText("NPC CLICK");
-		character.setIcon(new ImageIcon("doll_default.png"));
-		character.setRolloverIcon(new ImageIcon("doll_default_s.png"));
+		character.setIcon(new ImageIcon("mom_stand.png"));
+		character.setRolloverIcon(new ImageIcon("mom_stand_c.png"));
 		character.setBorderPainted(false);
 		character.addActionListener(new button_listener());
-		character.setBounds(400, 200, 200 , 160);		
+		character.setBounds(550, 150, 110 ,300 );		
 		character.setOpaque(false);
 		
 		back_ground.add(character);
