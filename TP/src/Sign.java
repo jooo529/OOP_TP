@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Sign extends File implements ActionListener{
+public class Sign extends UserFile implements ActionListener{
 	
 	private JTextField ID_tf,PW_tf,PWc_tf,Name_tf,Phone_tf1,Phone_tf2,ucQ_tf,ucA_tf;
 	private JComboBox<String> Phone_cb ;
@@ -137,7 +137,8 @@ public class Sign extends File implements ActionListener{
 					u.setPhoneNum(inPhone);
 					u.setLevel(0);
 					u.setMoney(0);
-					u.setLogindata("-");
+					u.setLastlogindata("-");
+					u.setNowlogindata("-");
 					u.setUsercheckQuestion(inQ);
 					u.setUsercheckAnswer(inA);
 					Users.add(u);

@@ -135,18 +135,22 @@ public class LoginFrame extends JFrame{
 		panel2.add(panel2c);
 	}
 	
-	class LoginListener extends File implements ActionListener{
+	class LoginListener extends UserFile implements ActionListener{
 		public void actionPerformed(ActionEvent event)
 		{
 			this.fileLoad();
 			Boolean login = false;
 			String inputID = id_tf.getText();
 			String inputPWD = pw_tf.getText();
-
+			int ind=-1;
 			for(int i=0; i<Users.size(); i++){
-				if((Users.get(i).getId().equals(inputID))&&(Users.get(i).getPwd().equals(inputPWD)))login=true;
+				if((Users.get(i).getId().equals(inputID))&&(Users.get(i).getPwd().equals(inputPWD))){
+					login=true;
+					ind = i;
+				}
 			}
 			if(login){
+				Users.get(ind).setIndex(ind);
 				setVisible(false);
 				MainDisplay md = new MainDisplay();
 				md.go();

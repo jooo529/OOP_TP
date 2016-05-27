@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Find extends File implements ActionListener {
+public class Find extends UserFile implements ActionListener {
 
 	private JTextField Name_tf,Phone_tf1,Phone_tf2;
 	private JComboBox Phone_cb ;

@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class Rank extends File{
+public class Rank extends UserFile{
 
 	private JTable rank_tb;
 	private JScrollPane rank_sp;
@@ -25,7 +25,7 @@ public class Rank extends File{
 			row[i][0] = Users.get(i).getId();
 			row[i][1] = Users.get(i).getLevel();
 			row[i][2] = Users.get(i).getMoney();
-			row[i][3] = Users.get(i).getLogindata();
+			row[i][3] = Users.get(i).getLastlogindata();
 		}
 		
 		DefaultTableModel model = new DefaultTableModel(row,col){

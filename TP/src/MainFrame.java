@@ -4,11 +4,23 @@ import javax.swing.*;
 
 public class MainFrame extends JFrame{
 
+	UserFile f = new UserFile();
+	
 	public MainFrame(){
 		go_main();
 	}
 	
 	ImageIcon im;
+	
+	public String toUserInfo() {
+        int idx=-1;
+        for(int i=0; i<UserFile.Users.size(); i++){
+			if(UserFile.Users.get(i).getIndex()>0) idx = i;
+		}		
+		return "User [ id = " + UserFile.Users.get(idx).getId() + ", money = " + UserFile.Users.get(idx).getMoney() +
+				", level = " + UserFile.Users.get(idx).getLevel() + " ] ";
+	}
+
 	
 	public void go_main() {
 		
@@ -26,8 +38,10 @@ public class MainFrame extends JFrame{
 		
 		JTextArea missionInfo = new JTextArea("Mission\n\n\n\n\n\n");
 		missionInfo.setBounds(735, 48, 250,75);
+
+		JTextField userInfo = new JTextField(toUserInfo());
+		userInfo.setEditable(false);
 		
-		JTextField userInfo = new JTextField("USERINFOINFOINFO");
 		userInfo.setBounds(633, 13, 352, 30);
 		userInfo.setBackground(Color.BLACK);
 		userInfo.setForeground(Color.ORANGE);
@@ -80,7 +94,9 @@ public class MainFrame extends JFrame{
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			///
+			for(int i=0; i<UserFile.Users.size(); i++){
+				UserFile.Users.get(i).setIndex(-1);
+			}
 			System.exit(0);
 		}
 	}

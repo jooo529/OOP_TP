@@ -27,6 +27,9 @@ import javax.swing.event.ListSelectionListener;
 
 public class FarmFrame extends JFrame {
 
+	UserFile f = new UserFile();
+	private int idx;
+	
 	public FarmFrame() {
 		go_farm();
 	}
@@ -72,18 +75,19 @@ public class FarmFrame extends JFrame {
 
 		container.add(BorderLayout.NORTH, menupanel);
 
-		User u = new User();
 		Font font = new Font("Dialog", Font.BOLD, 15); // 20은 글자 크기
 
-		JLabel userID_label = new JLabel("U s e r   :   " + u.getId());
+        for(int i=0; i<UserFile.Users.size(); i++){
+			if(UserFile.Users.get(i).getIndex()>0) idx = i;
+		}
+		JLabel userID_label = new JLabel("U s e r   :   " + UserFile.Users.get(idx).getId());
 		userID_label.setFont(font);
 
-		JLabel userMONEY_label = new JLabel("           M o n e y   :   " + u.getMoney());
+		JLabel userMONEY_label = new JLabel("           M o n e y   :   " + UserFile.Users.get(idx).getMoney());
 		userMONEY_label.setFont(font);
 
-		JLabel userLEVEL_label = new JLabel("           L e v e l   :   " + u.getLevel());
+		JLabel userLEVEL_label = new JLabel("           L e v e l   :   " + UserFile.Users.get(idx).getLevel());
 		userLEVEL_label.setFont(font);
-
 		JLabel enter = new JLabel("                      ");
 
 		menupanel.add(userID_label);

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class File {
+public class UserFile {
 	
 	static ArrayList<User> Users = new ArrayList<User>(); 
 	
@@ -25,7 +25,8 @@ public class File {
 					u.setPhoneNum(st.nextToken());
 					u.setMoney(Integer.parseInt(st.nextToken()));
 					u.setLevel(Integer.parseInt(st.nextToken()));
-					u.setLogindata(st.nextToken());
+					u.setLastlogindata(st.nextToken());
+					u.setNowlogindata(st.nextToken());
 					u.setUsercheckQuestion(st.nextToken());
 					u.setUsercheckAnswer(st.nextToken());
 					Users.add(u);
@@ -53,7 +54,9 @@ public class File {
 				fw.write(",");
 				fw.write(""+Users.get(i).getLevel());
 				fw.write(",");
-				fw.write(Users.get(i).getLogindata());
+				fw.write(Users.get(i).getLastlogindata());
+				fw.write(",");
+				fw.write(Users.get(i).getNowlogindata());
 				fw.write(",");
 				fw.write(Users.get(i).getUsercheckQuestion());
 				fw.write(",");
