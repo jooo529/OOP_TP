@@ -26,7 +26,7 @@ import javax.swing.event.ListSelectionListener;
 //import Home.goback_listener;
 
 public class FarmFrame extends JFrame {
-
+	
 	UserFile f = new UserFile();
 	private int idx;
 	
@@ -39,7 +39,7 @@ public class FarmFrame extends JFrame {
 	JList<String> list;
 	JFrame frame_kind;
 	JFrame frame_number;
-	JTextField tf;
+//	JTextField tf;
 	boolean isChoose;
 
 	public void go_farm() {
@@ -88,12 +88,29 @@ public class FarmFrame extends JFrame {
 
 		JLabel userLEVEL_label = new JLabel("           L e v e l   :   " + UserFile.Users.get(idx).getLevel());
 		userLEVEL_label.setFont(font);
+		
+		JLabel userAPPLE_label = new JLabel(" 			A p p l e   :   "+UserFile.Users.get(idx).getApple());	
+		userAPPLE_label.setFont(font);
+		
+		JLabel userGRAPE_label = new JLabel(" 			G r a p e   :   "+UserFile.Users.get(idx).getGrape());	
+		userGRAPE_label.setFont(font);
+		
+		JLabel userORANGE_label = new JLabel(" 			O r a n g e   :   "+UserFile.Users.get(idx).getOrange());	
+		userORANGE_label.setFont(font);
+		
+		JLabel userSTRAWBERRY_label = new JLabel(" 			S t r a w b e r r y   :   "+UserFile.Users.get(idx).getStrawBerry());	
+		userSTRAWBERRY_label.setFont(font);
+		
 		JLabel enter = new JLabel("                      ");
 
 		menupanel.add(userID_label);
 		menupanel.add(userLEVEL_label);
 		menupanel.add(userMONEY_label);
-		menupanel.add(enter);
+		menupanel.add(userAPPLE_label);
+		menupanel.add(userGRAPE_label);
+		menupanel.add(userORANGE_label);
+		menupanel.add(userSTRAWBERRY_label);
+		//menupanel.add(enter);
 		menupanel.add(goback);
 	}
 
@@ -117,20 +134,25 @@ public class FarmFrame extends JFrame {
 			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			list.addListSelectionListener(this);
 			list.setFont(new Font("Dialog", Font.BOLD, 15));
-
+			
+			
 			JButton ok_btn = new JButton("Ok");
 			ok_btn.addActionListener(new ok_listener());
 
 			JButton close_btn = new JButton("Close");
 			close_btn.addActionListener(new close_listener());
 
-			tf = new JTextField(20);
-
+			
+		//	tf = new JTextField(20);
+			
+			JLabel notice = new JLabel(" Choose one which you want");
+			notice.setFont(new Font("Dialog",Font.BOLD,15));
+			
 			frame_kind.add(BorderLayout.NORTH, list);
 			frame_kind.add(BorderLayout.WEST, ok_btn);
 			frame_kind.add(BorderLayout.EAST, close_btn);
-			frame_kind.add(BorderLayout.CENTER, new JLabel("How many fruits do you want to get?"));
-			frame_kind.add(BorderLayout.SOUTH, tf);
+			frame_kind.add(BorderLayout.CENTER, notice);
+	//		frame_kind.add(BorderLayout.SOUTH, tf);
 
 			frame_kind.setSize(350, 250);
 			frame_kind.setLocation(xPos, yPos);
@@ -146,15 +168,14 @@ public class FarmFrame extends JFrame {
 
 	class ok_listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (isChoose == true&&tf.getText().length()!=0) {	//숫자만 입력받도록 다시수정해야함
-				
+			if (isChoose == true) {	//숫자만 입력받도록 다시수정해야함
+				UserFile.Users.get(idx).setFruit(list.getSelectedValue());
 				FarmDisplay fd = new FarmDisplay();
 				fd.go_game();
 				frame_kind.setVisible(false);
 				setVisible(false);
-				
 			} else
-				JOptionPane.showMessageDialog(null, "CHECK KIND or NUMBER of FRUIT", "ERROR", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "MUST CHECK ONE", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}

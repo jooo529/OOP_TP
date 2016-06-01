@@ -29,6 +29,10 @@ public class UserFile {
 					u.setNowlogindata(st.nextToken());
 					u.setUsercheckQuestion(st.nextToken());
 					u.setUsercheckAnswer(st.nextToken());
+					u.setApple(Integer.parseInt(st.nextToken()));
+					u.setGrape(Integer.parseInt(st.nextToken()));
+					u.setOrange(Integer.parseInt(st.nextToken()));
+					u.setStrawBerry(Integer.parseInt(st.nextToken()));
 					Users.add(u);
 				}
 		}catch (FileNotFoundException e) { 
@@ -61,6 +65,14 @@ public class UserFile {
 				fw.write(Users.get(i).getUsercheckQuestion());
 				fw.write(",");
 				fw.write(Users.get(i).getUsercheckAnswer());	
+				fw.write(",");
+				fw.write(""+Users.get(i).getApple());
+				fw.write(",");
+				fw.write(""+Users.get(i).getGrape());
+				fw.write(",");
+				fw.write(""+Users.get(i).getOrange());
+				fw.write(",");
+				fw.write(""+Users.get(i).getStrawBerry());
 				fw.newLine();
 			}
 				fw.close();

@@ -14,8 +14,12 @@ public class User {
 	private String nowlogindata;
 	private String usercheckQuestion;
 	private String usercheckAnswer;
-	String Fruits[] = {"Apple", "Grapes","StrawBerry"};//
-	private ArrayList<String> Fruit = new ArrayList<String>(); 
+	private String Fruit;//
+	private int apple;
+	private int grape;
+	private int orange;
+	private int StrawBerry;
+//	private ArrayList<String> Fruit = new ArrayList<String>(); 
 
 	public int getIndex() {
 		return index;
@@ -79,10 +83,10 @@ public class User {
 	public void setUsercheckQuestion(String usercheckQuestion) {
 		this.usercheckQuestion = usercheckQuestion;
 	}
-	public ArrayList<String> getFruit() {
+	public String getFruit() {
 		return Fruit;
 	}
-	public void setFruit(ArrayList<String> fruit) {
+	public void setFruit(String fruit) {
 		Fruit = fruit;
 	}
 	public String getUsercheckAnswer() {
@@ -90,14 +94,40 @@ public class User {
 	}
 	public void setUsercheckAnswer(String usercheckAnswer) {
 		this.usercheckAnswer = usercheckAnswer;
+	}	
+	public int getApple() {
+		return apple;
 	}
-
+	public void setApple(int apple) {
+		this.apple = apple;
+	}
+	public int getGrape() {
+		return grape;
+	}
+	public void setGrape(int grape) {
+		this.grape = grape;
+	}
+	public int getOrange() {
+		return orange;
+	}
+	public void setOrange(int orange) {
+		this.orange = orange;
+	}
+	public int getStrawBerry(){
+		return StrawBerry;
+	}
+	public void setStrawBerry(int StrawBerry){
+		this.StrawBerry = StrawBerry;
+	}
+	
 	@Override
 	public String toString() {
 		return "User [index=" + index + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
 				+ ", money=" + money + ", level=" + level + ", lastlogindata=" + lastlogindata + ", nowlogindata="
 				+ nowlogindata + ", usercheckQuestion=" + usercheckQuestion + ", usercheckAnswer=" + usercheckAnswer
-				+ ", Fruit=" + Fruit + "]";
+				+ ", Fruit=" + Fruit + ", apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry="
+				+ StrawBerry + "]";
 	}
+	
 
 }

@@ -27,40 +27,62 @@ public class FarmingFrame extends JFrame {
 	Container container;
 	JList<String> list;
 	static int i;
-	JPanel fruitpanel;
+	JPanel fruitpanel, menupanel;
+	int idx;
+	JLabel userAPPLE_label, userGRAPE_label, userORANGE_label, userSTRAWBERRY_label;
 
 	ImageIcon i1 = new ImageIcon("first.png");
 	ImageIcon i2 = new ImageIcon("Second.png");
-	ImageIcon i3 = new ImageIcon("third.png");
-	ImageIcon i4 = new ImageIcon("fourth.png");
-
+	ImageIcon i3_APPLE = new ImageIcon("apple.png");
+	ImageIcon i3_GRAPE = new ImageIcon("grape.png");
+	ImageIcon i3_ORANGE = new ImageIcon("orange.png");
+	ImageIcon i3_STRAWBERRY = new ImageIcon("strawberry.png");
+	ImageIcon i3;
+	ImageIcon i4_APPLE = new ImageIcon("appleRotten.png");
+	ImageIcon i4_GRAPE = new ImageIcon("grapeRotten.png");
+	ImageIcon i4_ORANGE = new ImageIcon("orangeRotten.png");
+	ImageIcon i4_STRAWBERRY = new ImageIcon("strawberryRotten.png");
+	ImageIcon i4;
+	
 	public void go_farming() { // 선택받은 과일이 입력받은 갯수만큼 나타나는거 구현하기
 
 		container = this.getContentPane();
 		container.setLayout(new BorderLayout());
 
-		JPanel menupanel = new JPanel();
+		menupanel = new JPanel();
 
 		container.add(BorderLayout.NORTH, menupanel);
 
 		User u = new User();
-		Font font = new Font("Dialog", Font.BOLD, 15); // 20은 글자 크기
 
-		JLabel userID_label = new JLabel("U s e r   :   " + u.getId());
-		userID_label.setFont(font);
+		for (int i = 0; i < UserFile.Users.size(); i++) {
+			if (UserFile.Users.get(i).getIndex() > 0)
+				idx = i;
+		}
 
-		JLabel userMONEY_label = new JLabel("           M o n e y   :   " + u.getMoney());
-		userMONEY_label.setFont(font);
+		setting_menupanel sm = new setting_menupanel();
+		sm.setM();
 
-		JLabel userLEVEL_label = new JLabel("           L e v e l   :   " + u.getLevel());
-		userLEVEL_label.setFont(font);
+		String which = UserFile.Users.get(idx).getFruit();
 
-		JLabel enter = new JLabel("                      ");
-
-		menupanel.add(userID_label);
-		menupanel.add(userLEVEL_label);
-		menupanel.add(userMONEY_label);
-		menupanel.add(enter);
+		if (which == "Grape"){
+			i3 = i3_GRAPE;
+			i4 = i4_GRAPE;
+		}
+		else if (which == "Apple"){
+			i3 = i3_APPLE;
+			i4 = i4_APPLE;
+		}
+		else if (which == "Orange"){
+			i3 = i3_ORANGE;
+			i4 = i4_ORANGE;
+		}
+		else if (which == "Strawberry"){
+			i3 = i3_STRAWBERRY;
+			i4 = i4_STRAWBERRY;
+		}
+			
+		// menupanel.add(enter);
 
 		fruitpanel = new JPanel();
 		fruitpanel.setLayout(new GridLayout(3, 3));
@@ -129,17 +151,8 @@ public class FarmingFrame extends JFrame {
 		};
 		// ------------------------------------------------------------------------------
 
-		ary[0].addActionListener(new reset1());
-		ary[1].addActionListener(new reset2());
-		ary[2].addActionListener(new reset3());
-		ary[3].addActionListener(new reset4());
-		ary[4].addActionListener(new reset5());
-		ary[5].addActionListener(new reset6());
-		ary[6].addActionListener(new reset7());
-		ary[7].addActionListener(new reset8());
-		ary[8].addActionListener(new reset9());
-
 		for (int k = 0; k < 9; k++) {
+			ary[k].addActionListener(new reset(k));
 			fruitpanel.add(ary[k]);
 		}
 
@@ -154,7 +167,43 @@ public class FarmingFrame extends JFrame {
 
 	class quit_listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			UserFile file = new UserFile();
+			file.fileSave();
 			setVisible(false);
+		}
+	}
+
+	class setting_menupanel {
+		public void setM() {
+			Font font = new Font("Dialog", Font.BOLD, 15); // 20은 글자 크기
+
+			JLabel userID_label = new JLabel("U s e r   :   " + UserFile.Users.get(idx).getId());
+			userID_label.setFont(font);
+
+			JLabel userMONEY_label = new JLabel("           M o n e y   :   " + UserFile.Users.get(idx).getMoney());
+			userMONEY_label.setFont(font);
+
+			JLabel userLEVEL_label = new JLabel("           L e v e l   :   " + UserFile.Users.get(idx).getLevel());
+			userLEVEL_label.setFont(font);
+
+			userAPPLE_label = new JLabel();
+			userGRAPE_label = new JLabel();
+			userORANGE_label = new JLabel();
+			userSTRAWBERRY_label = new JLabel();
+
+			userAPPLE_label.setFont(font);
+			userGRAPE_label.setFont(font);
+			userORANGE_label.setFont(font);
+			userSTRAWBERRY_label.setFont(font);
+			changeFruit();
+
+			menupanel.add(userID_label);
+			menupanel.add(userLEVEL_label);
+			menupanel.add(userMONEY_label);
+			menupanel.add(userAPPLE_label);
+			menupanel.add(userGRAPE_label);
+			menupanel.add(userORANGE_label);
+			menupanel.add(userSTRAWBERRY_label);
 		}
 	}
 
@@ -172,10 +221,10 @@ public class FarmingFrame extends JFrame {
 			Timer tmr = new Timer();
 			changeto3 ct3 = new changeto3();
 			ct3.setK(k);
-			
+
 			int temp = (int) (Math.random() * 10 + 2) * 1000;
 			tmr.schedule(ct3, temp);
-			
+
 		}
 
 	}
@@ -190,31 +239,31 @@ public class FarmingFrame extends JFrame {
 		public void run() {
 			im[k] = i3;
 			fruitpanel.repaint();
-			
+
 			Timer tmr = new Timer();
 			rotten rot = new rotten();
 			rot.setK(k);
-			
-			tmr.schedule(rot,8000);
+
+			tmr.schedule(rot, 8000);
 		}
 
 	}
 
-	class rotten extends TimerTask{
+	class rotten extends TimerTask {
 		int k;
-		
-		public void setK(int set){
+
+		public void setK(int set) {
 			k = set;
 		}
-		
-		public void run(){
-			if(im[k]==i3){
-				im[k]= i4;
+
+		public void run() {
+			if (im[k] == i3) {
+				im[k] = i4;
 				fruitpanel.repaint();
 			}
 		}
 	}
-	
+
 	class loop {
 
 		public void go() {
@@ -260,125 +309,58 @@ public class FarmingFrame extends JFrame {
 			tm.schedule(sch8, randtime[7]);
 			sch9.setK(8);
 			tm.schedule(sch9, randtime[8]);
+
+		}
+
+	}
+
+	void changeFruit() {
+		userAPPLE_label.setText(" 			A p p l e   :   " + UserFile.Users.get(idx).getApple());
+		userGRAPE_label.setText(" 			G r a p e   :   " + UserFile.Users.get(idx).getGrape());
+		userORANGE_label.setText(" 			O r a n g e   :   " + UserFile.Users.get(idx).getOrange());
+		userSTRAWBERRY_label.setText(" 			S t r a w b e r r y   :   " + UserFile.Users.get(idx).getStrawBerry());
+	}
+
+	class reset implements ActionListener{
+		int k;
+		public reset(int i){
+			k=i;
+		}
+		public void actionPerformed(ActionEvent e) {
+			if (im[k] == i3_APPLE)
+				UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() + 1);
+			else if (im[k] == i3_GRAPE)
+				UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape() + 1);
+			else if (im[k] == i3_ORANGE)
+				UserFile.Users.get(idx).setOrange(UserFile.Users.get(idx).getOrange() + 1);
+			else if (im[k] == i3_STRAWBERRY)
+				UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() + 1);
+			//------------  Increase Fruit Variable
 			
-			
-		}
-	}
+			else if(im[k]==i4_APPLE&&UserFile.Users.get(idx).getApple()>0)
+				UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() - 1);
+			else if(im[k]==i4_GRAPE&&UserFile.Users.get(idx).getGrape()>0)
+				UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape() - 1);
+			else if(im[k]==i4_ORANGE&&UserFile.Users.get(idx).getOrange()>0)
+				UserFile.Users.get(idx).setOrange(UserFile.Users.get(idx).getOrange() - 1);
+			else if(im[k]==i4_STRAWBERRY&&UserFile.Users.get(idx).getStrawBerry()>0)
+				UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() - 1);
 
-	class reset1 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (im[0] == i3) {
-				im[0] = i1;
+				
+				
+				
+			changeFruit();
+
+			if (im[k] == i3||im[k]==i4) {
+				im[k] = i1;
 				int randtime = (int) (Math.random() * 10 + 2) * 1000;
 				btn_game sch = new btn_game();
 				Timer tm = new Timer();
-				sch.setK(0);
+				sch.setK(k);
 				tm.schedule(sch, randtime);
 			}
 		}
 	}
 
-	class reset2 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (im[1] == i3) {
-				im[1] = i1;
-				int randtime = (int) (Math.random() * 10 + 2) * 1000;
-				btn_game sch = new btn_game();
-				Timer tm = new Timer();
-				sch.setK(1);
-				tm.schedule(sch, randtime);
-			}
-		}
-	}
 
-	class reset3 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (im[2] == i3) {
-				im[2] = i1;
-				int randtime = (int) (Math.random() * 10 + 2) * 1000;
-				btn_game sch = new btn_game();
-				Timer tm = new Timer();
-				sch.setK(2);
-				tm.schedule(sch, randtime);
-			}
-		}
-	}
-
-	class reset4 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (im[3] == i3) {
-				im[3] = i1;
-				int randtime = (int) (Math.random() * 10 + 2) * 1000;
-				btn_game sch = new btn_game();
-				Timer tm = new Timer();
-				sch.setK(3);
-				tm.schedule(sch, randtime);
-			}
-		}
-	}
-
-	class reset5 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (im[4] == i3) {
-				im[4] = i1;
-				int randtime = (int) (Math.random() * 10 + 2) * 1000;
-				btn_game sch = new btn_game();
-				Timer tm = new Timer();
-				sch.setK(4);
-				tm.schedule(sch, randtime);
-			}
-		}
-	}
-
-	class reset6 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (im[5] == i3) {
-				im[5] = i1;
-				int randtime = (int) (Math.random() * 10 + 2) * 1000;
-				btn_game sch = new btn_game();
-				Timer tm = new Timer();
-				sch.setK(5);
-				tm.schedule(sch, randtime);
-			}
-		}
-	}
-
-	class reset7 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (im[6] == i3) {
-				im[6] = i1;
-				int randtime = (int) (Math.random() * 10 + 2) * 1000;
-				btn_game sch = new btn_game();
-				Timer tm = new Timer();
-				sch.setK(6);
-				tm.schedule(sch, randtime);
-			}
-		}
-	}
-
-	class reset8 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (im[7] == i3) {
-				im[7] = i1;
-				int randtime = (int) (Math.random() * 10 + 2) * 1000;
-				btn_game sch = new btn_game();
-				Timer tm = new Timer();
-				sch.setK(7);
-				tm.schedule(sch, randtime);
-			}
-		}
-	}
-
-	class reset9 implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			if (im[8] == i3) {
-				im[8] = i1;
-				int randtime = (int) (Math.random() * 10 + 2) * 1000;
-				btn_game sch = new btn_game();
-				Timer tm = new Timer();
-				sch.setK(8);
-				tm.schedule(sch, randtime);
-			}
-		}
-	}
 }
