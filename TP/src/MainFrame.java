@@ -63,17 +63,21 @@ public class MainFrame extends JFrame{
 		store_button.addActionListener(new StoreButtonListener());
 		
 		JTextArea missionInfo = new JTextArea();
-		missionInfo.setBounds(735, 48, 250, 250);
+		missionInfo.setBounds(735, 48, 250, 220);
 		missionInfo.setEditable(false);
 
 		JTextField userInfo = new JTextField(toUserInfo(), JLabel.CENTER);
-		Font font = new Font("Dialog", Font.BOLD, 14);
+		Font font = new Font("Kristen ITC", Font.BOLD, 14);
 		userInfo.setFont(font);
 		userInfo.setEditable(false);
 		userInfo.setBounds(633, 13, 352, 30);
 		userInfo.setBackground(Color.BLACK);
 		userInfo.setForeground(Color.ORANGE);
-
+		
+		Font font2 = new Font("Kristen ITC", Font.BOLD, 12);
+		missionInfo.setFont(font2);
+		missionInfo.setEditable(false);
+		missionInfo.setLineWrap(true);
 		if (UserFile.Users.get(idx).getLevel() == 0)	missionInfo.setText(mf.fileLoad("Mission0.txt"));
 		else if (UserFile.Users.get(idx).getLevel() == 1)	missionInfo.setText(mf.fileLoad("Mission1.txt"));
 		else if (UserFile.Users.get(idx).getLevel() == 2)	missionInfo.setText(mf.fileLoad("Mission2.txt"));
