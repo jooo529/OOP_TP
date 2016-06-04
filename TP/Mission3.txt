@@ -1,0 +1,10 @@
+<Mission 3>
+Put your all fruits in refrigerator!
+Refrigerator is located in Store.
+You can learn Stack in this mission.
+Stack's feature is 'First In Last Out'
+You will store your fruits in refrigerator.
+And when you make fruitjuice,
+you will get fruit
+from top of refrigerator!
+First In, Last Out!

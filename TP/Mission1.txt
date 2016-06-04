@@ -1,0 +1,9 @@
+<Mission 1>
+You have to buy some fruitbox!
+You can learn 'value and variable's relation' in this mission.
+Each of fruits means value
+and each of boxes means variable
+If you try to put big fruit
+in small box, fruit will go to pieces! 
+So, you have to put each fruit in proper box!
+(= you have to put value in proper variable!)
