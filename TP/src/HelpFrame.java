@@ -26,6 +26,7 @@ public class HelpFrame extends JFrame{
 	JButton mission5;
 	JTextArea textarea;
 	Font font = new Font("Kristen ITC",Font.BOLD, 20); //30글자 크기
+	Font font2 = new Font("Kristen ITC",Font.BOLD, 14);
 	
 	
 	
@@ -112,6 +113,7 @@ public class HelpFrame extends JFrame{
 		scroller.setBounds(40, 55, 320, 200);
 		
 		
+		
 		container.add(buttonPanel);
 		container.add(textPanel);
 		//container.add(BorderLayout.EAST,eastPanel);
@@ -126,27 +128,73 @@ public class HelpFrame extends JFrame{
 	
 	class mission_b_listener implements ActionListener
 	{
+
 		public void actionPerformed(ActionEvent event)
 		{
+			textarea.setFont(font2);
 			if(event.getSource() == mission1)
 			{
-				textarea.setText("Mission 1 : blah blah");
+				textarea.setText("<Mission 1>"
+						+ "\nYou have to buy some fruitbox!"
+						+ "\nYou can learn 'value and variable's relation' in this mission."
+						+ "\n\nEach of fruits means value,"
+						+ "\nand each of boxes means variable"
+						+ "\n\nIf you try to put big fruit"
+						+ "\nin small box, fruit will go to pieces! "
+						+ "\n\nSo, you have to put each fruit in proper box!"
+						+ "\n(= you have to put value in proper variable!)"
+						);
+				
 			}
 			else if(event.getSource() == mission2)
 			{
-				textarea.setText("Mission 2 : blah blah");
+				textarea.setText("<Mission 2>"
+						+ "\nYou have to go to Farm and get some fruit!"
+						+ "\nGo to Farm and just enjoy FruitGame!"
+						);
 			}
 			else if(event.getSource() == mission3)
 			{
-				textarea.setText("Mission 3 : blah blah");
+				textarea.setText("<Mission 3>"
+						+ "\nPut your all fruits in refrigerator!"
+						+ "\nRefrigerator is located in Store."
+						+ "\n\nYou can learn Stack in this mission."
+						+ "\nStack's feature is 'First In Last Out'"
+						+ "\nYou will store your fruits in refrigerator."
+						+ "\n\nAnd when you make fruitjuice,"
+						+ "\nyou will get fruit"
+						+ "\nfrom top of refrigerator!"
+						+ "\n\nFirst In, Last Out!"
+						);
 			}
 			else if(event.getSource() == mission4)
 			{
-				textarea.setText("Mission 4 : blah blah");
+				textarea.setText("<Mission 4>"
+						+ "\nYou have to make some fruit juice!"
+						+ "\nGo to store and take some fruits"
+						+ "\nout of refrigerator."
+						+ "\nThen read recipe of Juice"
+						+ "\nand make fruit juice"
+						+ "\nYou can learn Class and Object from this Mission."
+						+ "\nClass is blueprint of an Object."
+						+ "\nand Object is an instance of the class."
+						+ "\n\nIn this mission, recipe will be blueprint"
+						+ "\nand juice will be instance of recipe! "
+						);
 			}
 			else if(event.getSource() == mission5)
 			{
-				textarea.setText("Mission 5 : blah blah");
+				textarea.setText("<Mission 5>"
+						+ "\nYou have to go to Store and sell juice!"
+						+ "\nIn Store, some consumers will be there."
+						+ "\nThey want your fruit juice!"
+						+ "\nSell them some juice!"
+						+ "\n\nYou can learn Queue in this mission!"
+						+ "\nQueue's feature is 'First In,First Out"
+						+ "\nConsumer who comes first will get juice first,"
+						+ "\nand go out of store first!"
+						+ "\n\nFirst In, First Out!"
+						);
 			}
 		}
 	}

@@ -1,4 +1,4 @@
 guest,1234,guest,01000000000,1,1,-,-,hello,hello,0,0,0,0
-cjy1001,wlsdud1,cjy,01045265518,0,0,-,-,professor name,teemu,100,100,100,100
-a,a,guest,01000000000,1,1,-,-,hello,hello,0,16,14,4
+cjy1001,wlsdud1,cjy,01045265518,19900,0,-,-,professor name,teemu,87,85,98,100
+a,a,guest,01000000000,25001,1,-,-,hello,hello,0,0,0,0
 asdsadasd,asdasdasd,asdasfsad,01021341231,18700,0,-,-,123123,123123,0,0,0,0
