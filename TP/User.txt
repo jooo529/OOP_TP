@@ -1,4 +1,10 @@
 guest,1234,guest,01000000000,2501,2,-,-,hello,hello,1,12,9,0
+1,1,guest,01000000000,2501,1,-,-,hello,hello,1,12,9,0
+0,0,guest,01000000000,2501,0,-,-,hello,hello,1,12,9,0
+5,5,guest,01000000000,2501,5,-,-,hello,hello,1,12,9,0
+2,2,guest,01000000000,2501,2,-,-,hello,hello,1,12,9,0
+3,3,guest,01000000000,2501,3,-,-,hello,hello,1,12,9,0
+4,4,guest,01000000000,2501,4,-,-,hello,hello,1,12,9,0
 cjy1001,wlsdud1,cjy,01045265518,19900,1,-,-,professor name,teemu,87,85,98,100
 a,a,guest,01000000000,25001,1,-,-,hello,hello,0,0,0,0
 asdsadasd,asdasdasd,asdasfsad,01021341231,18700,0,-,-,123123,123123,0,0,0,0
