@@ -162,7 +162,7 @@ public class StoreFrame extends JFrame {
 		public PopUpMarket() {
 
 			this.setVisible(true);
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			this.setSize(400, 800);
 
 			Font font = new Font("Dialog", Font.BOLD, 12);
