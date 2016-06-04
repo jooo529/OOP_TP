@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -24,15 +25,17 @@ public class getMissionFrame extends JFrame {
 	private ImageIcon npcf;
 	private ImageIcon tb;
 	private JPanel window;
-	
+	private JPanel getmission;
+	private JTextArea mission;
+	private JButton getAndexit;
 	      
-	JButton mission1;
-	JButton mission2;
-	JButton mission3;
-	JButton mission4;
-	JButton mission5;
+	private JButton mission1;
+	private JButton mission2;
+	private JButton mission3;
+	private JButton mission4;
+	private JButton mission5;
 	Font font = new Font("Kristen ITC",Font.BOLD, 20); //30글자 크기
-	
+	Font font2 = new Font("Kristen ITC",Font.BOLD, 14);
 	void go_getm()
 	{
 		container = this.getContentPane();
@@ -118,6 +121,27 @@ public class getMissionFrame extends JFrame {
 		container.add(window);
 		container.add(npc_face);
 		
+		getmission = new JPanel();
+		getmission.setLayout(null);
+		
+		getAndexit = new JButton("Ok I got it!");
+		getAndexit.addActionListener(new goback_listener());
+		getAndexit.setBounds(150, 270, 90, 30);
+		getmission.add(getAndexit);
+		
+		mission = new JTextArea();
+		mission.setLineWrap(true);
+		mission.setBounds(20, 10, 350, 250);
+		getmission.add(mission);
+		
+		Border missionBorder = BorderFactory.createLineBorder(Color.black, 3);
+	    Border emptyBorder = BorderFactory.createEmptyBorder(7, 7, 7, 7);
+	    mission.setBorder(BorderFactory.createCompoundBorder(missionBorder, emptyBorder));
+
+
+//Make textArea's Border -> http://blog.naver.com/timberx/30111890732 - reference
+		
+		
 
 	}
 	////////////////////////////////////////////////////////////
@@ -132,30 +156,65 @@ public class getMissionFrame extends JFrame {
 		}
 	}
 	
-	
+	//여기서 미션때 이용될 클래스와 연계해서 코드가 있어야될듯
+	//랜덤하게 뭔가 사오라고 해야되는데....
+	//랜덤으로 뭘 어캐 할지  text 추가 밑 변수 처리
 	class mission_b_listener implements ActionListener
 	{
+		
 		public void actionPerformed(ActionEvent event)
 		{
+			mission.setFont(font2);
+			getmission.setBounds(0, 0, 390, 340);
+			window.setVisible(false);
+			container.remove(window);
+			
 			if(event.getSource() == mission1)
 			{
-				
+				mission.setText("<Mission 1>"
+						+ "\nYou have to buy following fruitbox!"
+						+ "\n\nGo to the Store and Buy following box."
+						+ "\n_________________________________________");
+				container.add(getmission);
 			}
 			else if(event.getSource() == mission2)
 			{
-				container.remove(window);
+				mission.setText("<Mission 2>"
+						+ "\nYou have to go to Farm and get following fruit!"
+						+ "\nGo to Farm and get followng fruits."
+						+ "\n_________________________________________");
+				container.add(getmission);
 			}
 			else if(event.getSource() == mission3)
 			{
-				container.remove(window);
+				mission.setText("<Mission 3>"
+						+ "\nPut your all fruits in refrigerator!"
+						+ "\nRefrigerator is located in Store."
+						+ "\n_________________________________________"
+						);
+				container.add(getmission);
 			}
 			else if(event.getSource() == mission4)
 			{
-				container.remove(window);
+				mission.setText("<Mission 4>"
+						+ "\nYou have to make some fruit juice!"
+						+ "\nGo to store and take following fruits"
+						+ "\nout of refrigerator."
+						+ "\nThen read recipe of Juice"
+						+ "\nand make following fruit's juice"
+						+ "\n_________________________________________"
+						);
+				container.add(getmission);
 			}
 			else if(event.getSource() == mission5)
 			{
-				container.remove(window);
+				mission.setText("<Mission 5>"
+						+ "\nYou have to go to Store and sell juice!"
+						+ "\nIn Store, some consumers will be there."
+						+ "\nThey want your fruit juice!"
+						+ "\nSell them some juice!"
+						+ "\n_________________________________________");
+				container.add(getmission);
 			}
 		}
 	}

@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -23,8 +24,12 @@ public class checkFrame extends JFrame {
     
 	private ImageIcon npcf;
 	private ImageIcon tb;
-	private JPanel window;            
-	      
+	private JPanel window;   
+	private JPanel checkmission;
+	private JTextArea mission;
+	private JButton checkAndexit;
+	Font font2 = new Font("Kristen ITC",Font.BOLD, 14);      
+	
 	JButton mission1;
 	JButton mission2;
 	JButton mission3;
@@ -120,6 +125,28 @@ public class checkFrame extends JFrame {
 		container.add(window);
 		container.add(npc_face);
 		
+		checkmission = new JPanel();
+		checkmission.setLayout(null);
+		
+		checkAndexit = new JButton("Ok! Thank you!");
+		checkAndexit.addActionListener(new goback_listener());
+		checkAndexit.setBounds(130, 270, 130, 30);
+		checkmission.add(checkAndexit);
+		
+		mission = new JTextArea();
+		mission.setLineWrap(true);
+		mission.setBounds(20, 10, 350, 250);
+		checkmission.add(mission);
+		
+		Border missionBorder = BorderFactory.createLineBorder(Color.black, 3);
+	    Border emptyBorder = BorderFactory.createEmptyBorder(7, 7, 7, 7);
+	    mission.setBorder(BorderFactory.createCompoundBorder(missionBorder, emptyBorder));
+
+
+//Make textArea's Border -> http://blog.naver.com/timberx/30111890732 - reference
+		
+		
+		
 
 	}
 	
@@ -136,25 +163,46 @@ public class checkFrame extends JFrame {
 	{
 		public void actionPerformed(ActionEvent event)
 		{
+			
+			checkmission.setBounds(0, 0, 390, 310);
+			window.setVisible(false);
+			container.remove(window);
+			mission.setFont(font2);
+			
 			if(event.getSource() == mission1)
 			{
-				
+				mission.setText("Welcome! I'll check your mission."
+						+ "\nYou got <Mission 1>. right?"
+						+ "\n_________________________________________");
+				container.add(checkmission);
 			}
 			else if(event.getSource() == mission2)
 			{
-				
+				mission.setText("Welcome! I'll check your mission."
+						+ "\nYou got <Mission 2>. right?"
+						+ "\n_________________________________________");
+				container.add(checkmission);
 			}
 			else if(event.getSource() == mission3)
 			{
-				
+				mission.setText("Welcome! I'll check your mission."
+						+ "\nYou got <Mission 3>. right?"
+						+ "\n_________________________________________");
+				container.add(checkmission);
 			}
 			else if(event.getSource() == mission4)
 			{
-				
+				mission.setText("Welcome! I'll check your mission."
+						+ "\nYou got <Mission 4>. right?"
+						+ "\n_________________________________________");
+				container.add(checkmission);
 			}
 			else if(event.getSource() == mission5)
 			{
-				
+				mission.setText("Welcome! I'll check your mission."
+						+ "\nYou got <Mission 5>. right?"
+						+ "\n_________________________________________");
+				container.add(checkmission);
 			}
 		}
 	}
