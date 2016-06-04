@@ -83,10 +83,7 @@ public class FarmFrame extends JFrame {
 		JLabel userID_label = new JLabel("U s e r   :   " + UserFile.Users.get(idx).getId());
 		userID_label.setFont(font);
 
-		JLabel userMONEY_label = new JLabel("           M o n e y   :   " + UserFile.Users.get(idx).getMoney());
-		userMONEY_label.setFont(font);
-
-		JLabel userLEVEL_label = new JLabel("           L e v e l   :   " + UserFile.Users.get(idx).getLevel());
+		JLabel userLEVEL_label = new JLabel("           L e v e l   :   " + UserFile.Users.get(idx).getLevel() + "    ");
 		userLEVEL_label.setFont(font);
 		
 		JLabel userAPPLE_label = new JLabel(" 			A p p l e   :   "+UserFile.Users.get(idx).getApple());	
@@ -105,12 +102,10 @@ public class FarmFrame extends JFrame {
 
 		menupanel.add(userID_label);
 		menupanel.add(userLEVEL_label);
-		menupanel.add(userMONEY_label);
 		menupanel.add(userAPPLE_label);
 		menupanel.add(userGRAPE_label);
 		menupanel.add(userORANGE_label);
 		menupanel.add(userSTRAWBERRY_label);
-		//menupanel.add(enter);
 		menupanel.add(goback);
 	}
 

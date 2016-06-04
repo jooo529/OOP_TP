@@ -7,7 +7,7 @@ public class StoreDisplay {
 	
 	public void go(){
 		store_fr.setSize(1000,590);
-		store_fr.setTitle("Farming Game");
+		store_fr.setTitle("STORE");
 		store_fr.setVisible(true);
 		store_fr.setResizable(false);
 		store_fr.setDefaultCloseOperation(LoginFrame.DISPOSE_ON_CLOSE);

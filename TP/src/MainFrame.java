@@ -13,14 +13,14 @@ public class MainFrame extends JFrame{
 	ImageIcon im;
 	
 	public String toUserInfo() {
-        int idx=-1;
+        int idx = -1;
         for(int i=0; i<UserFile.Users.size(); i++){
-        	if(UserFile.Users.get(i).getIndex()>-1) {
-				idx = i;
-			}	
+        	if(UserFile.Users.get(i).getIndex()>-1) idx = i;
 		}		
-		return "User [ id = " + UserFile.Users.get(idx).getId() + ", money = " + UserFile.Users.get(idx).getMoney() +
-				", level = " + UserFile.Users.get(idx).getLevel() + " ] ";
+        String userInfo = " -- [ ID = " + UserFile.Users.get(idx).getId() + ","
+        		+ " Money = " + UserFile.Users.get(idx).getMoney()
+				+ ", Level = " + UserFile.Users.get(idx).getLevel() + " ]  -- ";  
+		return userInfo;
 	}
 
 	
@@ -41,7 +41,9 @@ public class MainFrame extends JFrame{
 		JTextArea missionInfo = new JTextArea("Mission\n\n\n\n\n\n");
 		missionInfo.setBounds(735, 48, 250,75);
 
-		JTextField userInfo = new JTextField(toUserInfo());
+		JTextField userInfo = new JTextField(toUserInfo(),JLabel.CENTER);
+		Font font = new Font("Dialog", Font.BOLD, 14);
+		userInfo.setFont(font);
 		userInfo.setEditable(false);
 		
 		userInfo.setBounds(633, 13, 352, 30);

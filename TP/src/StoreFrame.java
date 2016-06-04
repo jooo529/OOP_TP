@@ -149,16 +149,15 @@ public class StoreFrame extends JFrame {
 		public PopUpMarket() {
 
 			this.setVisible(true);
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			// this.setBackground(Color.green);
-			this.setSize(400, 800);
+			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			this.setSize(450, 800);
 			
 			Font font = new Font("Dialog", Font.BOLD, 12);
 
 			JPanel menupanel2 = new JPanel();
 
 			JButton goback = new JButton("back");
-			JLabel price = new JLabel("\"PRICE\" APPLE: 500, ORANGE: 700, GRAPE: 800, STRAWBERRY: 600");
+			JLabel price = new JLabel("\"$PRICE$\" APPLE: 500, ORANGE: 700, GRAPE: 800, STRAWBERRY: 600");
 			price.setFont(font);
 			
 			goback.addActionListener(new quit_listener());
