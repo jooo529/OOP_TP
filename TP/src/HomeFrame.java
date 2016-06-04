@@ -113,6 +113,7 @@ public class HomeFrame extends JFrame {
 				NpcDisplay npc = new NpcDisplay();
 				npc.go();
 			} else if (event.getSource() == Exit) {
+				f.fileSave();
 				setVisible(false);
 			}
 

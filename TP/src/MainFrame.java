@@ -4,7 +4,6 @@ import javax.swing.*;
 
 public class MainFrame extends JFrame{
 
-	UserFile f = new UserFile();
 	MissionFile mf = new MissionFile();
 	static int idx = -1;
 	
