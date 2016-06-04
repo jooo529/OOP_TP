@@ -138,9 +138,11 @@ public class StoreFrame extends JFrame {
 
 	class goback_listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			f.fileSave();
 			changeImfo();
+			f.fileSave();
 			setVisible(false);
+			MainDisplay md = new MainDisplay();
+			md.go();
 		}
 	}
 

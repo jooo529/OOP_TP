@@ -115,6 +115,8 @@ public class HomeFrame extends JFrame {
 			} else if (event.getSource() == Exit) {
 				f.fileSave();
 				setVisible(false);
+				MainDisplay md = new MainDisplay();
+				md.go();
 			}
 
 		}

@@ -107,6 +107,7 @@ public class MainFrame extends JFrame{
 	class HomeButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event)
 		{
+			setVisible(false);
 			HomeDisplay home = new HomeDisplay();
 			home.go();
 		}
@@ -114,6 +115,7 @@ public class MainFrame extends JFrame{
 	class FarmButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event)
 		{
+			//setVisible(false);
 			FarmDisplay farm = new FarmDisplay();
 			farm.go();
 		}
@@ -121,6 +123,7 @@ public class MainFrame extends JFrame{
 	class StoreButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event)
 		{
+			setVisible(false);
 			StoreDisplay store = new StoreDisplay();
 			store.go();
 		}
