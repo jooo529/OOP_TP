@@ -8,38 +8,32 @@ import java.awt.*;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 public class StoreFrame extends JFrame {
 
-	ImageIcon storeIm;
-	ImageIcon fire;
-	ImageIcon herb;
-	ImageIcon water;
-	ImageIcon tree;
-	ImageIcon imim;
+	private ImageIcon storeIm;
 	private int idx;
 
-	UserFile f = new UserFile();
+	private UserFile f = new UserFile();
 
-	Image im;
-	Container container;
-	PopUpMarket MARKET = null;
-	JLabel IMG;
-	JButton market = new JButton();
+	private Container container;
+	private ImageIcon Sale = new ImageIcon("Sale_button.png");
+	private JButton market = new JButton();
+	private JButton go_back = new JButton();
 
 	JLabel userAPPLE_label, userGRAPE_label, userORANGE_label, userSTRAWBERRY_label, userMONEY_label;
 
-	int number_apple = 0;
-	int number_orange = 0;
-	int number_straw = 0;
-	int number_grape = 0;
+	private int number_apple = 0;
+	private int number_orange = 0;
+	private int number_straw = 0;
+	private int number_grape = 0;
 
-	int i;
+	private int i;
+
+	private ImageIcon exit = new ImageIcon("button_exit_s.png");
 
 	public StoreFrame() {
 		go_store();
@@ -47,17 +41,32 @@ public class StoreFrame extends JFrame {
 	}
 
 	public void go_store() {
-		////////////
+		/////
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 
 		container = this.getContentPane();
-		// container.setLayout(new BorderLayout());
 
 		storeIm = new ImageIcon("Store.png");
-		// imim = new ImageIcon("button_fire.png");
-		market.setText("SELL");
+		market.setIcon(Sale);
+		market.setContentAreaFilled(false);
+		market.setDefaultCapable(false);
+		market.setFocusPainted(false);
+		market.setOpaque(false);
+		market.setRolloverIcon(new ImageIcon("Sale_button_s.png"));
+		market.setBackground(null);
+		market.setBorderPainted(false);
+
+		go_back.setContentAreaFilled(false);
+		go_back.setDefaultCapable(false);
+		go_back.setFocusPainted(false);
+		go_back.setOpaque(false);
+		go_back.setIcon(new ImageIcon("button_exit.png"));
+		go_back.setRolloverIcon(new ImageIcon("button_exit_s.png"));
+		go_back.setBackground(null);
+		go_back.setBorderPainted(false);
+		go_back.addActionListener(new goback_listener());
 
 		market.addActionListener(new ActionListener() {
 
@@ -71,17 +80,18 @@ public class StoreFrame extends JFrame {
 		JPanel back_ground = new JPanel() {
 
 			public void paintComponent(Graphics g) {
-				g.drawImage(storeIm.getImage(), 0, 0, null);
-				// g.drawImage( imim.getImage(), 50, 50, null);
+				g.drawImage(storeIm.getImage(), 0, 0, this);
 			}
 		};
 
+		back_ground.setLayout(null);
 		container.add(BorderLayout.CENTER, back_ground);
+		
+		go_back.setBounds(900, 400, 60, 60);
+		market.setBounds(405, 310, Sale.getIconWidth(), Sale.getIconHeight());
 
-		market.setBackground(Color.red);
-
-		market.setBounds(550, 150, 100, 100);
 		back_ground.add(market);
+		back_ground.add(go_back);
 
 		JPanel menupanel = new JPanel();
 
@@ -116,8 +126,6 @@ public class StoreFrame extends JFrame {
 				" 			S t r a w b e r r y   :   " + UserFile.Users.get(idx).getStrawBerry());
 		userSTRAWBERRY_label.setFont(font);
 
-		// JLabel enter = new JLabel(" ");
-
 		menupanel.add(userID_label);
 		menupanel.add(userLEVEL_label);
 		menupanel.add(userMONEY_label);
@@ -129,48 +137,65 @@ public class StoreFrame extends JFrame {
 	}
 
 	class goback_listener implements ActionListener {
-		public void actionPerformed(ActionEvent event) {
+		public void actionPerformed(ActionEvent e) {
+			f.fileSave();
+			changeImfo();
 			setVisible(false);
 		}
 	}
 
 	class PopUpMarket extends JFrame {
 
-		JButton[] APPLE = new JButton[100];
-		JButton[] GRAPE = new JButton[100];
-		JButton[] ORANGE = new JButton[100];
-		JButton[] STRAWBERRY = new JButton[100];
+		private JButton[] APPLE = new JButton[100];
+		private JButton[] GRAPE = new JButton[100];
+		private JButton[] ORANGE = new JButton[100];
+		private JButton[] STRAWBERRY = new JButton[100];
 
-		ImageIcon apple;
-		ImageIcon orange;
-		ImageIcon strawberry;
-		ImageIcon grape;
+		private ImageIcon apple;
+		private ImageIcon orange;
+		private ImageIcon strawberry;
+		private ImageIcon grape;
+		private ImageIcon exit;
 
 		public PopUpMarket() {
 
 			this.setVisible(true);
-			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			this.setSize(450, 800);
-			
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setSize(400, 800);
+
 			Font font = new Font("Dialog", Font.BOLD, 12);
-
-			JPanel menupanel2 = new JPanel();
-
-			JButton goback = new JButton("back");
-			JLabel price = new JLabel("\"$PRICE$\" APPLE: 500, ORANGE: 700, GRAPE: 800, STRAWBERRY: 600");
-			price.setFont(font);
-			
-			goback.addActionListener(new quit_listener());
-			menupanel2.add(userMONEY_label);
-			menupanel2.add(goback);
-
-			this.getContentPane().add(BorderLayout.NORTH, menupanel2);
-			this.getContentPane().add(BorderLayout.SOUTH,price);
+			Font font2 = new Font("Dialog", Font.BOLD, 15);
 
 			apple = new ImageIcon("apple1.png");
 			orange = new ImageIcon("orange.png");
 			strawberry = new ImageIcon("strawberry.png");
 			grape = new ImageIcon("grape.png");
+
+			JPanel menupanel2 = new JPanel();
+
+			JButton goback = new JButton();
+			goback.setContentAreaFilled(false);
+			goback.setDefaultCapable(false);
+			goback.setFocusPainted(false);
+			goback.setOpaque(false);
+			goback.setIcon(new ImageIcon("button_exit.png"));
+			goback.setRolloverIcon(new ImageIcon("button_exit_s.png"));
+			goback.setBackground(null);
+			goback.setBorderPainted(false);
+			goback.addActionListener(new quit_listener());
+
+			JLabel price = new JLabel("\"PRICE\" APPLE: 500, ORANGE: 700, GRAPE: 800, STRAWBERRY: 600");
+			price.setFont(font);
+
+			JLabel sell = new JLabel("  Click fruit");
+			sell.setFont(font2);
+
+			menupanel2.add(sell);
+			menupanel2.add(userMONEY_label);
+			menupanel2.add(goback);
+
+			this.getContentPane().add(BorderLayout.NORTH, menupanel2);
+			this.getContentPane().add(BorderLayout.SOUTH, price);
 
 			JPanel west = new JPanel();
 			JPanel east = new JPanel();
@@ -232,6 +257,7 @@ public class StoreFrame extends JFrame {
 		class quit_listener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				f.fileSave();
+				changeImfo();
 				setVisible(false);
 			}
 		}
@@ -249,7 +275,7 @@ public class StoreFrame extends JFrame {
 	public class AppleButton extends JButton implements ActionListener {
 
 		public AppleButton() {
-			// TODO Auto-generated constructor stub
+
 			this.addActionListener(this);
 		}
 
@@ -268,7 +294,7 @@ public class StoreFrame extends JFrame {
 	public class OrangeButton extends JButton implements ActionListener {
 
 		public OrangeButton() {
-			// TODO Auto-generated constructor stub
+
 			this.addActionListener(this);
 		}
 
@@ -286,7 +312,7 @@ public class StoreFrame extends JFrame {
 	public class StrawButton extends JButton implements ActionListener {
 
 		public StrawButton() {
-			// TODO Auto-generated constructor stub
+
 			this.addActionListener(this);
 		}
 
@@ -304,7 +330,6 @@ public class StoreFrame extends JFrame {
 	public class GrapeButton extends JButton implements ActionListener {
 
 		public GrapeButton() {
-			// TODO Auto-generated constructor stub
 			this.addActionListener(this);
 		}
 
