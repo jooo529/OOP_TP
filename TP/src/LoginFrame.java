@@ -143,6 +143,7 @@ public class LoginFrame extends JFrame{
 			String inputID = id_tf.getText();
 			String inputPWD = pw_tf.getText();
 			int ind=-1;
+			for(int i=0;i<Users.size(); i++) Users.get(i).setIndex(ind);
 			for(int i=0; i<Users.size(); i++){
 				if((Users.get(i).getId().equals(inputID))&&(Users.get(i).getPwd().equals(inputPWD))){
 					login=true;

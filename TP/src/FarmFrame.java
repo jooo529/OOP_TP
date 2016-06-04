@@ -78,7 +78,7 @@ public class FarmFrame extends JFrame {
 		Font font = new Font("Dialog", Font.BOLD, 15); // 20은 글자 크기
 
         for(int i=0; i<UserFile.Users.size(); i++){
-			if(UserFile.Users.get(i).getIndex()>0) idx = i;
+			if(UserFile.Users.get(i).getIndex()>-1) idx = i;
 		}
 		JLabel userID_label = new JLabel("U s e r   :   " + UserFile.Users.get(idx).getId());
 		userID_label.setFont(font);

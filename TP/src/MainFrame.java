@@ -15,7 +15,9 @@ public class MainFrame extends JFrame{
 	public String toUserInfo() {
         int idx=-1;
         for(int i=0; i<UserFile.Users.size(); i++){
-			if(UserFile.Users.get(i).getIndex()>0) idx = i;
+        	if(UserFile.Users.get(i).getIndex()>-1) {
+				idx = i;
+			}	
 		}		
 		return "User [ id = " + UserFile.Users.get(idx).getId() + ", money = " + UserFile.Users.get(idx).getMoney() +
 				", level = " + UserFile.Users.get(idx).getLevel() + " ] ";
