@@ -31,11 +31,11 @@ public class MainFrame extends JFrame{
 		farm_button.setDefaultCapable(false);
 		farm_button.setFocusPainted(false);
 		farm_button.setOpaque(false);
-		farm_button.setIcon(new ImageIcon("game_button_image.png"));
-		farm_button.setRolloverIcon(new ImageIcon("game_button_image_s.png"));
+		farm_button.setIcon(new ImageIcon("farmicon.png"));
+		farm_button.setRolloverIcon(new ImageIcon("farmicon_s.png"));
 		farm_button.setBackground(null);
 		farm_button.setBorderPainted(false);
-		farm_button.setBounds(85, 150, 100, 100);
+		farm_button.setBounds(470, 360, 244, 148);
 		farm_button.addActionListener(new FarmButtonListener());
 		
 		JButton home_button = new JButton("Home");
@@ -43,11 +43,11 @@ public class MainFrame extends JFrame{
 		home_button.setDefaultCapable(false);
 		home_button.setFocusPainted(false);
 		home_button.setOpaque(false);
-		home_button.setIcon(new ImageIcon("home_button_image.png"));
-		home_button.setRolloverIcon(new ImageIcon("home_button_image_s.png"));
+		home_button.setIcon(new ImageIcon("homeicon.png"));
+		home_button.setRolloverIcon(new ImageIcon("homeicon_s.png"));
 		home_button.setBackground(null);
 		home_button.setBorderPainted(false);
-		home_button.setBounds(335, 150, 100, 100);
+		home_button.setBounds(525, 30, 200, 190);
 		home_button.addActionListener(new HomeButtonListener());
 
 		JButton store_button = new JButton("Store");
@@ -55,11 +55,11 @@ public class MainFrame extends JFrame{
 		store_button.setDefaultCapable(false);
 		store_button.setFocusPainted(false);
 		store_button.setOpaque(false);
-		store_button.setIcon(new ImageIcon("market_button_image.png"));
-		store_button.setRolloverIcon(new ImageIcon("market_button_image_s.png"));
+		store_button.setIcon(new ImageIcon("storeicon.png"));
+		store_button.setRolloverIcon(new ImageIcon("storeicon_s.png"));
 		store_button.setBackground(null);
 		store_button.setBorderPainted(false);
-		store_button.setBounds(585, 150, 100, 100);
+		store_button.setBounds(210, 120, 200, 190);
 		store_button.addActionListener(new StoreButtonListener());
 		
 		JTextArea missionInfo = new JTextArea();
