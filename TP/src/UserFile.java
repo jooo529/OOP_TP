@@ -6,17 +6,15 @@ public class UserFile {
 	static ArrayList<User> Users = new ArrayList<User>();
 
 	public void fileLoad() {
-		InputStreamReader isr = null;
-		BufferedReader in = null;
 		StringTokenizer st;
 
 		try {
 			Users.clear();
-
-			isr = new InputStreamReader(new FileInputStream("User.txt"));
-			in = new BufferedReader(new FileReader("User.txt"));
+			File myFile = new File("User.txt");
+			FileReader fr = new FileReader(myFile);
+			BufferedReader br = new BufferedReader(fr);
 			String str = null;
-			while ((str = in.readLine()) != null) {
+			while ((str = br.readLine()) != null) {
 				User u = new User();
 				st = new StringTokenizer(str, ",");
 				u.setId(st.nextToken());
