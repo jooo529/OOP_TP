@@ -27,7 +27,7 @@ public class MainFrame extends JFrame{
 
 	
 	public void go_main() {
-		/////
+		
 		JButton farm_button = new JButton();
 		farm_button.setContentAreaFilled(false);
 		farm_button.setDefaultCapable(false);
