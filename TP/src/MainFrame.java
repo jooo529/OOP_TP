@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class MainFrame extends JFrame{
 
+	UserFile uf = new UserFile();
 	MissionFile mf = new MissionFile();
 	static int idx = -1;
 	
@@ -138,6 +139,7 @@ public class MainFrame extends JFrame{
 		{
 			for(int i=0; i<UserFile.Users.size(); i++){
 				UserFile.Users.get(i).setIndex(-1);
+				uf.fileSave();
 			}
 			System.exit(0);
 		}

@@ -10,6 +10,7 @@ public class User {
 	private String phoneNum;
 	private int money;
 	private int level;//mission
+	private String mission;
 	private String lastlogindata;
 	private String nowlogindata;
 	private String usercheckQuestion;

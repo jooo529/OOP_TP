@@ -11,6 +11,7 @@ public class MissionFile {
 			while ((str = br.readLine()) != null) {
 			read = read+str+"\n";
 			}
+			br.close();
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		} catch (IOException e) {
@@ -18,4 +19,10 @@ public class MissionFile {
 		}
 		return read;
 	}
+	
+	public String stringCheck(int i){
+		return "Welcome! I'll check your mission." + "\nYou got <Mission "+i+">. right?"
+				+ "\n_________________________________________";
+	}
+	
 }

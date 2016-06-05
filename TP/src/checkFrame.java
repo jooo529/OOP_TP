@@ -37,6 +37,7 @@ public class checkFrame extends JFrame {
 	
 	UserFile f = new UserFile();
 	static int idx = -1;
+	static Mission[] m = new Mission[5];
 	
 	void go_cf() {
 
@@ -144,7 +145,7 @@ public class checkFrame extends JFrame {
 		// reference
 
 	}
-
+	
 	class Check implements ActionListener {
 		int k;
 		public Check(int i){
@@ -156,6 +157,7 @@ public class checkFrame extends JFrame {
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()-500);
 				f.fileSave();
 			}else {
+				//미션 제대로 수행했을때와 안했을때!
 				System.out.println("!!");
 			}
 			setVisible(false);
@@ -165,37 +167,34 @@ public class checkFrame extends JFrame {
 	class mission_b_listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 
+			m[0] = new Mission1();
+			m[1] = new Mission2();
+			m[2] = new Mission3();
+			m[3] = new Mission4();
+			m[4] = new Mission5();
+			
 			checkmission.setBounds(0, 0, 390, 310);
 			window.setVisible(false);
 			container.remove(window);
 			mission.setFont(font2);
 			
 			if (event.getSource() == mission1) {
-				mission.setText("Welcome! I'll check your mission." + "\nYou got <Mission 1>. right?"
-						+ "\n_________________________________________");
-				container.add(checkmission);
+				mission.setText(((Mission1) m[0]).stringCheck(1));
 				checkAndexit.addActionListener(new Check(1));				
 			} else if (event.getSource() == mission2) {
-				mission.setText("Welcome! I'll check your mission." + "\nYou got <Mission 2>. right?"
-						+ "\n_________________________________________");
-				container.add(checkmission);
+				mission.setText(((Mission2) m[1]).stringCheck(2));
 				checkAndexit.addActionListener(new Check(2));				
 			} else if (event.getSource() == mission3) {
-				mission.setText("Welcome! I'll check your mission." + "\nYou got <Mission 3>. right?"
-						+ "\n_________________________________________");
-				container.add(checkmission);
+				mission.setText(((Mission3) m[2]).stringCheck(3));
 				checkAndexit.addActionListener(new Check(3));				
 			} else if (event.getSource() == mission4) {
-				mission.setText("Welcome! I'll check your mission." + "\nYou got <Mission 4>. right?"
-						+ "\n_________________________________________");
-				container.add(checkmission);
+				mission.setText(((Mission4) m[3]).stringCheck(4));
 				checkAndexit.addActionListener(new Check(4));				
 			} else if (event.getSource() == mission5) {
-				mission.setText("Welcome! I'll check your mission." + "\nYou got <Mission 5>. right?"
-						+ "\n_________________________________________");
-				container.add(checkmission);
+				mission.setText(((Mission5) m[4]).stringCheck(5));
 				checkAndexit.addActionListener(new Check(5));
 			}
+			container.add(checkmission);
 		}
 	}
 

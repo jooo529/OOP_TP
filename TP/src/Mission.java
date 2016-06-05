@@ -1,8 +1,13 @@
-public interface Mission {	
+import java.util.ArrayList;
 
-	//mission class ±¸Çö
-	public void checkmission();
-	public void getmission();
+public interface Mission {	
+	
+
+	
+	public String helpMission();;
+	public void checkMission();
+	public String getMission();
+	public String saveMission();
 	
 }
 

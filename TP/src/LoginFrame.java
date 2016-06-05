@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.*;
 
@@ -152,9 +153,15 @@ public class LoginFrame extends JFrame{
 			}
 			if(login){
 				Users.get(ind).setIndex(ind);
+				long time = System.currentTimeMillis(); 
+				SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				String str = dayTime.format(new Date(time));
+				Users.get(ind).setNowlogindata(str);
 				setVisible(false);
 				MainDisplay md = new MainDisplay();
 				md.go();
+				JOptionPane.showMessageDialog(null, "Recent Login Data\n"+Users.get(ind).getLastlogindata(), "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
+				Users.get(ind).setLastlogindata(Users.get(ind).getNowlogindata());
 			}else{
 				JOptionPane.showMessageDialog(null, "CHECK ID or PW", "ERROR", JOptionPane.ERROR_MESSAGE);
 				if(check==1) id_tf.setText(inputID);
