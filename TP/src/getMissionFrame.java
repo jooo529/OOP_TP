@@ -21,8 +21,7 @@ public class getMissionFrame extends JFrame {
 		go_getm();
 	}
 
-	Random random = new Random();
-	UserFile uf = new UserFile();
+	UserFile f = new UserFile();
 	static int idx = -1;
 	static Mission[] m = new Mission[5];
 
@@ -146,7 +145,7 @@ public class getMissionFrame extends JFrame {
 		getmission.setLayout(null);
 
 		getAndexit = new JButton("Ok I got it!");
-		getAndexit.addActionListener(new goback_listener());
+		getAndexit.addActionListener(new get_listener());
 		getAndexit.setBounds(150, 270, 90, 30);
 		getmission.add(getAndexit);
 
@@ -167,15 +166,22 @@ public class getMissionFrame extends JFrame {
 
 	///////////////////////////////////////////////////////////
 
-	class goback_listener implements ActionListener {
+	class get_listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
+			if(!UserFile.Users.get(idx).isGetMission()){//getMission
+				UserFile.Users.get(idx).setGetMission(true);
+				UserFile.Users.get(idx).setDoMission(m[UserFile.Users.get(idx).getLevel()-1].savedMission());
+				//System.out.println(UserFile.Users.get(idx).toString());
+			}else {
+				JOptionPane.showMessageDialog(null, "FAULT! You already got the Mission! You lose 300 Money:(", "Message", JOptionPane.INFORMATION_MESSAGE);
+				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()-300);
+				f.fileSave();
+			}
+			//System.out.println(UserFile.Users.get(idx).toString());
 			setVisible(false);
 		}
 	}
 
-	// 여기서 미션때 이용될 클래스와 연계해서 코드가 있어야될듯
-	// 랜덤하게 뭔가 사오라고 해야되는데....
-	// 랜덤으로 뭘 어캐 할지 text 추가 밑 변수 처리
 	class mission_b_listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 
@@ -192,10 +198,8 @@ public class getMissionFrame extends JFrame {
 
 			if (event.getSource() == mission1) {
 				mission.setText(m[0].getMission(idx));
-
 			} else if (event.getSource() == mission2) {
 				mission.setText(m[1].getMission(idx));
-
 			} else if (event.getSource() == mission3) {
 				mission.setText(m[2].getMission(idx));
 			} else if (event.getSource() == mission4) {

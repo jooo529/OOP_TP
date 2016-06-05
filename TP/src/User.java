@@ -10,8 +10,9 @@ public class User {
 	private String phoneNum;
 	private int money;
 	private int level;//mission
+	private boolean getMission;
 	private String mission;
-	private ArrayList<String> doMission = new ArrayList<String>(); 
+	private String[] doMission; 
 	private String lastlogindata;
 	private String nowlogindata;
 	private String usercheckQuestion;
@@ -66,6 +67,18 @@ public class User {
 	}
 	public void setLevel(int level) {
 		this.level = level;
+	}
+	public boolean isGetMission() {
+		return getMission;
+	}
+	public void setGetMission(boolean getMission) {
+		this.getMission = getMission;
+	}
+	public String[] getDoMission() {
+		return doMission;
+	}
+	public void setDoMission(String[] doMission) {
+		this.doMission = doMission;
 	}
 	public String getLastlogindata() {
 		return lastlogindata;
@@ -122,17 +135,18 @@ public class User {
 		this.StrawBerry = StrawBerry;
 	}
 	
+	public String toStringFruit() {
+		return "[apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry=" + StrawBerry + "]";
+	}
+	
 	@Override
 	public String toString() {
 		return "User [index=" + index + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
-				+ ", money=" + money + ", level=" + level + ", lastlogindata=" + lastlogindata + ", nowlogindata="
+				+ ", money=" + money + ", level=" + level + ", getMission=" + getMission + ", mission=" + mission
+				+ ", doMission=" + Arrays.toString(doMission) + ", lastlogindata=" + lastlogindata + ", nowlogindata="
 				+ nowlogindata + ", usercheckQuestion=" + usercheckQuestion + ", usercheckAnswer=" + usercheckAnswer
 				+ ", Fruit=" + Fruit + ", apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry="
-				+ StrawBerry + "]";
-	}
-	
-	public String toStringFruit() {
-		return "[apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry=" + StrawBerry + "]";
+				+ StrawBerry + ", FruitBox=" + FruitBox + "]";
 	}
 
 }

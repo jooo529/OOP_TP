@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Random;
 
 public class Mission1 extends MissionFile implements Mission {
 
@@ -15,17 +13,20 @@ public class Mission1 extends MissionFile implements Mission {
 
 	}
 
-	public ArrayList<String> savedMission() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public String getMission(int idx) {
 		String str = "<Mission 1>" + "\nYou have to buy following fruitbox!"
 				+ "\n\nGo to the Store and Buy following box." + "\n_________________________________________"
 				+ "\n\nGet " + randomFruitnum + "  " + fruit[randomFruittype] + " Box";
 		return str;
+	}
+	
+	public String[] savedMission() {
+		String[] myMission = new String[3];
+		myMission[0] = "1";//missionNumber
+		myMission[1] = ""+randomFruitnum;//fruitNumberYouhaveto
+		myMission[2] = fruit[randomFruittype];//fruitNameYouhaveto
+		return myMission;
 	}
 
 }

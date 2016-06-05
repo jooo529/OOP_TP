@@ -135,7 +135,8 @@ public class Sign extends UserFile implements ActionListener{
 					u.setPwd(inPwd);
 					u.setName(inName);
 					u.setPhoneNum(inPhone);
-					u.setLevel(1);
+					u.setLevel(0);
+					u.setGetMission(false);
 					u.setMoney(0);
 					u.setLastlogindata("-");
 					u.setNowlogindata("-");

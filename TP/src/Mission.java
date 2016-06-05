@@ -13,6 +13,6 @@ public interface Mission {
 
 	public String getMission(int idx);
 
-	public ArrayList<String> savedMission();
+	public String[] savedMission();
 
 }
