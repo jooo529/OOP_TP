@@ -11,6 +11,7 @@ public class User {
 	private int money;
 	private int level;//mission
 	private String mission;
+	private ArrayList<String> doMission = new ArrayList<String>(); 
 	private String lastlogindata;
 	private String nowlogindata;
 	private String usercheckQuestion;
@@ -20,7 +21,7 @@ public class User {
 	private int grape;
 	private int orange;
 	private int StrawBerry;
-//	private ArrayList<String> Fruit = new ArrayList<String>(); 
+	private ArrayList<String> FruitBox = new ArrayList<String>(); 
 
 	public int getIndex() {
 		return index;
@@ -130,5 +131,8 @@ public class User {
 				+ StrawBerry + "]";
 	}
 	
+	public String toStringFruit() {
+		return "[apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry=" + StrawBerry + "]";
+	}
 
 }

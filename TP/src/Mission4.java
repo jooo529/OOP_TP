@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Mission4 extends MissionFile implements Mission{
 
@@ -12,18 +13,23 @@ public class Mission4 extends MissionFile implements Mission{
 		
 	}
 
+
 	@Override
-	public String getMission() {
-		return null;
+	public ArrayList<String> savedMission() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override
-	public String saveMission() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getMission(int idx) {
+		String str = "<Mission 4>" + "\nYou have to make some fruit juice!"
+				+ "\nGo to store and take following fruits" + "\nout of refrigerator."
+				+ "\nThen read recipe of Juice" + "\nand make following fruit's juice"
+				+ "\n_________________________________________" + "\n\nJust make one "
+				+ fruit[randomFruittype] + "juice and give it to me!";
+		return str;
 	}
+
 
 
 }

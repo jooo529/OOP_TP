@@ -21,10 +21,11 @@ public class getMissionFrame extends JFrame {
 		go_getm();
 	}
 
-	ArrayList<String> fruit = new ArrayList<String>();
 	Random random = new Random();
 	UserFile uf = new UserFile();
 	static int idx = -1;
+	static Mission[] m = new Mission[5];
+
 	private Container container;
 	private ImageIcon npcf;
 	private ImageIcon tb;
@@ -42,14 +43,6 @@ public class getMissionFrame extends JFrame {
 	Font font2 = new Font("Kristen ITC", Font.BOLD, 14);
 
 	void go_getm() {
-
-		fruit.add("apple");
-
-		fruit.add("grape");
-
-		fruit.add("orange");
-
-		fruit.add("strawberry");
 
 		for (int i = 0; i < UserFile.Users.size(); i++) {
 			if (UserFile.Users.get(i).getIndex() > -1)
@@ -124,13 +117,18 @@ public class getMissionFrame extends JFrame {
 		mission3.setEnabled(false);
 		mission4.setEnabled(false);
 		mission5.setEnabled(false);
-		
-		if(UserFile.Users.get(idx).getLevel()==1) mission1.setEnabled(true);
-		else if(UserFile.Users.get(idx).getLevel()==2) mission2.setEnabled(true);
-		else if(UserFile.Users.get(idx).getLevel()==3) mission3.setEnabled(true);
-		else if(UserFile.Users.get(idx).getLevel()==4) mission4.setEnabled(true);
-		else if(UserFile.Users.get(idx).getLevel()==5) mission5.setEnabled(true);
-		
+
+		if (UserFile.Users.get(idx).getLevel() == 1)
+			mission1.setEnabled(true);
+		else if (UserFile.Users.get(idx).getLevel() == 2)
+			mission2.setEnabled(true);
+		else if (UserFile.Users.get(idx).getLevel() == 3)
+			mission3.setEnabled(true);
+		else if (UserFile.Users.get(idx).getLevel() == 4)
+			mission4.setEnabled(true);
+		else if (UserFile.Users.get(idx).getLevel() == 5)
+			mission5.setEnabled(true);
+
 		window.add(mission1);
 		window.add(mission2);
 		window.add(mission3);
@@ -181,10 +179,11 @@ public class getMissionFrame extends JFrame {
 	class mission_b_listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 
-			int randomFruitnum = (int) (Math.random() * 5 + 1);
-
-			int randomConsumer = (int) (Math.random() * 5 + 3);
-			int randomFruittype = (int) random.nextInt(fruit.size());
+			m[0] = new Mission1();
+			m[1] = new Mission2();
+			m[2] = new Mission3();
+			m[3] = new Mission4();
+			m[4] = new Mission5();
 
 			mission.setFont(font2);
 			getmission.setBounds(0, 0, 390, 340);
@@ -192,34 +191,19 @@ public class getMissionFrame extends JFrame {
 			container.remove(window);
 
 			if (event.getSource() == mission1) {
-				mission.setText("<Mission 1>" + "\nYou have to buy following fruitbox!"
-						+ "\n\nGo to the Store and Buy following box." + "\n_________________________________________"
-						+ "\n\nGet " + randomFruitnum + "  " + fruit.get(randomFruittype) + " Box");
-				container.add(getmission);
+				mission.setText(m[0].getMission(idx));
+
 			} else if (event.getSource() == mission2) {
-				mission.setText("<Mission 2>" + "\nYou have to go to Farm and get following fruit!"
-						+ "\nGo to Farm and get followng fruits." + "\n_________________________________________"
-						+ "\n\nGet" + randomFruitnum + "  " + fruit.get(randomFruittype));
-				container.add(getmission);
+				mission.setText(m[1].getMission(idx));
+
 			} else if (event.getSource() == mission3) {
-				mission.setText("<Mission 3>" + "\nPut your all fruits in refrigerator!"
-						+ "\nRefrigerator is located in Store." + "\n_________________________________________"
-						+ "\n\nNow you have ---여기에 현 과일개수 출력해주기---\n\n put them in refrigerator!");
-				container.add(getmission);
+				mission.setText(m[2].getMission(idx));
 			} else if (event.getSource() == mission4) {
-				mission.setText("<Mission 4>" + "\nYou have to make some fruit juice!"
-						+ "\nGo to store and take following fruits" + "\nout of refrigerator."
-						+ "\nThen read recipe of Juice" + "\nand make following fruit's juice"
-						+ "\n_________________________________________" + "\n\nJust make one "
-						+ fruit.get(randomFruittype) + "juice and give it to me!");
-				container.add(getmission);
+				mission.setText(m[3].getMission(idx));
 			} else if (event.getSource() == mission5) {
-				mission.setText("<Mission 5>" + "\nYou have to go to Store and sell juice!"
-						+ "\nIn Store, some consumers will be there." + "\nThey want your fruit juice!"
-						+ "\nSell them some juice!" + "\n_________________________________________" + "\n\nThere are "
-						+ randomConsumer + " cunsumers in store!" + "\nSell juices for all of them!");
-				container.add(getmission);
+				mission.setText(m[4].getMission(idx));
 			}
+			container.add(getmission);
 		}
 	}
 
