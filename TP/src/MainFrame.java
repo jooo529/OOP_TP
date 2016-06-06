@@ -2,11 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class MainFrame extends JFrame{
+public class MainFrame extends GameFrame{
 
-	UserFile uf = new UserFile();
+
 	MissionFile mf = new MissionFile();
-	static int idx = -1;
 	User u = new User();
 	
 	public MainFrame(){
@@ -17,9 +16,7 @@ public class MainFrame extends JFrame{
 	JFrame fr;
 	
 	public String toUserInfo() {
-        for(int i=0; i<UserFile.Users.size(); i++){
-        	if(UserFile.Users.get(i).getIndex()>-1) idx = i;
-		}		
+        getUserIdx();
         String userInfo = " -- [ ID = " + UserFile.Users.get(idx).getId() + ","
         		+ " Money = " + UserFile.Users.get(idx).getMoney()
 				+ ", Level = " + UserFile.Users.get(idx).getLevel() + " ]  -- ";  
@@ -128,7 +125,7 @@ public class MainFrame extends JFrame{
 			{
 				for(int i=0; i<UserFile.Users.size(); i++){
 					UserFile.Users.get(i).setIndex(-1);
-					uf.fileSave();
+					f.fileSave();
 				}
 				System.exit(0);
 			}
@@ -213,7 +210,7 @@ public class MainFrame extends JFrame{
 			fr.setSize(700, 380);
 			fr.setLocation(xPos, yPos);
 			fr.setVisible(true);
-			uf.fileSave();
+			f.fileSave();
 		}
 	}
 	class appleBoxListener implements ActionListener{
