@@ -1,8 +1,5 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.ImageObserver;
-import java.text.AttributedCharacterIterator;
-import java.util.ArrayList;
 import java.awt.*;
 
 import javax.swing.BoxLayout;
@@ -15,11 +12,14 @@ import javax.swing.JPanel;
 
 public class StoreFrame extends JFrame {
 
-	private ImageIcon storeIm;
-	private int idx;
 
+	/* Crate User file*/
 	private UserFile f = new UserFile();
 
+	/* Crate variable about getting user information*/
+	private int idx;
+	
+	/* image icon */
 	private ImageIcon guest1 = new ImageIcon("guest1.png");
 	private ImageIcon guest2 = new ImageIcon("guest2.png");
 	private ImageIcon guest3 = new ImageIcon("guest3.png");
@@ -28,32 +28,33 @@ public class StoreFrame extends JFrame {
 	private ImageIcon orange = new ImageIcon("orange.png");
 	private ImageIcon strawberry = new ImageIcon("strawberry.png");
 	private ImageIcon grape = new ImageIcon("grape.png");
+	private ImageIcon storeIm = new ImageIcon("Store.png");
 
+	/* button */
 	private JButton go_back = new JButton();
-
 	private JButton juice_apple_button = new JButton();
 	private JButton juice_orange_button = new JButton();
 	private JButton juice_straw_button = new JButton();
 	private JButton juice_grape_button = new JButton();
 
-	private JPanel back_ground,guestP1, guestP2, guestP3, guestP4;
-	
-	JPanel menupanel;
-	
+	/* guest panels and back ground panel */
+	private JPanel back_ground, guestP1, guestP2, guestP3, guestP4;
+
+	/*Crating Labels that have user information*/
 	private JLabel userAPPLE_label = new JLabel();
-	private JLabel userGRAPE_label= new JLabel();
+	private JLabel userGRAPE_label = new JLabel();
 	private JLabel userORANGE_label = new JLabel();
 	private JLabel userSTRAWBERRY_label = new JLabel();
 	private JLabel userMONEY_label = new JLabel();
 
+	/*Crating variables that have the number of fruit box*/
 	private int number_apple = 0;
 	private int number_orange = 0;
 	private int number_straw = 0;
 	private int number_grape = 0;
 	private int juice_price = 0;
 
-	private int i;
-	
+	/*Constructor*/
 	public StoreFrame() {
 		go_store();
 
@@ -64,16 +65,17 @@ public class StoreFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 
-		/*get user information in user file*/
+		/* get user information in user file */
 		for (int i = 0; i < UserFile.Users.size(); i++) {
 			if (UserFile.Users.get(i).getIndex() > 0)
 				idx = i;
 		}
 
+		/* Crate Refrigerator object and Panel about user information */
 		Refrigerator refri = new Refrigerator();
+		JPanel menupanel;
 
-		storeIm = new ImageIcon("Store.png");
-
+		/* setting go back button */
 		go_back.setContentAreaFilled(false);
 		go_back.setDefaultCapable(false);
 		go_back.setFocusPainted(false);
@@ -84,26 +86,28 @@ public class StoreFrame extends JFrame {
 		go_back.setBorderPainted(false);
 		go_back.addActionListener(new goback_listener());
 
-		/*adding ActionListener in juice button*/
+		/* adding ActionListener in juice button */
 		juice_button_add_Actionlistenr();
-		
-		/*draw images in panels*/
+
+		/* draw images in panels */
 		drawImage();
-		
-		/*Juice button setting*/
+
+		/* Juice button setting */
 		juice_button_setting();
-		
-		/*image panels set bounds and sizes*/
+
+		/* image panels set bounds and sizes */
 		back_ground.setLayout(null);
 		go_back.setBounds(900, 400, 60, 60);
 		refri.setBounds(0, 0, 300, 590);
 		guestP1.setBounds(500, 300, guest1.getIconWidth(), guest1.getIconHeight());
 		guestP2.setBounds(500 + guest1.getIconWidth(), 300, guest2.getIconWidth(), guest2.getIconHeight());
-		guestP3.setBounds(500 + guest2.getIconWidth() + guest1.getIconWidth(), 300, guest3.getIconWidth(), guest3.getIconHeight());
-		guestP4.setBounds(500 + guest3.getIconWidth() + guest2.getIconWidth() + guest1.getIconWidth(), 300, guest4.getIconWidth(), guest4.getIconHeight());
-		/*that image panels set bounds and sizes is finish*/
-		
-		/*adding component in back_ground*/
+		guestP3.setBounds(500 + guest2.getIconWidth() + guest1.getIconWidth(), 300, guest3.getIconWidth(),
+				guest3.getIconHeight());
+		guestP4.setBounds(500 + guest3.getIconWidth() + guest2.getIconWidth() + guest1.getIconWidth(), 300,
+				guest4.getIconWidth(), guest4.getIconHeight());
+		/* that image panels set bounds and sizes is finish */
+
+		/* adding component in back_ground */
 		back_ground.add(guestP4);
 		back_ground.add(guestP3);
 		back_ground.add(guestP2);
@@ -114,18 +118,20 @@ public class StoreFrame extends JFrame {
 		back_ground.add(juice_grape_button);
 		back_ground.add(go_back);
 		back_ground.add(refri);
-		/*adding component in back_ground finish*/		
-		
+		/* adding component in back_ground finish */
+
+		/*setting menupanel*/
 		menupanel = userImfoPane();
-		
+
+		/*adding components*/
 		this.getContentPane().add(BorderLayout.NORTH, menupanel);
 		this.getContentPane().add(BorderLayout.CENTER, back_ground);
-		
+
 	}
-	
-	/*setting juice button*/
-	void juice_button_setting(){
-		
+
+	/* setting juice button */
+	void juice_button_setting() {
+
 		juice_apple_button.setContentAreaFilled(false);
 		juice_apple_button.setDefaultCapable(false);
 		juice_apple_button.setFocusPainted(false);
@@ -149,7 +155,7 @@ public class StoreFrame extends JFrame {
 		juice_orange_button.addActionListener(new OrangeButton());
 		juice_orange_button.setBounds(500, 100, 160, 160);
 		juice_orange_button.setVisible(false);
-		
+
 		juice_straw_button.setContentAreaFilled(false);
 		juice_straw_button.setDefaultCapable(false);
 		juice_straw_button.setFocusPainted(false);
@@ -161,7 +167,7 @@ public class StoreFrame extends JFrame {
 		juice_straw_button.addActionListener(new StrawButton());
 		juice_straw_button.setBounds(500, 100, 160, 160);
 		juice_straw_button.setVisible(false);
-		
+
 		juice_grape_button.setContentAreaFilled(false);
 		juice_grape_button.setDefaultCapable(false);
 		juice_grape_button.setFocusPainted(false);
@@ -173,13 +179,12 @@ public class StoreFrame extends JFrame {
 		juice_grape_button.addActionListener(new GrapeButton());
 		juice_grape_button.setBounds(500, 100, 160, 160);
 		juice_grape_button.setVisible(false);
-		
-		
+
 	}
-	
-	/*adding Action Listener in juice button*/
-	void juice_button_add_Actionlistenr(){
-		
+
+	/* adding Action Listener in juice button */
+	void juice_button_add_Actionlistenr() {
+
 		juice_apple_button.addActionListener(new ActionListener() {
 
 			@Override
@@ -194,29 +199,29 @@ public class StoreFrame extends JFrame {
 				else if (guestP4.isVisible())
 					guestP4.setVisible(false);
 				else {
-					JOptionPane.showMessageDialog(juice_apple_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(juice_apple_button, "No guest ", "Title",
+							JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
 
-				JOptionPane.showMessageDialog(juice_apple_button,
-						"APPLE JUICE! "+ "\nPRICE: " + juice_price,
+				JOptionPane.showMessageDialog(juice_apple_button, "APPLE JUICE! " + "\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
 				UserFile.Users.get(idx).setApplebox((UserFile.Users.get(idx).getApplebox() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 
-				juice_price=0;
+				juice_price = 0;
 				changeImfo();
 				juice_apple_button.setVisible(false);
-			
+
 			}
 		});
-//
+		//
 		juice_orange_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//
+				//
 				if (guestP1.isVisible())
 					guestP1.setVisible(false);
 				else if (guestP2.isVisible())
@@ -226,18 +231,18 @@ public class StoreFrame extends JFrame {
 				else if (guestP4.isVisible())
 					guestP4.setVisible(false);
 				else {
-					JOptionPane.showMessageDialog(juice_orange_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(juice_orange_button, "No guest ", "Title",
+							JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
 
-				JOptionPane.showMessageDialog(juice_orange_button,
-						"ORANGE JUICE! "+ "\nPRICE: " + juice_price,
+				JOptionPane.showMessageDialog(juice_orange_button, "ORANGE JUICE! " + "\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
 				UserFile.Users.get(idx).setOrangebox((UserFile.Users.get(idx).getOrangebox() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-	
-				juice_price=0;
+
+				juice_price = 0;
 				changeImfo();
 				juice_orange_button.setVisible(false);
 			}
@@ -257,18 +262,18 @@ public class StoreFrame extends JFrame {
 				else if (guestP4.isVisible())
 					guestP4.setVisible(false);
 				else {
-					JOptionPane.showMessageDialog(juice_straw_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(juice_straw_button, "No guest ", "Title",
+							JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
 
-				JOptionPane.showMessageDialog(juice_straw_button,
-						"STRAWBERRY"+ "\nPRICE: " + juice_price,
+				JOptionPane.showMessageDialog(juice_straw_button, "STRAWBERRY" + "\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
 				UserFile.Users.get(idx).setStrawberrybox((UserFile.Users.get(idx).getStrawberrybox() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 
-				juice_price=0;
+				juice_price = 0;
 				changeImfo();
 				juice_straw_button.setVisible(false);
 			}
@@ -288,29 +293,28 @@ public class StoreFrame extends JFrame {
 				else if (guestP4.isVisible())
 					guestP4.setVisible(false);
 				else {
-					JOptionPane.showMessageDialog(juice_grape_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(juice_grape_button, "No guest ", "Title",
+							JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
 
-				JOptionPane.showMessageDialog(juice_grape_button,
-						"GRAPE JUICE! "+"\nPRICE: " + juice_price,
+				JOptionPane.showMessageDialog(juice_grape_button, "GRAPE JUICE! " + "\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 				UserFile.Users.get(idx).setGrapebox((UserFile.Users.get(idx).getGrapebox() - 1));
-				
-				juice_price=0;
+
+				juice_price = 0;
 				changeImfo();
 				juice_grape_button.setVisible(false);
 			}
 		});
-		
-		
+
 	}
-	
-	/*crate Jpanel that have user information Jlebel*/
-	JPanel userImfoPane(){
-		
+
+	/* crate Jpanel that have user information Jlebel */
+	JPanel userImfoPane() {
+
 		JPanel menupanel = new JPanel();
 
 		Font font = new Font("Dialog", Font.BOLD, 13); // 20은 글자 크기
@@ -337,7 +341,7 @@ public class StoreFrame extends JFrame {
 		userSTRAWBERRY_label.setFont(font);
 
 		changeImfo();
-		
+
 		menupanel.add(userID_label);
 		menupanel.add(userLEVEL_label);
 		menupanel.add(userMONEY_label);
@@ -345,13 +349,13 @@ public class StoreFrame extends JFrame {
 		menupanel.add(userGRAPE_label);
 		menupanel.add(userORANGE_label);
 		menupanel.add(userSTRAWBERRY_label);
-		
+
 		return menupanel;
-		
+
 	}
-	
-	void drawImage(){
-		
+
+	void drawImage() {
+
 		guestP2 = new JPanel() {
 
 			public void paintComponent(Graphics g) {
@@ -386,7 +390,7 @@ public class StoreFrame extends JFrame {
 				g.drawImage(storeIm.getImage(), 300, 0, this);
 			}
 		};
-		
+
 	}
 
 	class goback_listener implements ActionListener {
@@ -408,23 +412,25 @@ public class StoreFrame extends JFrame {
 
 		private JLabel apple_lb, orange_lb, straw_lb, grape_lb;
 
+		private int i;
+
 		public Refrigerator() {
 
 			this.setSize(350, 590);
 			this.setLayout(new GridLayout(1, 4));
-			
+
 			Font font = new Font("Dialog", Font.BOLD, 11);
 
 			apple_lb = new JLabel("APPLE BOX");
 			orange_lb = new JLabel("ORANGE BOX");
 			straw_lb = new JLabel("STRAWBERRY BOX");
 			grape_lb = new JLabel("GRAPE BOX");
-			
+
 			apple_lb.setFont(font);
 			orange_lb.setFont(font);
 			straw_lb.setFont(font);
 			grape_lb.setFont(font);
-			
+
 			JPanel apple_panel = new JPanel();
 			JPanel grape_panel = new JPanel();
 			JPanel strawberry_panel = new JPanel();
@@ -434,24 +440,25 @@ public class StoreFrame extends JFrame {
 			grape_panel.setLayout(new BoxLayout(grape_panel, BoxLayout.Y_AXIS));
 			strawberry_panel.setLayout(new BoxLayout(strawberry_panel, BoxLayout.Y_AXIS));
 			orange_panel.setLayout(new BoxLayout(orange_panel, BoxLayout.Y_AXIS));
-			
-			apple_panel.setBackground(new Color(52,121,199));
-			grape_panel.setBackground(new Color(52,121,199));
-			strawberry_panel.setBackground(new Color(52,121,199));
-			orange_panel.setBackground(new Color(52,121,199));
 
+			apple_panel.setBackground(new Color(52, 121, 199));
+			grape_panel.setBackground(new Color(52, 121, 199));
+			strawberry_panel.setBackground(new Color(52, 121, 199));
+			orange_panel.setBackground(new Color(52, 121, 199));
+
+			/* get user information about fruit */
 			number_apple = UserFile.Users.get(idx).getApplebox();
 			number_grape = UserFile.Users.get(idx).getGrapebox();
 			number_orange = UserFile.Users.get(idx).getOrangebox();
 			number_straw = UserFile.Users.get(idx).getStrawberrybox();
 
-			/*add fruit name label*/
+			/* add fruit box name labels in panel */
 			apple_panel.add(apple_lb);
 			grape_panel.add(grape_lb);
 			orange_panel.add(orange_lb);
 			strawberry_panel.add(straw_lb);
 
-			/*crate fruit button*/
+			/* crate fruit button */
 			for (i = 0; i < number_apple; i++) {
 				APPLE_BOX[i] = new AppleButton();
 				APPLE_BOX[i].setIcon(apple);
@@ -479,8 +486,9 @@ public class StoreFrame extends JFrame {
 				STRAWBERRY_BOX[i].setIcon(strawberry);
 				strawberry_panel.add(STRAWBERRY_BOX[i]);
 
-			} 
+			} /* end of creating button */
 
+			/* adding buttons in panel */
 			this.add(apple_panel);
 			this.add(orange_panel);
 			this.add(grape_panel);
@@ -490,7 +498,7 @@ public class StoreFrame extends JFrame {
 
 	}
 
-	/*User information label change */
+	/* User information label change */
 	void changeImfo() {
 		userMONEY_label.setText("    Money   :   " + UserFile.Users.get(idx).getMoney());
 		userAPPLE_label.setText("    Apple  BOX :   " + UserFile.Users.get(idx).getApplebox());
@@ -498,9 +506,8 @@ public class StoreFrame extends JFrame {
 		userORANGE_label.setText("    Orange  BOX  :   " + UserFile.Users.get(idx).getOrangebox());
 		userSTRAWBERRY_label.setText("    Strawberry  BOX  :   " + UserFile.Users.get(idx).getStrawberrybox());
 	}
-	
-	
-	/*Fruit Button CLASS*/
+
+	/* Fruit Button CLASS */
 	public class AppleButton extends JButton implements ActionListener {
 
 		public AppleButton() {
@@ -510,21 +517,29 @@ public class StoreFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			/*if guest not exist, no perform*/
+
+			/* if guest not exist, no perform */
 			if (!guestP1.isVisible() && !guestP2.isVisible() && !guestP3.isVisible() && !guestP4.isVisible()) {
-				JOptionPane.showMessageDialog(juice_apple_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(juice_apple_button, "No guest ", "Title",
+						JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			
-			/*if juice is already exist, no perform*/
+
+			/* if juice is already exist, no perform */
 			if (juice_grape_button.isVisible() || juice_apple_button.isVisible() || juice_orange_button.isVisible()
 					|| juice_straw_button.isVisible())
 				return;
-			
+
+			/* setting juice price */
 			juice_price = juice_price + 500;
+
+			/* juice button appear */
 			juice_apple_button.setVisible(true);
+
+			/* user information change */
 			changeImfo();
+
+			/* fruit box button disappear */
 			setVisible(false);
 
 		}
@@ -540,21 +555,29 @@ public class StoreFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			/*if guest not exist, no perform*/
+
+			/* if guest not exist, no perform */
 			if (!guestP1.isVisible() && !guestP2.isVisible() && !guestP3.isVisible() && !guestP4.isVisible()) {
-				JOptionPane.showMessageDialog(juice_orange_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(juice_orange_button, "No guest ", "Title",
+						JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			
-			/*if juice is already exist, no perform*/
+
+			/* if juice is already exist, no perform */
 			if (juice_grape_button.isVisible() || juice_apple_button.isVisible() || juice_orange_button.isVisible()
 					|| juice_straw_button.isVisible())
 				return;
 
+			/* setting juice price */
 			juice_price = juice_price + 700;
-			changeImfo();
+
+			/* juice button appear */
 			juice_orange_button.setVisible(true);
+
+			/* user information change */
+			changeImfo();
+
+			/* fruit box button disappear */
 			setVisible(false);
 
 		}
@@ -571,20 +594,28 @@ public class StoreFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			/*if guest not exist, no perform*/
+			/* if guest not exist, no perform */
 			if (!guestP1.isVisible() && !guestP2.isVisible() && !guestP3.isVisible() && !guestP4.isVisible()) {
-				JOptionPane.showMessageDialog(juice_straw_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(juice_straw_button, "No guest ", "Title",
+						JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
 
-			/*if juice is already exist, no perform*/
+			/* if juice is already exist, no perform */
 			if (juice_grape_button.isVisible() || juice_apple_button.isVisible() || juice_orange_button.isVisible()
 					|| juice_straw_button.isVisible())
 				return;
 
+			/* setting juice price */
 			juice_price = juice_price + 600;
-			changeImfo();
+
+			/* juice button appear */
 			juice_straw_button.setVisible(true);
+
+			/* user information change */
+			changeImfo();
+
+			/* fruit box button disappear */
 			setVisible(false);
 
 		}
@@ -600,20 +631,28 @@ public class StoreFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			/*if guest not exist, no perform*/
+			/* if guest not exist, no perform */
 			if (!guestP1.isVisible() && !guestP2.isVisible() && !guestP3.isVisible() && !guestP4.isVisible()) {
-				JOptionPane.showMessageDialog(juice_grape_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(juice_grape_button, "No guest ", "Title",
+						JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
 
-			/*if juice is already exist, no perform*/
+			/* if juice is already exist, no perform */
 			if (juice_grape_button.isVisible() || juice_apple_button.isVisible() || juice_orange_button.isVisible()
 					|| juice_straw_button.isVisible())
 				return;
 
+			/* setting juice price */
 			juice_price = juice_price + 500;
-			changeImfo();
+
+			/* juice button appear */
 			juice_grape_button.setVisible(true);
+
+			/* user information change */
+			changeImfo();
+
+			/* fruit box button disappear */
 			setVisible(false);
 
 		}
