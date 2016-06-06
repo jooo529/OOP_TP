@@ -80,6 +80,102 @@ public class StoreFrame extends JFrame {
 		go_back.setBorderPainted(false);
 		go_back.addActionListener(new goback_listener());
 
+		/*adding ActionListener in juice button*/
+		juice_button_add_Actionlistenr();
+		
+		/*draw images in panels*/
+		drawImage();
+
+
+		/*Juice button setting*/
+		juice_button_setting();
+		
+		back_ground.setLayout(null);
+		
+		
+		/*image panels set bounds and sizes*/
+		go_back.setBounds(900, 400, 60, 60);
+		refri.setBounds(0, 0, 300, 590);
+		guestP1.setBounds(500, 300, guest1.getIconWidth(), guest1.getIconHeight());
+		guestP2.setBounds(500 + guest1.getIconWidth(), 300, guest2.getIconWidth(), guest2.getIconHeight());
+		guestP3.setBounds(500 + guest2.getIconWidth() + guest1.getIconWidth(), 300, guest3.getIconWidth(), guest3.getIconHeight());
+		guestP4.setBounds(500 + guest3.getIconWidth() + guest2.getIconWidth() + guest1.getIconWidth(), 300, guest4.getIconWidth(), guest4.getIconHeight());
+		/*that image panels set bounds and sizes is finish*/
+		
+		/*adding component in back_ground*/
+		back_ground.add(guestP4);
+		back_ground.add(guestP3);
+		back_ground.add(guestP2);
+		back_ground.add(guestP1);
+		back_ground.add(apple_button);
+		back_ground.add(orange_button);
+		back_ground.add(straw_button);
+		back_ground.add(grape_button);
+		back_ground.add(go_back);
+		back_ground.add(refri);
+		/*adding component in back_ground finish*/
+		
+		JPanel menupanel = userImfoPane();
+		
+		this.getContentPane().add(BorderLayout.NORTH, menupanel);
+		this.getContentPane().add(BorderLayout.CENTER, back_ground);
+		
+	}
+	
+	void juice_button_setting(){
+		
+		apple_button.setContentAreaFilled(false);
+		apple_button.setDefaultCapable(false);
+		apple_button.setFocusPainted(false);
+		apple_button.setOpaque(false);
+		apple_button.setIcon(new ImageIcon("juice_apple.png"));
+		apple_button.setRolloverIcon(new ImageIcon("juice_sell.png"));
+		apple_button.setBackground(null);
+		apple_button.setBorderPainted(false);
+		apple_button.addActionListener(new AppleButton());
+		apple_button.setBounds(500, 100, 160, 160);
+		apple_button.setVisible(false);
+
+		orange_button.setContentAreaFilled(false);
+		orange_button.setDefaultCapable(false);
+		orange_button.setFocusPainted(false);
+		orange_button.setOpaque(false);
+		orange_button.setIcon(new ImageIcon("juice_orange.png"));
+		orange_button.setRolloverIcon(new ImageIcon("juice_sell.png"));
+		orange_button.setBackground(null);
+		orange_button.setBorderPainted(false);
+		orange_button.addActionListener(new OrangeButton());
+		orange_button.setBounds(500, 100, 160, 160);
+		orange_button.setVisible(false);
+		
+		straw_button.setContentAreaFilled(false);
+		straw_button.setDefaultCapable(false);
+		straw_button.setFocusPainted(false);
+		straw_button.setOpaque(false);
+		straw_button.setIcon(new ImageIcon("juice_strawberry.png"));
+		straw_button.setRolloverIcon(new ImageIcon("juice_sell.png"));
+		straw_button.setBackground(null);
+		straw_button.setBorderPainted(false);
+		straw_button.addActionListener(new StrawButton());
+		straw_button.setBounds(500, 100, 160, 160);
+		straw_button.setVisible(false);
+		
+		grape_button.setContentAreaFilled(false);
+		grape_button.setDefaultCapable(false);
+		grape_button.setFocusPainted(false);
+		grape_button.setOpaque(false);
+		grape_button.setIcon(new ImageIcon("juice_grape.png"));
+		grape_button.setRolloverIcon(new ImageIcon("juice_sell.png"));
+		grape_button.setBackground(null);
+		grape_button.setBorderPainted(false);
+		grape_button.addActionListener(new GrapeButton());
+		grape_button.setBounds(500, 100, 160, 16);
+		
+	}
+	
+	/*adding juice button Action Listener*/
+	void juice_button_add_Actionlistenr(){
+		
 		apple_button.addActionListener(new ActionListener() {
 
 			@Override
@@ -205,88 +301,13 @@ public class StoreFrame extends JFrame {
 			}
 		});
 		
-		drawImage();
-
-
-		back_ground.setLayout(null);
-		this.getContentPane().add(BorderLayout.CENTER, back_ground);
-
-		go_back.setBounds(900, 400, 60, 60);
-		refri.setBounds(0, 0, 300, 590);
 		
-		/*Juice button setting*/
-		apple_button.setContentAreaFilled(false);
-		apple_button.setDefaultCapable(false);
-		apple_button.setFocusPainted(false);
-		apple_button.setOpaque(false);
-		apple_button.setIcon(new ImageIcon("juice_apple.png"));
-		apple_button.setRolloverIcon(new ImageIcon("juice_sell.png"));
-		apple_button.setBackground(null);
-		apple_button.setBorderPainted(false);
-		apple_button.addActionListener(new AppleButton());
-		apple_button.setBounds(500, 100, 160, 160);
-		apple_button.setVisible(false);
-
-		orange_button.setContentAreaFilled(false);
-		orange_button.setDefaultCapable(false);
-		orange_button.setFocusPainted(false);
-		orange_button.setOpaque(false);
-		orange_button.setIcon(new ImageIcon("juice_orange.png"));
-		orange_button.setRolloverIcon(new ImageIcon("juice_sell.png"));
-		orange_button.setBackground(null);
-		orange_button.setBorderPainted(false);
-		orange_button.addActionListener(new OrangeButton());
-		orange_button.setBounds(500, 100, 160, 160);
-		orange_button.setVisible(false);
-		
-		straw_button.setContentAreaFilled(false);
-		straw_button.setDefaultCapable(false);
-		straw_button.setFocusPainted(false);
-		straw_button.setOpaque(false);
-		straw_button.setIcon(new ImageIcon("juice_strawberry.png"));
-		straw_button.setRolloverIcon(new ImageIcon("juice_sell.png"));
-		straw_button.setBackground(null);
-		straw_button.setBorderPainted(false);
-		straw_button.addActionListener(new StrawButton());
-		straw_button.setBounds(500, 100, 160, 160);
-		straw_button.setVisible(false);
-		
-		grape_button.setContentAreaFilled(false);
-		grape_button.setDefaultCapable(false);
-		grape_button.setFocusPainted(false);
-		grape_button.setOpaque(false);
-		grape_button.setIcon(new ImageIcon("juice_grape.png"));
-		grape_button.setRolloverIcon(new ImageIcon("juice_sell.png"));
-		grape_button.setBackground(null);
-		grape_button.setBorderPainted(false);
-		grape_button.addActionListener(new GrapeButton());
-		grape_button.setBounds(500, 100, 160, 160);
-		grape_button.setVisible(false);
-
-		
-		guestP1.setBounds(500, 300, guest1.getIconWidth(), guest1.getIconHeight());
-		guestP2.setBounds(500 + guest1.getIconWidth(), 300, guest2.getIconWidth(), guest2.getIconHeight());
-		guestP3.setBounds(500 + guest2.getIconWidth() + guest1.getIconWidth(), 300, guest3.getIconWidth(), guest3.getIconHeight());
-		guestP4.setBounds(500 + guest3.getIconWidth() + guest2.getIconWidth() + guest1.getIconWidth(), 300, guest4.getIconWidth(), guest4.getIconHeight());
-		
-		/*Juicy Button setting finish*/
-
-		/*adding component in back_ground*/
-		back_ground.add(guestP4);
-		back_ground.add(guestP3);
-		back_ground.add(guestP2);
-		back_ground.add(guestP1);
-		back_ground.add(apple_button);
-		back_ground.add(orange_button);
-		back_ground.add(straw_button);
-		back_ground.add(grape_button);
-		back_ground.add(go_back);
-		back_ground.add(refri);
-		/*adding component in back_ground finish*/
+	}
+	
+	/*crate Jpanel that have user information Jlebel*/
+	JPanel userImfoPane(){
 		
 		JPanel menupanel = new JPanel();
-
-		this.getContentPane().add(BorderLayout.NORTH, menupanel);
 
 		Font font = new Font("Dialog", Font.BOLD, 15); // 20은 글자 크기
 
@@ -319,7 +340,9 @@ public class StoreFrame extends JFrame {
 		menupanel.add(userGRAPE_label);
 		menupanel.add(userORANGE_label);
 		menupanel.add(userSTRAWBERRY_label);
-
+		
+		return menupanel;
+		
 	}
 	
 	void drawImage(){
