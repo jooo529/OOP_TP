@@ -93,6 +93,7 @@ public class MainFrame extends JFrame{
 		missionInfo.setFont(font2);
 		missionInfo.setEditable(false);
 		missionInfo.setLineWrap(true);
+		
 		if (UserFile.Users.get(idx).getLevel() == 0)	missionInfo.setText(mf.fileLoad("Mission0.txt"));
 		else if (UserFile.Users.get(idx).getLevel() == 1)	missionInfo.setText(mf.fileLoad("Mission1.txt"));
 		else if (UserFile.Users.get(idx).getLevel() == 2)	missionInfo.setText(mf.fileLoad("Mission2.txt"));

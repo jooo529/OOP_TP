@@ -10,15 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class StoreFrame extends JFrame {
+public class StoreFrame extends GameFrame {
 
-
-	/* Crate User file*/
-	private UserFile f = new UserFile();
-
-	/* Crate variable about getting user information*/
-	private int idx;
-	
 	/* image icon */
 	private ImageIcon guest1 = new ImageIcon("guest1.png");
 	private ImageIcon guest2 = new ImageIcon("guest2.png");
@@ -40,21 +33,14 @@ public class StoreFrame extends JFrame {
 	/* guest panels and back ground panel */
 	private JPanel back_ground, guestP1, guestP2, guestP3, guestP4;
 
-	/*Crating Labels that have user information*/
-	private JLabel userAPPLE_label = new JLabel();
-	private JLabel userGRAPE_label = new JLabel();
-	private JLabel userORANGE_label = new JLabel();
-	private JLabel userSTRAWBERRY_label = new JLabel();
-	private JLabel userMONEY_label = new JLabel();
-
-	/*Crating variables that have the number of fruit box*/
+	/* Crating variables that have the number of fruit box */
 	private int number_apple = 0;
 	private int number_orange = 0;
 	private int number_straw = 0;
 	private int number_grape = 0;
 	private int juice_price = 0;
 
-	/*Constructor*/
+	/* Constructor */
 	public StoreFrame() {
 		go_store();
 
@@ -65,11 +51,7 @@ public class StoreFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 
-		/* get user information in user file */
-		for (int i = 0; i < UserFile.Users.size(); i++) {
-			if (UserFile.Users.get(i).getIndex() > 0)
-				idx = i;
-		}
+		getUserIdx();
 
 		/* Crate Refrigerator object and Panel about user information */
 		Refrigerator refri = new Refrigerator();
@@ -120,10 +102,10 @@ public class StoreFrame extends JFrame {
 		back_ground.add(refri);
 		/* adding component in back_ground finish */
 
-		/*setting menupanel*/
-		menupanel = userImfoPane();
+		/* setting menupanel */
+		menupanel = userImfoPane(2);
 
-		/*adding components*/
+		/* adding components */
 		this.getContentPane().add(BorderLayout.NORTH, menupanel);
 		this.getContentPane().add(BorderLayout.CENTER, back_ground);
 
@@ -211,7 +193,7 @@ public class StoreFrame extends JFrame {
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 
 				juice_price = 0;
-				changeImfo();
+				changeImfo(2);
 				juice_apple_button.setVisible(false);
 
 			}
@@ -243,7 +225,7 @@ public class StoreFrame extends JFrame {
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 
 				juice_price = 0;
-				changeImfo();
+				changeImfo(2);
 				juice_orange_button.setVisible(false);
 			}
 		});
@@ -274,7 +256,7 @@ public class StoreFrame extends JFrame {
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 
 				juice_price = 0;
-				changeImfo();
+				changeImfo(2);
 				juice_straw_button.setVisible(false);
 			}
 		});
@@ -305,52 +287,10 @@ public class StoreFrame extends JFrame {
 				UserFile.Users.get(idx).setGrapebox((UserFile.Users.get(idx).getGrapebox() - 1));
 
 				juice_price = 0;
-				changeImfo();
+				changeImfo(2);
 				juice_grape_button.setVisible(false);
 			}
 		});
-
-	}
-
-	/* crate Jpanel that have user information Jlebel */
-	JPanel userImfoPane() {
-
-		JPanel menupanel = new JPanel();
-
-		Font font = new Font("Dialog", Font.BOLD, 13); // 20은 글자 크기
-
-		JLabel userID_label = new JLabel("User   :   " + UserFile.Users.get(idx).getId());
-		userID_label.setFont(font);
-
-		userMONEY_label.setText("    Money   :   " + UserFile.Users.get(idx).getMoney());
-		userMONEY_label.setFont(font);
-
-		JLabel userLEVEL_label = new JLabel("    Level   :   " + UserFile.Users.get(idx).getLevel());
-		userLEVEL_label.setFont(font);
-
-		userAPPLE_label.setText("    Apple  BOX :   " + UserFile.Users.get(idx).getApplebox());
-		userAPPLE_label.setFont(font);
-
-		userGRAPE_label.setText("    Grape  BOX  :   " + UserFile.Users.get(idx).getGrapebox());
-		userGRAPE_label.setFont(font);
-
-		userORANGE_label.setText("    Orange  BOX  :   " + UserFile.Users.get(idx).getOrangebox());
-		userORANGE_label.setFont(font);
-
-		userSTRAWBERRY_label.setText("    Strawberry  BOX  :   " + UserFile.Users.get(idx).getStrawberrybox());
-		userSTRAWBERRY_label.setFont(font);
-
-		changeImfo();
-
-		menupanel.add(userID_label);
-		menupanel.add(userLEVEL_label);
-		menupanel.add(userMONEY_label);
-		menupanel.add(userAPPLE_label);
-		menupanel.add(userGRAPE_label);
-		menupanel.add(userORANGE_label);
-		menupanel.add(userSTRAWBERRY_label);
-
-		return menupanel;
 
 	}
 
@@ -395,7 +335,7 @@ public class StoreFrame extends JFrame {
 
 	class goback_listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			changeImfo();
+			changeImfo(2);
 			f.fileSave();
 			setVisible(false);
 			MainDisplay md = new MainDisplay();
@@ -454,8 +394,8 @@ public class StoreFrame extends JFrame {
 
 			/* add fruit box name labels in panel */
 			apple_panel.add(apple_lb);
-			grape_panel.add(grape_lb);
 			orange_panel.add(orange_lb);
+			grape_panel.add(grape_lb);
 			strawberry_panel.add(straw_lb);
 
 			/* crate fruit button */
@@ -490,21 +430,12 @@ public class StoreFrame extends JFrame {
 
 			/* adding buttons in panel */
 			this.add(apple_panel);
-			this.add(orange_panel);
 			this.add(grape_panel);
+			this.add(orange_panel);
 			this.add(strawberry_panel);
 
 		}
 
-	}
-
-	/* User information label change */
-	void changeImfo() {
-		userMONEY_label.setText("    Money   :   " + UserFile.Users.get(idx).getMoney());
-		userAPPLE_label.setText("    Apple  BOX :   " + UserFile.Users.get(idx).getApplebox());
-		userGRAPE_label.setText("    Grape  BOX  :   " + UserFile.Users.get(idx).getGrapebox());
-		userORANGE_label.setText("    Orange  BOX  :   " + UserFile.Users.get(idx).getOrangebox());
-		userSTRAWBERRY_label.setText("    Strawberry  BOX  :   " + UserFile.Users.get(idx).getStrawberrybox());
 	}
 
 	/* Fruit Button CLASS */
@@ -537,7 +468,7 @@ public class StoreFrame extends JFrame {
 			juice_apple_button.setVisible(true);
 
 			/* user information change */
-			changeImfo();
+			changeImfo(2);
 
 			/* fruit box button disappear */
 			setVisible(false);
@@ -575,7 +506,7 @@ public class StoreFrame extends JFrame {
 			juice_orange_button.setVisible(true);
 
 			/* user information change */
-			changeImfo();
+			changeImfo(2);
 
 			/* fruit box button disappear */
 			setVisible(false);
@@ -613,7 +544,7 @@ public class StoreFrame extends JFrame {
 			juice_straw_button.setVisible(true);
 
 			/* user information change */
-			changeImfo();
+			changeImfo(2);
 
 			/* fruit box button disappear */
 			setVisible(false);
@@ -650,7 +581,7 @@ public class StoreFrame extends JFrame {
 			juice_grape_button.setVisible(true);
 
 			/* user information change */
-			changeImfo();
+			changeImfo(2);
 
 			/* fruit box button disappear */
 			setVisible(false);

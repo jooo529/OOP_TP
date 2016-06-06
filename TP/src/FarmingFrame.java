@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class FarmingFrame extends JFrame {
+public class FarmingFrame extends GameFrame {
 
 	public FarmingFrame() {
 		go_farming();
@@ -20,7 +20,7 @@ public class FarmingFrame extends JFrame {
 	JButton[] ary;
 	Container container;
 	JList<String> list;
-	JPanel fruitpanel, menupanel;
+	JPanel fruitpanel;
 	JLabel userAPPLE_label, userGRAPE_label, userORANGE_label, userSTRAWBERRY_label;
 
 	ImageIcon i1 = new ImageIcon("first.png");
@@ -36,28 +36,22 @@ public class FarmingFrame extends JFrame {
 	ImageIcon i4_STRAWBERRY = new ImageIcon("strawberryRotten_jy.png");
 	ImageIcon i4;
 
-	int idx;
 	static int fruitNum = 0;
 	
 	public void go_farming() { // 선택받은 과일이 입력받은 갯수만큼 나타나는거 구현하기
 
+		JPanel menupanel;
+		
 		container = this.getContentPane();
 		container.setLayout(new BorderLayout());
-
-		menupanel = new JPanel();
-
+		
+		getUserIdx();
+		
+		menupanel = userImfoPane(1);
+		
 		container.add(BorderLayout.NORTH, menupanel);
 
-		User u = new User();
-
-		for (int i = 0; i < UserFile.Users.size(); i++) {
-			if (UserFile.Users.get(i).getIndex() > 0)
-				idx = i;
-		}
-
-		setting_menupanel sm = new setting_menupanel();
-		sm.setM();
-
+	
 		String which = UserFile.Users.get(idx).getFruit();
 
 		if (which == "Grape") {
@@ -73,8 +67,6 @@ public class FarmingFrame extends JFrame {
 			i3 = i3_STRAWBERRY;
 			i4 = i4_STRAWBERRY;
 		}
-
-		// menupanel.add(enter);
 
 		fruitpanel = new JPanel();
 		fruitpanel.setLayout(new GridLayout(3, 3));
@@ -156,51 +148,16 @@ public class FarmingFrame extends JFrame {
 		loop lp = new loop();
 		lp.go();
 	}
-
+	
 	class quit_listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			UserFile file = new UserFile();
-			// UserFile.Users.get(idx).setHave_box(false);
+			
 			setVisible(false);
 			JOptionPane.showMessageDialog(null, "You got "+fruitNum+" "+UserFile.Users.get(idx).getFruit()+"!", "Message", JOptionPane.INFORMATION_MESSAGE);
 			UserFile.Users.get(idx).setFruit(null);
 			fruitNum=0;
-			file.fileSave();
+			f.fileSave();
 			
-		}
-	}
-
-	class setting_menupanel {
-		public void setM() {
-			Font font = new Font("Dialog", Font.BOLD, 15); // 20은 글자 크기
-
-			JLabel userID_label = new JLabel("U s e r   :   " + UserFile.Users.get(idx).getId());
-			userID_label.setFont(font);
-
-			JLabel userMONEY_label = new JLabel("           M o n e y   :   " + UserFile.Users.get(idx).getMoney());
-			userMONEY_label.setFont(font);
-
-			JLabel userLEVEL_label = new JLabel("           L e v e l   :   " + UserFile.Users.get(idx).getLevel());
-			userLEVEL_label.setFont(font);
-
-			userAPPLE_label = new JLabel();
-			userGRAPE_label = new JLabel();
-			userORANGE_label = new JLabel();
-			userSTRAWBERRY_label = new JLabel();
-
-			userAPPLE_label.setFont(font);
-			userGRAPE_label.setFont(font);
-			userORANGE_label.setFont(font);
-			userSTRAWBERRY_label.setFont(font);
-			changeFruit();
-
-			menupanel.add(userID_label);
-			menupanel.add(userLEVEL_label);
-			menupanel.add(userMONEY_label);
-			menupanel.add(userAPPLE_label);
-			menupanel.add(userGRAPE_label);
-			menupanel.add(userORANGE_label);
-			menupanel.add(userSTRAWBERRY_label);
 		}
 	}
 
@@ -353,8 +310,9 @@ public class FarmingFrame extends JFrame {
 				UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() - 1);
 				fruitNum--;
 			}
-			changeFruit();
-
+			changeImfo(1);
+			
+			
 			if (im[k] == i3 || im[k] == i4) {
 				im[k] = i1;
 				int randtime = (int) (Math.random() * 10 + 2) * 1000;
