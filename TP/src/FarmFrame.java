@@ -1,14 +1,17 @@
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,14 +19,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-//import HomeFrame.goback_listener;
-//import Home.goback_listener;
 
 public class FarmFrame extends JFrame {
 	
@@ -35,13 +34,18 @@ public class FarmFrame extends JFrame {
 		go_farm();
 	}
 
-	ImageIcon im;
+	ImageIcon[] im3,im4; 
 	Container container;
 	JList<String> list;
-	JFrame frame_kind;
-	JFrame frame_number;
-//	JTextField tf;
-	boolean isChoose;
+	JFrame frame_kind, frame_number, frame_help;
+	JPanel fruit_image,rotten_image;
+	Timer tmr;
+	boolean isChoose,isClose;
+	int index;
+	
+	ImageIcon i1,i2,i3,i4,im,
+			  i3_apple,i3_orange,i3_grape,i3_strawberry,
+			  i4_apple,i4_orange,i4_grape,i4_strawberry;
 
 	public void go_farm() {
 		////////////
@@ -53,16 +57,26 @@ public class FarmFrame extends JFrame {
 			public void paintComponent(Graphics g) {
 				g.drawImage(im.getImage(), 0, 0, null);
 
-				g.setFont(new Font("serif", Font.BOLD, 28));
-				g.drawString("Which Fruit do you want to get?", 25, 35);
+//				g.setFont(new Font("serif", Font.BOLD, 28));
+//				g.drawString("Which Fruit do you want to get?", 25, 35);
 			}
 		};
 
+		JLabel which = new JLabel("Which Fruit do you want to get?");
+		which.setFont(new Font("serif",Font.BOLD,28));
+		
 		JButton gochoose = new JButton("Go to choose");
 		gochoose.setFont(new Font("serif", Font.BOLD, 20));
 		gochoose.addActionListener(new gochoose_listener());
-
+		
+		JButton help = new JButton("Help");
+		help.setFont(new Font("serif",Font.BOLD,20));
+		help.addActionListener(new help_listener());
+		
+		back_ground.add(which);
 		back_ground.add(gochoose);
+		back_ground.add(new JLabel("                                                      "));
+		back_ground.add(help);
 
 		container.add(BorderLayout.CENTER, back_ground);
 		// *
@@ -120,8 +134,7 @@ public class FarmFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			
 			if(UserFile.Users.get(idx).isHave_box()){
-				frame_kind = new JFrame();
-				frame_kind.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame_kind = new JFrame("Choose one fruit!");
 				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 				int xPos = screenSize.width / 2 - 100;
@@ -166,7 +179,123 @@ public class FarmFrame extends JFrame {
 			}
 		}
 	}
+	
+	class help_listener implements ActionListener{
 
+		public void actionPerformed(ActionEvent arg0) {
+			frame_help = new JFrame("Explanation about Farming");
+			JPanel panel_help = new JPanel();
+			panel_help.setLayout(new BoxLayout(panel_help,BoxLayout.Y_AXIS));
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			
+			int xPos = screenSize.width / 2 - 100;
+			int yPos = screenSize.height / 2 - 220;
+			
+			JLabel lbl_help = new JLabel("Each Image change automatically in random time");
+			lbl_help.setFont(new Font("serif",Font.BOLD,25));
+			
+			i1 = new ImageIcon("first.png");
+			i2= new ImageIcon("Second.png");
+			i3_apple = new ImageIcon("apple.png");
+			i3_orange = new ImageIcon("orange_jy.png");
+			i3_grape = new ImageIcon("grape_jy.png");
+			i3_strawberry = new ImageIcon("strawberry_jy.png");
+			i4_apple = new ImageIcon("appleRotten.png");
+			i4_orange = new ImageIcon("orangeRotten_jy.png");
+			i4_grape = new ImageIcon("grapeRotten_jy.png");
+			i4_strawberry = new ImageIcon("strawberryRotten_jy.png");
+			
+			im3 = new ImageIcon[4];
+			im4 = new ImageIcon[4];
+			im3[0] = i3_apple;	im3[1] = i3_orange;		im3[2]=i3_grape;	im3[3]=i3_strawberry;
+			im4[0] = i4_apple;	im4[1] = i4_orange;		im4[2]=i4_grape;	im4[3]=i4_strawberry;
+			
+			index=1;
+			
+			tmr = new Timer();
+			
+			TimerTask task = new TimerTask(){
+
+				@Override
+				public void run() {
+					if(isClose)tmr.cancel();
+					
+					if(index==4)	index =0;
+					i3 = im3[index];
+					i4=im4[index];
+					index++;
+					fruit_image.repaint();
+					rotten_image.repaint();
+				}
+				
+			};
+			
+			i3=im3[0];	i4=im4[0];
+			tmr.schedule(task,3000, 3000);
+			
+			
+			JPanel first_image = new JPanel(){
+				public void paintComponent(Graphics g){
+					g.drawImage(i1.getImage(),0,0,null);
+					
+					g.setFont(new Font("serif", Font.BOLD, 18));
+					g.drawString("This is the first image", 365,35);
+					g.drawString("Just seeds are in the ground!",365,55);
+					g.drawString("So No changes if you click this image", 365,95);
+				}
+			};
+			JPanel second_image = new JPanel(){
+				public void paintComponent(Graphics g){
+					g.drawImage(i2.getImage(),0,0,null);
+					
+					g.setFont(new Font("serif", Font.BOLD, 18));
+					g.drawString("This is the second image", 365, 35);
+					g.drawString("Just small tree grow!",365,55);
+					g.drawString("So No changes if you click this image",365,95);
+				}
+			};
+			fruit_image = new JPanel(){
+				public void paintComponent(Graphics g){
+					g.drawImage(i3.getImage(), 0,0,null);
+					
+					g.setFont(new Font("serif", Font.BOLD, 18));
+					g.drawString("This is the third image", 365, 35);
+					g.drawString("Great Fruit is ready to be harvested!",365,55);
+					g.drawString("So Plus your number of fruit",365,95);
+					g.drawString("if you click this image", 365,115);
+				}
+			};
+			rotten_image = new JPanel(){
+				public void paintComponent(Graphics g){
+					g.drawImage(i4.getImage(), 0, 0, null);
+			
+					g.setFont(new Font("serif", Font.BOLD, 18));
+					g.drawString("This is the last image", 365, 35);
+					g.drawString("It's Rotten as you don't harvest for 8 seconds!",365,55);
+					g.drawString("So Minus your number of fruit",365,95);
+					g.drawString("if you click this image", 365,115);
+				}
+			};
+			JButton close_btn = new JButton("Close");
+			close_btn.addActionListener(new close_btn_listener());
+			
+			
+			panel_help.add(lbl_help);
+			panel_help.add(first_image);
+			panel_help.add(second_image);
+			panel_help.add(fruit_image);
+			panel_help.add(rotten_image);
+			
+			panel_help.add(close_btn);
+			
+			frame_help.add(panel_help);
+			frame_help.setSize(750, 700);
+			frame_help.setLocation(xPos, yPos);
+			frame_help.setVisible(true);
+		}
+		
+	}
+	
 	class ok_listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (isChoose == true) {	//숫자만 입력받도록 다시수정해야함
@@ -184,6 +313,12 @@ public class FarmFrame extends JFrame {
 	class close_listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			frame_kind.setVisible(false);
+		}
+	}
+	class close_btn_listener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			isClose = true;
+			frame_help.setVisible(false);
 		}
 	}
 }
