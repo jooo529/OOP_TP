@@ -3,8 +3,11 @@ You have to go to Store and sell juice!
 In Store, some consumers will be there.
 They want your fruit juice!
 Sell them some juice!
+
 You can learn Queue in this mission!
+
 Queue's feature is 'First In,First Out
 Consumer who comes first will get juice first,
 and go out of store first!
+
 First In, First Out!

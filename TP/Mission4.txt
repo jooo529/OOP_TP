@@ -2,10 +2,14 @@
 You have to make some fruit juice!
 Go to store and take some fruits
 out of refrigerator.
+
 Then read recipe of Juice
 and make fruit juice
+
 You can learn Class and Object from this Mission.
+
 Class is blueprint of an Object.
 and Object is an instance of the class.
+
 In this mission, recipe will be blueprint
 and juice will be instance of recipe!
