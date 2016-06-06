@@ -135,6 +135,7 @@ public class MainFrame extends JFrame{
 		public void actionPerformed(ActionEvent event)
 		{
 			//setVisible(false);
+			UserFile.Users.get(idx).setFruit(null);
 			FarmDisplay farm = new FarmDisplay();
 			farm.go();
 		}

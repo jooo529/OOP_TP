@@ -7,12 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,9 +20,7 @@ public class FarmingFrame extends JFrame {
 	JButton[] ary;
 	Container container;
 	JList<String> list;
-	static int i;
 	JPanel fruitpanel, menupanel;
-	int idx;
 	JLabel userAPPLE_label, userGRAPE_label, userORANGE_label, userSTRAWBERRY_label;
 
 	ImageIcon i1 = new ImageIcon("first.png");
@@ -43,6 +35,9 @@ public class FarmingFrame extends JFrame {
 	ImageIcon i4_ORANGE = new ImageIcon("orangeRotten_jy.png");
 	ImageIcon i4_STRAWBERRY = new ImageIcon("strawberryRotten_jy.png");
 	ImageIcon i4;
+
+	int idx;
+	static int fruitNum = 0;
 	
 	public void go_farming() { // 선택받은 과일이 입력받은 갯수만큼 나타나는거 구현하기
 
@@ -65,23 +60,20 @@ public class FarmingFrame extends JFrame {
 
 		String which = UserFile.Users.get(idx).getFruit();
 
-		if (which == "Grape"){
+		if (which == "Grape") {
 			i3 = i3_GRAPE;
 			i4 = i4_GRAPE;
-		}
-		else if (which == "Apple"){
+		} else if (which == "Apple") {
 			i3 = i3_APPLE;
 			i4 = i4_APPLE;
-		}
-		else if (which == "Orange"){
+		} else if (which == "Orange") {
 			i3 = i3_ORANGE;
 			i4 = i4_ORANGE;
-		}
-		else if (which == "Strawberry"){
+		} else if (which == "Strawberry") {
 			i3 = i3_STRAWBERRY;
 			i4 = i4_STRAWBERRY;
 		}
-			
+
 		// menupanel.add(enter);
 
 		fruitpanel = new JPanel();
@@ -168,9 +160,13 @@ public class FarmingFrame extends JFrame {
 	class quit_listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			UserFile file = new UserFile();
-//			UserFile.Users.get(idx).setHave_box(false);
-			file.fileSave();
+			// UserFile.Users.get(idx).setHave_box(false);
 			setVisible(false);
+			JOptionPane.showMessageDialog(null, "You got "+fruitNum+" "+UserFile.Users.get(idx).getFruit()+"!", "Message", JOptionPane.INFORMATION_MESSAGE);
+			UserFile.Users.get(idx).setFruit(null);
+			fruitNum=0;
+			file.fileSave();
+			
 		}
 	}
 
@@ -322,37 +318,44 @@ public class FarmingFrame extends JFrame {
 		userSTRAWBERRY_label.setText(" 			S t r a w b e r r y   :   " + UserFile.Users.get(idx).getStrawBerry());
 	}
 
-	class reset implements ActionListener{
+	class reset implements ActionListener {
 		int k;
-		public reset(int i){
-			k=i;
-		}
-		public void actionPerformed(ActionEvent e) {
-			if (im[k] == i3_APPLE)
-				UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() + 1);
-			else if (im[k] == i3_GRAPE)
-				UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape() + 1);
-			else if (im[k] == i3_ORANGE)
-				UserFile.Users.get(idx).setOrange(UserFile.Users.get(idx).getOrange() + 1);
-			else if (im[k] == i3_STRAWBERRY)
-				UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() + 1);
-			//------------  Increase Fruit Variable
-			
-			else if(im[k]==i4_APPLE&&UserFile.Users.get(idx).getApple()>0)
-				UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() - 1);
-			else if(im[k]==i4_GRAPE&&UserFile.Users.get(idx).getGrape()>0)
-				UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape() - 1);
-			else if(im[k]==i4_ORANGE&&UserFile.Users.get(idx).getOrange()>0)
-				UserFile.Users.get(idx).setOrange(UserFile.Users.get(idx).getOrange() - 1);
-			else if(im[k]==i4_STRAWBERRY&&UserFile.Users.get(idx).getStrawBerry()>0)
-				UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() - 1);
 
-				
-				
-				
+		public reset(int i) {
+			k = i;
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			if (im[k] == i3_APPLE){
+				UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() + 1);
+				fruitNum++;
+			}else if (im[k] == i3_GRAPE){
+				UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape() + 1);
+				fruitNum++;
+			}else if (im[k] == i3_ORANGE){
+				UserFile.Users.get(idx).setOrange(UserFile.Users.get(idx).getOrange() + 1);
+				fruitNum++;
+			}else if (im[k] == i3_STRAWBERRY){
+				UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() + 1);
+				fruitNum++;
+			}// ------------ Increase Fruit Variable
+
+			else if (im[k] == i4_APPLE && UserFile.Users.get(idx).getApple() > 0){
+				UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() - 1);
+				fruitNum--;
+			}else if (im[k] == i4_GRAPE && UserFile.Users.get(idx).getGrape() > 0){
+				UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape() - 1);
+				fruitNum--;
+			}else if (im[k] == i4_ORANGE && UserFile.Users.get(idx).getOrange() > 0){
+				UserFile.Users.get(idx).setOrange(UserFile.Users.get(idx).getOrange() - 1);
+				fruitNum--;
+			}else if (im[k] == i4_STRAWBERRY && UserFile.Users.get(idx).getStrawBerry() > 0){
+				UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() - 1);
+				fruitNum--;
+			}
 			changeFruit();
 
-			if (im[k] == i3||im[k]==i4) {
+			if (im[k] == i3 || im[k] == i4) {
 				im[k] = i1;
 				int randtime = (int) (Math.random() * 10 + 2) * 1000;
 				btn_game sch = new btn_game();
@@ -362,6 +365,5 @@ public class FarmingFrame extends JFrame {
 			}
 		}
 	}
-
 
 }
