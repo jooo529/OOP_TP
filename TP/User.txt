@@ -6,6 +6,6 @@ guest,1234,guest,01000000000,2501,2,-,-,hello,hello,1,12,9,0,false
 3,3,guest,01000000000,2501,3,-,-,hello,hello,1,12,9,0,false
 4,4,guest,01000000000,1001,4,2016-06-05 04:06:49,2016-06-05 04:06:49,hello,hello,1,12,9,0,false
 cjy1001,wlsdud1,cjy,01045265518,19900,1,-,-,professor name,teemu,87,85,98,100,false
-a,a,guest,01000000000,20401,1,2016-06-06 02:29:09,2016-06-06 02:29:09,hello,hello,0,0,0,2,true
+a,a,guest,01000000000,20401,1,2016-06-06 04:38:17,2016-06-06 04:38:17,hello,hello,0,0,1,2,true
 asdsadasd,asdasdasd,asdasfsad,01021341231,18700,0,-,-,123123,123123,0,0,0,0,false
 asdasdasd,asdasdasd,asdasd,01012341234,0,0,-,-,asdasd,asdasd,0,0,0,0,false

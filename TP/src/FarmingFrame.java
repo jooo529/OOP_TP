@@ -168,6 +168,7 @@ public class FarmingFrame extends JFrame {
 	class quit_listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			UserFile file = new UserFile();
+			UserFile.Users.get(idx).setHave_box(false);
 			file.fileSave();
 			setVisible(false);
 		}

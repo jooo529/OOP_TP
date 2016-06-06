@@ -112,6 +112,7 @@ public class FarmFrame extends JFrame {
 
 	class goback_listener implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
+			
 			setVisible(false);
 		}
 	}
