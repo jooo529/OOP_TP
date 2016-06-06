@@ -133,7 +133,7 @@ public class StoreFrame extends JFrame {
 		JPanel back_ground = new JPanel() {
 
 			public void paintComponent(Graphics g) {
-				g.drawImage(storeIm.getImage(), 350, 0, this);
+				g.drawImage(storeIm.getImage(), 300, 0, this);
 			}
 		};
 
@@ -222,6 +222,7 @@ public class StoreFrame extends JFrame {
 		private ImageIcon strawberry;
 		private ImageIcon grape;
 		private ImageIcon exit;
+		private JLabel apple_lb,orange_lb,straw_lb,grape_lb;
 
 		public PopUpMarket() {
 
@@ -232,6 +233,11 @@ public class StoreFrame extends JFrame {
 			orange = new ImageIcon("orange.png");
 			strawberry = new ImageIcon("strawberry.png");
 			grape = new ImageIcon("grape.png");
+			
+			 apple_lb = new JLabel("APPLE");
+			 orange_lb = new JLabel("ORANGE");
+			 straw_lb = new JLabel("STRAWBERRY");
+			 grape_lb = new JLabel("GRAPE");
 
 			//JPanel west = new JPanel();
 			//JPanel east = new JPanel();
@@ -249,6 +255,11 @@ public class StoreFrame extends JFrame {
 			number_grape = UserFile.Users.get(idx).getGrape();
 			number_orange = UserFile.Users.get(idx).getOrange();
 			number_straw = UserFile.Users.get(idx).getStrawBerry();
+			
+			apple_panel.add(apple_lb);
+			grape_panel.add(grape_lb);
+			orange_panel.add(orange_lb);
+			strawberry_panel.add(straw_lb);			
 
 			for (i = 0; i < number_apple; i++) {
 				APPLE[i] = new AppleButton();
