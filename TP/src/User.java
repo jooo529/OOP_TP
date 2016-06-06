@@ -22,7 +22,15 @@ public class User {
 	private int grape;
 	private int orange;
 	private int StrawBerry;
-	private boolean have_box;
+	private int applebox;
+	private int grapebox;
+	private int orangebox;
+	private int strawberrybox;
+//	private int which_box;
+//	private boolean apple_box;
+//	private boolean orange_box;
+//	private boolean grape_box;
+//	private boolean strawberry_box;
 	private ArrayList<String> FruitBox = new ArrayList<String>(); 
 
 	public int getIndex() {
@@ -140,13 +148,62 @@ public class User {
 		return "[apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry=" + StrawBerry + "]";
 	}
 	
-	public boolean isHave_box() {
-		return have_box;
-	}
-	public void setHave_box(boolean have_box) {
-		this.have_box = have_box;
-	}
 	
+	
+//	public boolean isApple_box() {
+//		return apple_box;
+//	}
+//	public void setApple_box(boolean apple_box) {
+//		this.apple_box = apple_box;
+//	}
+//	public boolean isOrange_box() {
+//		return orange_box;
+//	}
+//	public void setOrange_box(boolean orange_box) {
+//		this.orange_box = orange_box;
+//	}
+//	public boolean isGrape_box() {
+//		return grape_box;
+//	}
+//	public void setGrape_box(boolean grape_box) {
+//		this.grape_box = grape_box;
+//	}
+//	public boolean isStrawberry_box() {
+//		return strawberry_box;
+//	}
+//	public void setStrawberry_box(boolean strawberry_box) {
+//		this.strawberry_box = strawberry_box;
+//	}
+//	public int getWhich_box() {
+//		return which_box;
+//	}
+//	public void setWhich_box(int which_box) {
+//		this.which_box = which_box;
+//	}
+	public int getApplebox() {
+		return applebox;
+	}
+	public void setApplebox(int applebox) {
+		this.applebox = applebox;
+	}
+	public int getGrapebox() {
+		return grapebox;
+	}
+	public void setGrapebox(int grapebox) {
+		this.grapebox = grapebox;
+	}
+	public int getOrangebox() {
+		return orangebox;
+	}
+	public void setOrangebox(int orangebox) {
+		this.orangebox = orangebox;
+	}
+	public int getStrawberrybox() {
+		return strawberrybox;
+	}
+	public void setStrawberrybox(int strawberrybox) {
+		this.strawberrybox = strawberrybox;
+	}
 	@Override
 	public String toString() {
 		return "User [index=" + index + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
@@ -156,6 +213,6 @@ public class User {
 				+ ", Fruit=" + Fruit + ", apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry="
 				+ StrawBerry + ", FruitBox=" + FruitBox + "]";
 	}
-	
+
 
 }

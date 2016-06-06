@@ -14,6 +14,7 @@ public class MainFrame extends JFrame{
 	}
 	
 	ImageIcon im;
+	JFrame fr;
 	
 	public String toUserInfo() {
         for(int i=0; i<UserFile.Users.size(); i++){
@@ -150,11 +151,112 @@ public class MainFrame extends JFrame{
 	class BoxButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event)
 		{
-			JOptionPane.showMessageDialog(null, "I'm fruitBox! I'll give you fruitBoxes", "Message", JOptionPane.INFORMATION_MESSAGE);
-			UserFile.Users.get(idx).setHave_box(true);
+			fr = new JFrame("Make Fruit Box!");
+			fr.setLayout(new BorderLayout());
+			
+			
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			int xPos = screenSize.width / 2 - 150;
+			int yPos = screenSize.height / 2 - 150;
+			
+			JPanel mn = new JPanel();
+			mn.add(new JLabel("apple: "+UserFile.Users.get(idx).getApple()+" "));
+			mn.add(new JLabel("apple box: "+UserFile.Users.get(idx).getApplebox()+" "));
+			mn.add(new JLabel("grape: "+UserFile.Users.get(idx).getGrape()+" "));
+			mn.add(new JLabel("grape box: "+UserFile.Users.get(idx).getGrapebox()+" "));
+			mn.add(new JLabel("orange: "+UserFile.Users.get(idx).getOrange()+" "));
+			mn.add(new JLabel("orange box: "+UserFile.Users.get(idx).getOrangebox()+" "));
+			mn.add(new JLabel("strawberry: "+UserFile.Users.get(idx).getStrawBerry()+" "));
+			mn.add(new JLabel("strawberry box: "+UserFile.Users.get(idx).getStrawberrybox()+" "));
+			
+			
+			JPanel pn = new JPanel();
+			pn.setLayout(new GridLayout(2,2));
+			
+			JButton appleBox = new JButton(){
+				public void paintComponent(Graphics g){
+					g.drawImage(new ImageIcon("apple.png").getImage(), 0,0, null);
+				}
+			};
+			JButton grapeBox = new JButton(){
+				public void paintComponent(Graphics g){
+					g.drawImage(new ImageIcon("grape_jy.png").getImage(),0,0,null);
+				}
+			};
+			JButton orangeBox = new JButton(){
+				public void paintComponent(Graphics g){
+					g.drawImage(new ImageIcon("orange_jy.png").getImage(), 0,0, null);
+				}
+			};
+			JButton strawberryBox = new JButton(){
+				public void paintComponent(Graphics g){
+					g.drawImage(new ImageIcon("strawberry_jy.png").getImage(),0,0,null);
+				}
+			};
+			
+			appleBox.addActionListener(new appleBoxListener());
+			grapeBox.addActionListener(new grapeBoxListener());
+			orangeBox.addActionListener(new orangeBoxListener());
+			strawberryBox.addActionListener(new strawberryBoxListener());
+			
+			pn.add(appleBox);
+			pn.add(grapeBox);
+			pn.add(orangeBox);
+			pn.add(strawberryBox);
+			
+			fr.add(mn, BorderLayout.NORTH);
+			fr.add(pn,BorderLayout.CENTER);
+			fr.setSize(700, 380);
+			fr.setLocation(xPos, yPos);
+			fr.setVisible(true);
 			uf.fileSave();
 		}
 	}
+	class appleBoxListener implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			if(UserFile.Users.get(idx).getApple()>=4){
+				UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple()-4);
+				UserFile.Users.get(idx).setApplebox(UserFile.Users.get(idx).getApplebox()+1);
+				fr.setVisible(false);
+			}else{
+				JOptionPane.showMessageDialog(null, "TO MAKE APPLE BOX,\nYOU NEED AT LEAST 4 APPLES", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	class grapeBoxListener implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			if(UserFile.Users.get(idx).getGrape()>=2){
+				UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape()-2);
+				UserFile.Users.get(idx).setGrapebox(UserFile.Users.get(idx).getGrapebox()+1);
+				fr.setVisible(false);
+			}else{
+				JOptionPane.showMessageDialog(null, "TO MAKE GRAPE BOX,\nYOU NEED AT LEAST 2 GRAPES", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	class orangeBoxListener implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			if(UserFile.Users.get(idx).getOrange()>=4){
+				UserFile.Users.get(idx).setOrange(UserFile.Users.get(idx).getOrange()-4);
+				UserFile.Users.get(idx).setOrangebox(UserFile.Users.get(idx).getOrangebox()+1);
+				fr.setVisible(false);
+			}else{
+				JOptionPane.showMessageDialog(null, "TO MAKE ORANGE BOX,\nYOU NEED AT LEAST 4 ORANGES", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	class strawberryBoxListener implements ActionListener{
+		public void actionPerformed(ActionEvent arg0) {
+			if(UserFile.Users.get(idx).getStrawBerry()>=8){
+				UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry()-8);
+				UserFile.Users.get(idx).setStrawberrybox(UserFile.Users.get(idx).getStrawberrybox()+1);
+				fr.setVisible(false);
+			}else{
+				JOptionPane.showMessageDialog(null, "TO MAKE STRAWBERRY BOX,\nYOU NEED AT LEAST 8 STRAWBERRYS", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	
 	
 	class SaveQuitButtonListener implements ActionListener
 	{

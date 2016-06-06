@@ -31,6 +31,14 @@ public class UserFile {
 				u.setGrape(Integer.parseInt(st.nextToken()));
 				u.setOrange(Integer.parseInt(st.nextToken()));
 				u.setStrawBerry(Integer.parseInt(st.nextToken()));
+				u.setApplebox(Integer.parseInt(st.nextToken()));
+				u.setGrapebox(Integer.parseInt(st.nextToken()));
+				u.setOrangebox(Integer.parseInt(st.nextToken()));
+				u.setStrawberrybox(Integer.parseInt(st.nextToken()));
+//				u.setApple_box(Boolean.parseBoolean(st.nextToken()));
+//				u.setGrape_box(Boolean.parseBoolean(st.nextToken()));
+//				u.setOrange_box(Boolean.parseBoolean(st.nextToken()));
+//				u.setStrawberry_box(Boolean.parseBoolean(st.nextToken()));
 				Users.add(u);
 			}
 		} catch (FileNotFoundException e) {
@@ -71,6 +79,22 @@ public class UserFile {
 				fw.write("" + Users.get(i).getOrange());
 				fw.write(",");
 				fw.write("" + Users.get(i).getStrawBerry());
+				fw.write(",");
+				fw.write("" + Users.get(i).getApplebox());
+				fw.write(",");
+				fw.write("" + Users.get(i).getGrapebox());
+				fw.write(",");
+				fw.write("" + Users.get(i).getOrangebox());
+				fw.write(",");
+				fw.write("" + Users.get(i).getStrawberrybox());
+//				fw.write(",");
+//				fw.write("" + Users.get(i).isApple_box());
+//				fw.write(",");
+//				fw.write("" + Users.get(i).isGrape_box());
+//				fw.write(",");
+//				fw.write("" + Users.get(i).isOrange_box());
+//				fw.write(",");
+//				fw.write("" + Users.get(i).isStrawberry_box());
 				fw.newLine();
 			}
 			fw.close();
