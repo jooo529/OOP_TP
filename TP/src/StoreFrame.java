@@ -216,7 +216,7 @@ public class StoreFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+//
 				if (guestP1.isVisible())
 					guestP1.setVisible(false);
 				else if (guestP2.isVisible())
