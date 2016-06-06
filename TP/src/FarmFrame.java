@@ -5,9 +5,7 @@ import java.util.Timer;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class FarmFrame extends JFrame {
-
-	private int idx;
+public class FarmFrame extends GameFrame {
 
 	public FarmFrame() {
 		UserFile.Users.get(idx).setFruit(null);
@@ -38,6 +36,8 @@ public class FarmFrame extends JFrame {
 			}
 		};
 
+		getUserIdx();
+		
 		JLabel which = new JLabel("Which Fruit do you want to get?");
 		which.setFont(new Font("serif", Font.BOLD, 28));
 
@@ -63,45 +63,11 @@ public class FarmFrame extends JFrame {
 			}
 		});
 
-		JPanel menupanel = new JPanel();
+		JPanel menupanel = userImfoPane(1);
+		menupanel.add(goback);
 
 		container.add(BorderLayout.NORTH, menupanel);
 
-		Font font = new Font("Dialog", Font.BOLD, 15);
-
-		for (int i = 0; i < UserFile.Users.size(); i++) {
-			if (UserFile.Users.get(i).getIndex() > -1)
-				idx = i;
-		}
-		JLabel userID_label = new JLabel("U s e r   :   " + UserFile.Users.get(idx).getId());
-		userID_label.setFont(font);
-
-		JLabel userLEVEL_label = new JLabel(
-				"           L e v e l   :   " + UserFile.Users.get(idx).getLevel() + "    ");
-		userLEVEL_label.setFont(font);
-
-		JLabel userAPPLE_label = new JLabel(" 			A p p l e   :   " + UserFile.Users.get(idx).getApple());
-		userAPPLE_label.setFont(font);
-
-		JLabel userGRAPE_label = new JLabel(" 			G r a p e   :   " + UserFile.Users.get(idx).getGrape());
-		userGRAPE_label.setFont(font);
-
-		JLabel userORANGE_label = new JLabel(" 			O r a n g e   :   " + UserFile.Users.get(idx).getOrange());
-		userORANGE_label.setFont(font);
-
-		JLabel userSTRAWBERRY_label = new JLabel(
-				" 			S t r a w b e r r y   :   " + UserFile.Users.get(idx).getStrawBerry());
-		userSTRAWBERRY_label.setFont(font);
-
-		JLabel enter = new JLabel("                      ");
-		
-		menupanel.add(userID_label);
-		menupanel.add(userLEVEL_label);
-		menupanel.add(userAPPLE_label);
-		menupanel.add(userGRAPE_label);
-		menupanel.add(userORANGE_label);
-		menupanel.add(userSTRAWBERRY_label);
-		menupanel.add(goback);
 	}
 
 	class gochoose_listener implements ActionListener{
