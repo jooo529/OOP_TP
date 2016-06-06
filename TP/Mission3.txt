@@ -1,5 +1,5 @@
 <Mission 3>
-Put your all fruits in refrigerator!
+Put your all fruitBoxes in refrigerator!
 Refrigerator is located in Store.
 
 You can learn Stack in this mission.

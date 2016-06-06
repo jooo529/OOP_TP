@@ -1,10 +1,6 @@
 
 public class Mission1 extends MissionFile implements Mission {
 
-	public Mission1() {
-
-	}
-
 	public String helpMission() {
 		return fileLoad("Mission1.txt");
 	}
@@ -15,9 +11,9 @@ public class Mission1 extends MissionFile implements Mission {
 
 	@Override
 	public String getMission(int idx) {
-		String str = "<Mission 1>" + "\nYou have to buy following fruitbox!"
-				+ "\n\nGo to the Store and Buy following box." + "\n_________________________________________"
-				+ "\n\nGet " + randomFruitnum + "  " + fruit[randomFruittype] + " Box";
+		String str = "<Mission 1>" + "\nYou have to go to Farm and get some fruit!"
+				+ "\n\nGo to Farm and just enjoy FruitGame!" + "\n_________________________________________"
+				+ "\n\nGet " + randomFruitnum + "  " + fruit[randomFruittype] + "!!";
 		return str;
 	}
 	

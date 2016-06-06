@@ -23,6 +23,7 @@ public class UserFile {
 				u.setPhoneNum(st.nextToken());
 				u.setMoney(Integer.parseInt(st.nextToken()));
 				u.setLevel(Integer.parseInt(st.nextToken()));
+				u.setMissionNum(Integer.parseInt(st.nextToken()));
 				u.setLastlogindata(st.nextToken());
 				u.setNowlogindata(st.nextToken());
 				u.setUsercheckQuestion(st.nextToken());
@@ -63,6 +64,8 @@ public class UserFile {
 				fw.write("" + Users.get(i).getMoney());
 				fw.write(",");
 				fw.write("" + Users.get(i).getLevel());
+				fw.write(",");
+				fw.write("" + Users.get(i).getMissionNum());
 				fw.write(",");
 				fw.write(Users.get(i).getLastlogindata());
 				fw.write(",");

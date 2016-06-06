@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Mission5 extends MissionFile implements Mission{
 
 	@Override

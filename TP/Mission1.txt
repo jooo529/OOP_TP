@@ -1,17 +1,3 @@
 <Mission 1>
-You have to buy some fruitbox! 
-You can learn 'value and variable's relation' in this mission.
-
-If you don't get box,
-(=if you don's declare variable)
-
-You can't get fruits!
-(=you can't save value!)
-
-Each of fruits means value
-and each of boxes means variable
-If you try to put big fruit
-in small box, fruit will go to pieces!
- 
-So, you have to put each fruit in proper box!
-(= you have to put value in proper variable!)
+You have to go to Farm and get some fruit!
+Go to Farm and just enjoy FruitGame!

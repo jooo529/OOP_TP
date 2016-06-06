@@ -1,6 +1,6 @@
 <Mission 4>
 You have to make some fruit juice!
-Go to store and take some fruits
+Go to store and take some fruitboxes
 out of refrigerator.
 
 Then read recipe of Juice

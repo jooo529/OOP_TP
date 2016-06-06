@@ -10,7 +10,7 @@ public class User {
 	private String phoneNum;
 	private int money;
 	private int level;//mission
-	private boolean getMission;
+	private int missionNum;
 	private String mission;
 	private String[] doMission; 
 	private String lastlogindata;
@@ -77,11 +77,12 @@ public class User {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	public boolean isGetMission() {
-		return getMission;
+
+	public int getMissionNum() {
+		return missionNum;
 	}
-	public void setGetMission(boolean getMission) {
-		this.getMission = getMission;
+	public void setMissionNum(int missionNum) {
+		this.missionNum = missionNum;
 	}
 	public String[] getDoMission() {
 		return doMission;
@@ -207,11 +208,12 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [index=" + index + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
-				+ ", money=" + money + ", level=" + level + ", getMission=" + getMission + ", mission=" + mission
+				+ ", money=" + money + ", level=" + level + ", missionNum=" + missionNum + ", mission=" + mission
 				+ ", doMission=" + Arrays.toString(doMission) + ", lastlogindata=" + lastlogindata + ", nowlogindata="
 				+ nowlogindata + ", usercheckQuestion=" + usercheckQuestion + ", usercheckAnswer=" + usercheckAnswer
 				+ ", Fruit=" + Fruit + ", apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry="
-				+ StrawBerry + ", FruitBox=" + FruitBox + "]";
+				+ StrawBerry + ", applebox=" + applebox + ", grapebox=" + grapebox + ", orangebox=" + orangebox
+				+ ", strawberrybox=" + strawberrybox + ", FruitBox=" + FruitBox + "]";
 	}
 
 

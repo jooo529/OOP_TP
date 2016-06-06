@@ -1,8 +1,6 @@
 import java.io.*;
-import java.util.ArrayList;
 
 public class MissionFile {
-	
 
 	
 	public String fileLoad(String file) {

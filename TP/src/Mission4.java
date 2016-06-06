@@ -15,8 +15,10 @@ public class Mission4 extends MissionFile implements Mission{
 	@Override
 	public String getMission(int idx) {
 		String str = "<Mission 4>" + "\nYou have to make some fruit juice!"
-				+ "\nGo to store and take following fruits" + "\nout of refrigerator."
-				+ "\nThen read recipe of Juice" + "\nand make following fruit's juice"
+				+ "\nThen read recipe of Juice and make fruit juice"
+				+ "\nGo to store read recipe of Juice"
+				+ "\nand take some fruitboxes\nout of refrigerator.\n"
+				+ "Then make fruit juice."
 				+ "\n_________________________________________" + "\n\nJust make one "
 				+ fruit[randomFruittype] + "juice and give it to me!";
 		return str;

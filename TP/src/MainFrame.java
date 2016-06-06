@@ -39,7 +39,15 @@ public class MainFrame extends JFrame{
 		farm_button.setBackground(null);
 		farm_button.setBorderPainted(false);
 		farm_button.setBounds(470, 360, 244, 148);
-		farm_button.addActionListener(new FarmButtonListener());
+		farm_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event)
+			{
+				//setVisible(false);
+				UserFile.Users.get(idx).setFruit(null);
+				FarmDisplay farm = new FarmDisplay();
+				farm.go();
+			}
+		});
 		
 		JButton home_button = new JButton("Home");
 		home_button.setContentAreaFilled(false);
@@ -51,7 +59,12 @@ public class MainFrame extends JFrame{
 		home_button.setBackground(null);
 		home_button.setBorderPainted(false);
 		home_button.setBounds(525, 30, 200, 190);
-		home_button.addActionListener(new HomeButtonListener());
+		home_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				setVisible(false);
+				HomeFrame hf = new HomeFrame();
+			}
+		});
 
 		JButton store_button = new JButton("Store");
 		store_button.setContentAreaFilled(false);
@@ -63,7 +76,14 @@ public class MainFrame extends JFrame{
 		store_button.setBackground(null);
 		store_button.setBorderPainted(false);
 		store_button.setBounds(210, 120, 200, 190);
-		store_button.addActionListener(new StoreButtonListener());
+		store_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event)
+			{
+				setVisible(false);
+				StoreDisplay store = new StoreDisplay();
+				store.go();
+			}
+		});
 		
 		JButton box_button = new JButton();
 		box_button.setContentAreaFilled(false);
@@ -102,9 +122,17 @@ public class MainFrame extends JFrame{
 		
 		JButton quit_button = new JButton("Save and Quit");
 		quit_button.setBounds(735, 450, 250, 80);
-		quit_button.addActionListener(new SaveQuitButtonListener());
-		
-		
+		quit_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event)
+			{
+				for(int i=0; i<UserFile.Users.size(); i++){
+					UserFile.Users.get(i).setIndex(-1);
+					uf.fileSave();
+				}
+				System.exit(0);
+			}
+		});
+				
 		getContentPane().add(farm_button);
 		getContentPane().add(home_button);
 		getContentPane().add(store_button);
@@ -121,33 +149,8 @@ public class MainFrame extends JFrame{
       
         add(BorderLayout.CENTER,back_ground);
 		
-
 	}
 	
-	class HomeButtonListener implements ActionListener{
-		public void actionPerformed(ActionEvent event)
-		{
-			setVisible(false);
-			HomeFrame hf = new HomeFrame();
-		}
-	}
-	class FarmButtonListener implements ActionListener{
-		public void actionPerformed(ActionEvent event)
-		{
-			//setVisible(false);
-			UserFile.Users.get(idx).setFruit(null);
-			FarmDisplay farm = new FarmDisplay();
-			farm.go();
-		}
-	}
-	class StoreButtonListener implements ActionListener{
-		public void actionPerformed(ActionEvent event)
-		{
-			setVisible(false);
-			StoreDisplay store = new StoreDisplay();
-			store.go();
-		}
-	}
 	class BoxButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event)
 		{
@@ -254,19 +257,6 @@ public class MainFrame extends JFrame{
 			}else{
 				JOptionPane.showMessageDialog(null, "TO MAKE STRAWBERRY BOX,\nYOU NEED AT LEAST 8 STRAWBERRYS", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
-		}
-	}
-	
-	
-	class SaveQuitButtonListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			for(int i=0; i<UserFile.Users.size(); i++){
-				UserFile.Users.get(i).setIndex(-1);
-				uf.fileSave();
-			}
-			System.exit(0);
 		}
 	}
 	

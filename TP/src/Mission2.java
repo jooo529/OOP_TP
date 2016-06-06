@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Mission2 extends MissionFile implements Mission{
 
@@ -15,9 +14,12 @@ public class Mission2 extends MissionFile implements Mission{
 
 	@Override
 	public String getMission(int idx) {
-		String str = "<Mission 2>" + "\nYou have to go to Farm and get following fruit!"
-				+ "\nGo to Farm and get followng fruits." + "\n_________________________________________"
-				+ "\n\nGet" + randomFruitnum + "  " + fruit[randomFruittype];
+		String str = "<Mission 2>" + "\nYou have to make some fruitboxes!\n\n"
+				+ "You must have each fruits like this :\nApple :      4 or More! makes one AppleBox!"
+				+ "Grape :      2 or More!   makes one GrapeBox!\n"
+				+ "Orange :     4 or More!   makes one OrangeBox!\n"
+				+ "Strawberry : 8 or More!   makes one StrawberryBox!" + "\n_________________________________________"
+				+ "\n\nGet" + randomFruitnum + "  " + fruit[randomFruittype]+"Boxes!";
 		return str;
 	}
 
