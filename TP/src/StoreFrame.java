@@ -101,17 +101,14 @@ public class StoreFrame extends JFrame {
 				}
 
 				JOptionPane.showMessageDialog(apple_button,
-						"Number of fruit \n APPLE: " + juice_apple + "\n ORANGE: " + juice_orange + "\n GRAPE: "
-								+ juice_grape + "\n STRAWBERRY: " + juice_straw + "\n PRICE: " + juice_price,
+						"APPLE JUICE! "+ "\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
 				UserFile.Users.get(idx).setApple((UserFile.Users.get(idx).getApple() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 
-				juice_apple = 0;
-				juice_grape = 0;
-				juice_straw = 0;
-				juice_orange = 0;
+				juice_apple = 0;	
+				juice_price=0;
 
 				apple_button.setVisible(false);
 			
@@ -137,13 +134,15 @@ public class StoreFrame extends JFrame {
 				}
 
 				JOptionPane.showMessageDialog(orange_button,
-						"Number of fruit \n APPLE: " + juice_apple + "\n ORANGE: " + juice_orange + "\n GRAPE: "
-								+ juice_grape + "\n STRAWBERRY: " + juice_straw + "\n PRICE: " + juice_price,
+						"ORANGE JUICE! "+ "\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
 				UserFile.Users.get(idx).setOrange((UserFile.Users.get(idx).getOrange() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-
+				
+				juice_orange = 0;
+				juice_price=0;
+				
 				orange_button.setVisible(false);
 			}
 		});
@@ -167,13 +166,15 @@ public class StoreFrame extends JFrame {
 				}
 
 				JOptionPane.showMessageDialog(straw_button,
-						"Number of fruit \n APPLE: " + juice_apple + "\n ORANGE: " + juice_orange + "\n GRAPE: "
-								+ juice_grape + "\n STRAWBERRY: " + juice_straw + "\n PRICE: " + juice_price,
+						"STRAWBERRY"+ "\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
 				UserFile.Users.get(idx).setStrawBerry((UserFile.Users.get(idx).getStrawBerry() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 
+				juice_straw = 0;
+				juice_price=0;
+				
 				straw_button.setVisible(false);
 			}
 		});
@@ -197,12 +198,14 @@ public class StoreFrame extends JFrame {
 				}
 
 				JOptionPane.showMessageDialog(grape_button,
-						"Number of fruit \n APPLE: " + juice_apple + "\n ORANGE: " + juice_orange + "\n GRAPE: "
-								+ juice_grape + "\n STRAWBERRY: " + juice_straw + "\n PRICE: " + juice_price,
+						"GRAPE JUICE! "+"\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 				UserFile.Users.get(idx).setGrape((UserFile.Users.get(idx).getGrape() - 1));
+				
+				juice_grape = 0;
+				juice_price=0;
 
 				grape_button.setVisible(false);
 			}
