@@ -32,7 +32,7 @@ public class StoreFrame extends JFrame {
 	private JButton orange_button = new JButton();
 	private JButton straw_button = new JButton();
 	private JButton grape_button = new JButton();
-	
+
 	private JPanel guestP1, guestP2, guestP3, guestP4;
 	JLabel userAPPLE_label, userGRAPE_label, userORANGE_label, userSTRAWBERRY_label, userMONEY_label;
 
@@ -45,7 +45,7 @@ public class StoreFrame extends JFrame {
 	private int juice_grape = 0;
 	private int juice_straw = 0;
 	private int juice_orange = 0;
-	
+
 	private int i;
 
 	private ImageIcon exit = new ImageIcon("button_exit_s.png");
@@ -62,7 +62,7 @@ public class StoreFrame extends JFrame {
 		this.setVisible(true);
 
 		container = this.getContentPane();
-		
+
 		for (int i = 0; i < UserFile.Users.size(); i++) {
 			if (UserFile.Users.get(i).getIndex() > 0)
 				idx = i;
@@ -86,127 +86,124 @@ public class StoreFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
-				if(guestP1.isVisible())
+
+				if (guestP1.isVisible())
 					guestP1.setVisible(false);
-				else if(guestP2.isVisible())
+				else if (guestP2.isVisible())
 					guestP2.setVisible(false);
-				else if(guestP3.isVisible())
+				else if (guestP3.isVisible())
 					guestP3.setVisible(false);
-				else if(guestP4.isVisible())
+				else if (guestP4.isVisible())
 					guestP4.setVisible(false);
-				else{
+				else {
 					JOptionPane.showMessageDialog(apple_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
-				
-				JOptionPane.showMessageDialog(apple_button, "Number of fruit \n APPLE: "+juice_apple
-						+"\n ORANGE: "+juice_orange
-						+"\n GRAPE: "+juice_grape
-						+"\n STRAWBERRY: "+juice_straw
-						+"\n PRICE: "+juice_price, "JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
-				
-				
+
+				JOptionPane.showMessageDialog(apple_button,
+						"Number of fruit \n APPLE: " + juice_apple + "\n ORANGE: " + juice_orange + "\n GRAPE: "
+								+ juice_grape + "\n STRAWBERRY: " + juice_straw + "\n PRICE: " + juice_price,
+						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
+
+				UserFile.Users.get(idx).setApple((UserFile.Users.get(idx).getApple() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-				
+
 				juice_apple = 0;
 				juice_grape = 0;
 				juice_straw = 0;
 				juice_orange = 0;
-				
+
 				apple_button.setVisible(false);
+			
 			}
 		});
-		
+
 		orange_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
-				if(guestP1.isVisible())
+
+				if (guestP1.isVisible())
 					guestP1.setVisible(false);
-				else if(guestP2.isVisible())
+				else if (guestP2.isVisible())
 					guestP2.setVisible(false);
-				else if(guestP3.isVisible())
+				else if (guestP3.isVisible())
 					guestP3.setVisible(false);
-				else if(guestP4.isVisible())
+				else if (guestP4.isVisible())
 					guestP4.setVisible(false);
-				else{
+				else {
 					JOptionPane.showMessageDialog(orange_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
-				
-				JOptionPane.showMessageDialog(orange_button, "Number of fruit \n APPLE: "+juice_apple
-						+"\n ORANGE: "+juice_orange
-						+"\n GRAPE: "+juice_grape
-						+"\n STRAWBERRY: "+juice_straw
-						+"\n PRICE: "+juice_price, "JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
-				
-				
+
+				JOptionPane.showMessageDialog(orange_button,
+						"Number of fruit \n APPLE: " + juice_apple + "\n ORANGE: " + juice_orange + "\n GRAPE: "
+								+ juice_grape + "\n STRAWBERRY: " + juice_straw + "\n PRICE: " + juice_price,
+						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
+
+				UserFile.Users.get(idx).setOrange((UserFile.Users.get(idx).getOrange() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-				
+
 				orange_button.setVisible(false);
 			}
 		});
-		
+
 		straw_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
-				if(guestP1.isVisible())
+
+				if (guestP1.isVisible())
 					guestP1.setVisible(false);
-				else if(guestP2.isVisible())
+				else if (guestP2.isVisible())
 					guestP2.setVisible(false);
-				else if(guestP3.isVisible())
+				else if (guestP3.isVisible())
 					guestP3.setVisible(false);
-				else if(guestP4.isVisible())
+				else if (guestP4.isVisible())
 					guestP4.setVisible(false);
-				else{
+				else {
 					JOptionPane.showMessageDialog(straw_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
-				
-				JOptionPane.showMessageDialog(straw_button, "Number of fruit \n APPLE: "+juice_apple
-						+"\n ORANGE: "+juice_orange
-						+"\n GRAPE: "+juice_grape
-						+"\n STRAWBERRY: "+juice_straw
-						+"\n PRICE: "+juice_price, "JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
-				
-				
+
+				JOptionPane.showMessageDialog(straw_button,
+						"Number of fruit \n APPLE: " + juice_apple + "\n ORANGE: " + juice_orange + "\n GRAPE: "
+								+ juice_grape + "\n STRAWBERRY: " + juice_straw + "\n PRICE: " + juice_price,
+						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
+
+				UserFile.Users.get(idx).setStrawBerry((UserFile.Users.get(idx).getStrawBerry() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-				
+
 				straw_button.setVisible(false);
 			}
 		});
-		
+
 		grape_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
-				if(guestP1.isVisible())
+
+				if (guestP1.isVisible())
 					guestP1.setVisible(false);
-				else if(guestP2.isVisible())
+				else if (guestP2.isVisible())
 					guestP2.setVisible(false);
-				else if(guestP3.isVisible())
+				else if (guestP3.isVisible())
 					guestP3.setVisible(false);
-				else if(guestP4.isVisible())
+				else if (guestP4.isVisible())
 					guestP4.setVisible(false);
-				else{
+				else {
 					JOptionPane.showMessageDialog(grape_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
-				
-				JOptionPane.showMessageDialog(grape_button, "Number of fruit \n APPLE: "+juice_apple
-						+"\n ORANGE: "+juice_orange
-						+"\n GRAPE: "+juice_grape
-						+"\n STRAWBERRY: "+juice_straw
-						+"\n PRICE: "+juice_price, "JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
-				
-				
+
+				JOptionPane.showMessageDialog(grape_button,
+						"Number of fruit \n APPLE: " + juice_apple + "\n ORANGE: " + juice_orange + "\n GRAPE: "
+								+ juice_grape + "\n STRAWBERRY: " + juice_straw + "\n PRICE: " + juice_price,
+						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
+
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-				
+				UserFile.Users.get(idx).setGrape((UserFile.Users.get(idx).getGrape() - 1));
+
 				grape_button.setVisible(false);
 			}
 		});
@@ -297,14 +294,15 @@ public class StoreFrame extends JFrame {
 		grape_button.addActionListener(new GrapeButton());
 		grape_button.setBounds(500, 100, 160, 160);
 		grape_button.setVisible(false);
-		
+
 		//
 		guestP1.setBounds(500, 300, guest1.getIconWidth(), guest1.getIconHeight());
-		guestP2.setBounds(500+guest1.getIconWidth(), 300, guest2.getIconWidth(), guest2.getIconHeight());
-		guestP3.setBounds(500+guest2.getIconWidth()+guest1.getIconWidth(), 300, guest3.getIconWidth(), guest3.getIconHeight());
-		guestP4.setBounds(500+guest3.getIconWidth()+guest2.getIconWidth()+guest1.getIconWidth(), 300, guest4.getIconWidth(), guest4.getIconHeight());
-		
-		
+		guestP2.setBounds(500 + guest1.getIconWidth(), 300, guest2.getIconWidth(), guest2.getIconHeight());
+		guestP3.setBounds(500 + guest2.getIconWidth() + guest1.getIconWidth(), 300, guest3.getIconWidth(),
+				guest3.getIconHeight());
+		guestP4.setBounds(500 + guest3.getIconWidth() + guest2.getIconWidth() + guest1.getIconWidth(), 300,
+				guest4.getIconWidth(), guest4.getIconHeight());
+
 		back_ground.add(guestP4);
 		back_ground.add(guestP3);
 		back_ground.add(guestP2);
@@ -376,25 +374,28 @@ public class StoreFrame extends JFrame {
 		private ImageIcon strawberry;
 		private ImageIcon grape;
 		private ImageIcon exit;
-		private JLabel apple_lb,orange_lb,straw_lb,grape_lb;
+		private JLabel apple_lb, orange_lb, straw_lb, grape_lb;
 
 		public PopUpMarket() {
 
 			this.setSize(350, 590);
 			this.setLayout(new GridLayout(1, 4));
 
+			
 			apple = new ImageIcon("apple1.png");
 			orange = new ImageIcon("orange.png");
 			strawberry = new ImageIcon("strawberry.png");
 			grape = new ImageIcon("grape.png");
-			
-			 apple_lb = new JLabel("APPLE");
-			 orange_lb = new JLabel("ORANGE");
-			 straw_lb = new JLabel("STRAWBERRY");
-			 grape_lb = new JLabel("GRAPE");
 
-			//JPanel west = new JPanel();
-			//JPanel east = new JPanel();
+			
+			apple_lb = new JLabel("APPLE");
+			orange_lb = new JLabel("ORANGE");
+			straw_lb = new JLabel("STRAWBERRY");
+			grape_lb = new JLabel("GRAPE");
+
+			// JPanel west = new JPanel();
+			// JPanel east = new JPanel();
+
 			JPanel apple_panel = new JPanel();
 			JPanel grape_panel = new JPanel();
 			JPanel strawberry_panel = new JPanel();
@@ -404,16 +405,21 @@ public class StoreFrame extends JFrame {
 			grape_panel.setLayout(new BoxLayout(grape_panel, BoxLayout.Y_AXIS));
 			strawberry_panel.setLayout(new BoxLayout(strawberry_panel, BoxLayout.Y_AXIS));
 			orange_panel.setLayout(new BoxLayout(orange_panel, BoxLayout.Y_AXIS));
+			
+			apple_panel.setBackground(new Color(52,121,199));
+			grape_panel.setBackground(new Color(52,121,199));
+			strawberry_panel.setBackground(new Color(52,121,199));
+			orange_panel.setBackground(new Color(52,121,199));
 
 			number_apple = UserFile.Users.get(idx).getApple();
 			number_grape = UserFile.Users.get(idx).getGrape();
 			number_orange = UserFile.Users.get(idx).getOrange();
 			number_straw = UserFile.Users.get(idx).getStrawBerry();
-			
+
 			apple_panel.add(apple_lb);
 			grape_panel.add(grape_lb);
 			orange_panel.add(orange_lb);
-			strawberry_panel.add(straw_lb);			
+			strawberry_panel.add(straw_lb);
 
 			for (i = 0; i < number_apple; i++) {
 				APPLE[i] = new AppleButton();
@@ -442,20 +448,20 @@ public class StoreFrame extends JFrame {
 				STRAWBERRY[i].setIcon(strawberry);
 				strawberry_panel.add(STRAWBERRY[i]);
 
-			}//
-			
+			} //
+
 			this.add(apple_panel);
 			this.add(orange_panel);
 			this.add(grape_panel);
 			this.add(strawberry_panel);
-			//west.add(BorderLayout.WEST, apple_panel);
-			//west.add(BorderLayout.EAST, grape_panel);
+			// west.add(BorderLayout.WEST, apple_panel);
+			// west.add(BorderLayout.EAST, grape_panel);
 
-			//east.add(BorderLayout.WEST, orange_panel);
-			//east.add(BorderLayout.EAST, strawberry_panel);
+			// east.add(BorderLayout.WEST, orange_panel);
+			// east.add(BorderLayout.EAST, strawberry_panel);
 
-			//this.add(BorderLayout.WEST, west);
-			//this.add(BorderLayout.EAST, east);
+			// this.add(BorderLayout.WEST, west);
+			// this.add(BorderLayout.EAST, east);
 
 		}
 
@@ -489,15 +495,15 @@ public class StoreFrame extends JFrame {
 
 			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
 			// + 500);
-			if(!guestP1.isVisible()&&!guestP2.isVisible()&&!guestP3.isVisible()&&!guestP4.isVisible())
-			{
+			if (!guestP1.isVisible() && !guestP2.isVisible() && !guestP3.isVisible() && !guestP4.isVisible()) {
 				JOptionPane.showMessageDialog(apple_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			
-			if(grape_button.isVisible() || apple_button.isVisible()|| orange_button.isVisible()|| straw_button.isVisible())
+
+			if (grape_button.isVisible() || apple_button.isVisible() || orange_button.isVisible()
+					|| straw_button.isVisible())
 				return;
-			UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() - 1);
+			//UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() - 1);
 			juice_price = juice_price + 500;
 			juice_apple++;
 			apple_button.setVisible(true);
@@ -519,16 +525,16 @@ public class StoreFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
 			// + 700);
-			if(!guestP1.isVisible()&&!guestP2.isVisible()&&!guestP3.isVisible()&&!guestP4.isVisible())
-			{
+			if (!guestP1.isVisible() && !guestP2.isVisible() && !guestP3.isVisible() && !guestP4.isVisible()) {
 				JOptionPane.showMessageDialog(orange_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			
-			if(grape_button.isVisible() || apple_button.isVisible()|| orange_button.isVisible()|| straw_button.isVisible())
+
+			if (grape_button.isVisible() || apple_button.isVisible() || orange_button.isVisible()
+					|| straw_button.isVisible())
 				return;
-			
-			UserFile.Users.get(idx).setOrange((UserFile.Users.get(idx).getOrange() - 1));
+
+			//UserFile.Users.get(idx).setOrange((UserFile.Users.get(idx).getOrange() - 1));
 			juice_orange++;
 			juice_price = juice_price + 700;
 			changeImfo();
@@ -550,15 +556,16 @@ public class StoreFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
 			// + 600);
-			if(!guestP1.isVisible()&&!guestP2.isVisible()&&!guestP3.isVisible()&&!guestP4.isVisible()){
+			if (!guestP1.isVisible() && !guestP2.isVisible() && !guestP3.isVisible() && !guestP4.isVisible()) {
 				JOptionPane.showMessageDialog(straw_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			
-			if(grape_button.isVisible() || apple_button.isVisible()|| orange_button.isVisible()|| straw_button.isVisible())
+
+			if (grape_button.isVisible() || apple_button.isVisible() || orange_button.isVisible()
+					|| straw_button.isVisible())
 				return;
-			
-			UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() - 1);
+
+			//UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() - 1);
 			juice_straw++;
 			juice_price = juice_price + 600;
 			changeImfo();
@@ -579,15 +586,16 @@ public class StoreFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
 			// + 800);
-			if(!guestP1.isVisible()&&!guestP2.isVisible()&&!guestP3.isVisible()&&!guestP4.isVisible()){
+			if (!guestP1.isVisible() && !guestP2.isVisible() && !guestP3.isVisible() && !guestP4.isVisible()) {
 				JOptionPane.showMessageDialog(grape_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			
-			if(grape_button.isVisible() || apple_button.isVisible()|| orange_button.isVisible()|| straw_button.isVisible())
+
+			if (grape_button.isVisible() || apple_button.isVisible() || orange_button.isVisible()
+					|| straw_button.isVisible())
 				return;
-			
-			UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape() - 1);
+
+			//UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape() - 1);
 			juice_grape++;
 			juice_price = juice_price + 500;
 			changeImfo();
@@ -599,4 +607,3 @@ public class StoreFrame extends JFrame {
 	}
 
 }
-
