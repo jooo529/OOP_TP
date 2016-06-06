@@ -128,8 +128,7 @@ public class MainFrame extends JFrame{
 		public void actionPerformed(ActionEvent event)
 		{
 			setVisible(false);
-			HomeDisplay home = new HomeDisplay();
-			home.go();
+			HomeFrame hf = new HomeFrame();
 		}
 	}
 	class FarmButtonListener implements ActionListener{
