@@ -160,8 +160,8 @@ public class MainFrame extends JFrame{
 			
 			
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			int xPos = screenSize.width / 2 - 150;
-			int yPos = screenSize.height / 2 - 150;
+			int xPos = screenSize.width / 2 - 350;
+			int yPos = screenSize.height / 2 - 190;
 			
 			JPanel mn = new JPanel();
 			mn.add(new JLabel("apple: "+UserFile.Users.get(idx).getApple()+" "));
