@@ -34,14 +34,14 @@ public class FarmingFrame extends JFrame {
 	ImageIcon i1 = new ImageIcon("first.png");
 	ImageIcon i2 = new ImageIcon("Second.png");
 	ImageIcon i3_APPLE = new ImageIcon("apple.png");
-	ImageIcon i3_GRAPE = new ImageIcon("grape.png");
-	ImageIcon i3_ORANGE = new ImageIcon("orange.png");
-	ImageIcon i3_STRAWBERRY = new ImageIcon("strawberry.png");
+	ImageIcon i3_GRAPE = new ImageIcon("grape_jy.png");
+	ImageIcon i3_ORANGE = new ImageIcon("orange_jy.png");
+	ImageIcon i3_STRAWBERRY = new ImageIcon("strawberry_jy.png");
 	ImageIcon i3;
 	ImageIcon i4_APPLE = new ImageIcon("appleRotten.png");
-	ImageIcon i4_GRAPE = new ImageIcon("grapeRotten.png");
-	ImageIcon i4_ORANGE = new ImageIcon("orangeRotten.png");
-	ImageIcon i4_STRAWBERRY = new ImageIcon("strawberryRotten.png");
+	ImageIcon i4_GRAPE = new ImageIcon("grapeRotten_jy.png");
+	ImageIcon i4_ORANGE = new ImageIcon("orangeRotten_jy.png");
+	ImageIcon i4_STRAWBERRY = new ImageIcon("strawberryRotten_jy.png");
 	ImageIcon i4;
 	
 	public void go_farming() { // 선택받은 과일이 입력받은 갯수만큼 나타나는거 구현하기
