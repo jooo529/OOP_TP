@@ -211,7 +211,7 @@ public class StoreFrame extends JFrame {
 			
 			}
 		});
-
+//
 		juice_orange_button.addActionListener(new ActionListener() {
 
 			@Override
