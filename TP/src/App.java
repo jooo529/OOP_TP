@@ -5,5 +5,4 @@ public class App {
 		LoginDisplay ld = new LoginDisplay();
 		ld.go();
 	}
-
 }

@@ -77,7 +77,7 @@ public class MainFrame extends JFrame{
 		box_button.addActionListener(new BoxButtonListener());
 		
 		JTextArea missionInfo = new JTextArea();
-		missionInfo.setBounds(735, 48, 250, 220);
+		missionInfo.setBounds(735, 48, 250, 370);
 		missionInfo.setEditable(false);
 
 		JTextField userInfo = new JTextField(toUserInfo(), JLabel.CENTER);
