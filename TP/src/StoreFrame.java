@@ -25,6 +25,7 @@ public class StoreFrame extends GameFrame {
 
 	/* button */
 	private JButton go_back = new JButton();
+	private JButton recipe = new JButton("recipe");
 	private JButton juice_apple_button = new JButton();
 	private JButton juice_orange_button = new JButton();
 	private JButton juice_straw_button = new JButton();
@@ -76,11 +77,14 @@ public class StoreFrame extends GameFrame {
 
 		/* Juice button setting */
 		juice_button_setting();
+		
+		
 
 		/* image panels set bounds and sizes */
 		back_ground.setLayout(null);
 		go_back.setBounds(900, 400, 60, 60);
 		refri.setBounds(0, 0, 300, 590);
+		recipe.setBounds(800,100,60,60);
 		guestP1.setBounds(500, 300, guest1.getIconWidth(), guest1.getIconHeight());
 		guestP2.setBounds(500 + guest1.getIconWidth(), 300, guest2.getIconWidth(), guest2.getIconHeight());
 		guestP3.setBounds(500 + guest2.getIconWidth() + guest1.getIconWidth(), 300, guest3.getIconWidth(),
@@ -99,6 +103,7 @@ public class StoreFrame extends GameFrame {
 		back_ground.add(juice_straw_button);
 		back_ground.add(juice_grape_button);
 		back_ground.add(go_back);
+		back_ground.add(recipe);
 		back_ground.add(refri);
 		/* adding component in back_ground finish */
 
@@ -291,6 +296,19 @@ public class StoreFrame extends GameFrame {
 				juice_grape_button.setVisible(false);
 			}
 		});
+		
+		recipe.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(recipe, "<Fruit juice recipe> \n apple juice\n-needs  4 apples(=one appleBox)\n-click appleBox!\n "
+						+ "orange juice\n-needs 4 oranges(=one orangeBox)\n-click orangeBox! \n"
+						+ "grape juice\n-needs N 2 grapes(=one grapeBox)\n-click grapeBox! \n"
+						+ "strawberry juice\n-needs 8 strawberrys(=one strawberryBox)\n-click strawberryBox!",
+						"RECIPE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		});
 
 	}
 
@@ -343,13 +361,20 @@ public class StoreFrame extends GameFrame {
 		}
 	}
 
-	class Refrigerator extends JPanel {
+	class Refrigerator extends JPanel implements ActionListener{
 
 		private JButton[] APPLE_BOX = new JButton[100];
 		private JButton[] GRAPE_BOX = new JButton[100];
 		private JButton[] ORANGE_BOX = new JButton[100];
 		private JButton[] STRAWBERRY_BOX = new JButton[100];
+		
+		private JButton pushStack = new JButton("PUSH ALL BOX");
 
+		JPanel apple_panel = new JPanel();
+		JPanel grape_panel = new JPanel();
+		JPanel strawberry_panel = new JPanel();
+		JPanel orange_panel = new JPanel();
+		
 		private JLabel apple_lb, orange_lb, straw_lb, grape_lb;
 
 		private int i;
@@ -358,6 +383,7 @@ public class StoreFrame extends GameFrame {
 
 			this.setSize(350, 590);
 			this.setLayout(new GridLayout(1, 4));
+			this.setBackground(new Color(52, 121, 199));
 
 			Font font = new Font("Dialog", Font.BOLD, 11);
 
@@ -370,11 +396,6 @@ public class StoreFrame extends GameFrame {
 			orange_lb.setFont(font);
 			straw_lb.setFont(font);
 			grape_lb.setFont(font);
-
-			JPanel apple_panel = new JPanel();
-			JPanel grape_panel = new JPanel();
-			JPanel strawberry_panel = new JPanel();
-			JPanel orange_panel = new JPanel();
 
 			apple_panel.setLayout(new BoxLayout(apple_panel, BoxLayout.Y_AXIS));
 			grape_panel.setLayout(new BoxLayout(grape_panel, BoxLayout.Y_AXIS));
@@ -392,6 +413,11 @@ public class StoreFrame extends GameFrame {
 			number_orange = UserFile.Users.get(idx).getOrangebox();
 			number_straw = UserFile.Users.get(idx).getStrawberrybox();
 
+			pushStack.setSize(this.getSize());
+			pushStack.addActionListener(this);
+			
+			this.add(pushStack);
+			
 			/* add fruit box name labels in panel */
 			apple_panel.add(apple_lb);
 			orange_panel.add(orange_lb);
@@ -429,11 +455,21 @@ public class StoreFrame extends GameFrame {
 			} /* end of creating button */
 
 			/* adding buttons in panel */
+		//	this.add(apple_panel);
+		//	this.add(grape_panel);
+		//	this.add(orange_panel);
+		//	this.add(strawberry_panel);
+
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
 			this.add(apple_panel);
 			this.add(grape_panel);
 			this.add(orange_panel);
 			this.add(strawberry_panel);
-
+			
+			pushStack.setVisible(false);
 		}
 
 	}
