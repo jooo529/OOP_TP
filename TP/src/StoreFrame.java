@@ -273,7 +273,7 @@ public class StoreFrame extends JFrame {
 		orange_button.addActionListener(new OrangeButton());
 		orange_button.setBounds(500, 100, 160, 160);
 		orange_button.setVisible(false);
-		//
+		
 		straw_button.setContentAreaFilled(false);
 		straw_button.setDefaultCapable(false);
 		straw_button.setFocusPainted(false);
