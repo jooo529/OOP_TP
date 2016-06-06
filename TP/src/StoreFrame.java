@@ -261,7 +261,7 @@ public class StoreFrame extends JFrame {
 		apple_button.addActionListener(new AppleButton());
 		apple_button.setBounds(500, 100, 160, 160);
 		apple_button.setVisible(false);
-		///
+		//
 		orange_button.setContentAreaFilled(false);
 		orange_button.setDefaultCapable(false);
 		orange_button.setFocusPainted(false);
