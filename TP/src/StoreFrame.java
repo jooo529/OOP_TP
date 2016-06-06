@@ -36,7 +36,11 @@ public class StoreFrame extends JFrame {
 	private int number_straw = 0;
 	private int number_grape = 0;
 	private int juice_price = 0;
-
+	private int juice_apple = 0;
+	private int juice_grape = 0;
+	private int juice_straw = 0;
+	private int juice_orange = 0;
+	
 	private int i;
 
 	private ImageIcon exit = new ImageIcon("button_exit_s.png");
@@ -85,6 +89,13 @@ public class StoreFrame extends JFrame {
 					JOptionPane.showMessageDialog(juice_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
+				
+				JOptionPane.showMessageDialog(juice_button, "Number of fruit \n APPLE: "+juice_apple
+						+"\n ORANGE: "+juice_orange
+						+"\n GRAPE: "+juice_apple
+						+"\n STRAWBERRY: "+juice_straw
+						+"\n PRICE: "+juice_price, "JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
+				
 				
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 				
@@ -311,6 +322,7 @@ public class StoreFrame extends JFrame {
 			// + 500);
 			UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() - 1);
 			juice_price = juice_price + 500;
+			juice_apple++;
 			juice_button.setVisible(true);
 			changeImfo();
 			setVisible(false);
@@ -331,6 +343,7 @@ public class StoreFrame extends JFrame {
 			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
 			// + 700);
 			UserFile.Users.get(idx).setOrange((UserFile.Users.get(idx).getOrange() - 1));
+			juice_orange++;
 			juice_price = juice_price + 700;
 			changeImfo();
 			juice_button.setVisible(true);
@@ -352,6 +365,7 @@ public class StoreFrame extends JFrame {
 			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
 			// + 600);
 			UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() - 1);
+			juice_straw++;
 			juice_price = juice_price + 600;
 			changeImfo();
 			juice_button.setVisible(true);
@@ -372,6 +386,7 @@ public class StoreFrame extends JFrame {
 			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
 			// + 800);
 			UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape() - 1);
+			juice_grape++;
 			juice_price = juice_price + 500;
 			changeImfo();
 			juice_button.setVisible(true);
