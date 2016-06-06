@@ -22,6 +22,7 @@ public class User {
 	private int grape;
 	private int orange;
 	private int StrawBerry;
+	private boolean have_box;
 	private ArrayList<String> FruitBox = new ArrayList<String>(); 
 
 	public int getIndex() {
@@ -139,6 +140,13 @@ public class User {
 		return "[apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry=" + StrawBerry + "]";
 	}
 	
+	public boolean isHave_box() {
+		return have_box;
+	}
+	public void setHave_box(boolean have_box) {
+		this.have_box = have_box;
+	}
+	
 	@Override
 	public String toString() {
 		return "User [index=" + index + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
@@ -148,5 +156,6 @@ public class User {
 				+ ", Fruit=" + Fruit + ", apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry="
 				+ StrawBerry + ", FruitBox=" + FruitBox + "]";
 	}
+	
 
 }

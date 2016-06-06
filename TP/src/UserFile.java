@@ -4,7 +4,7 @@ import java.util.*;
 public class UserFile {
 
 	static ArrayList<User> Users = new ArrayList<User>();
-
+	User u;
 	public void fileLoad() {
 		StringTokenizer st;
 
@@ -15,7 +15,7 @@ public class UserFile {
 			BufferedReader br = new BufferedReader(fr);
 			String str = null;
 			while ((str = br.readLine()) != null) {
-				User u = new User();
+				u = new User();
 				st = new StringTokenizer(str, ",");
 				u.setId(st.nextToken());
 				u.setPwd(st.nextToken());
@@ -31,6 +31,7 @@ public class UserFile {
 				u.setGrape(Integer.parseInt(st.nextToken()));
 				u.setOrange(Integer.parseInt(st.nextToken()));
 				u.setStrawBerry(Integer.parseInt(st.nextToken()));
+				u.setHave_box(Boolean.parseBoolean(st.nextToken()));
 				Users.add(u);
 			}
 		} catch (FileNotFoundException e) {
@@ -71,6 +72,8 @@ public class UserFile {
 				fw.write("" + Users.get(i).getOrange());
 				fw.write(",");
 				fw.write("" + Users.get(i).getStrawBerry());
+				fw.write(",");
+				fw.write("" + Users.get(i).isHave_box());	
 				fw.newLine();
 			}
 			fw.close();

@@ -7,6 +7,7 @@ public class MainFrame extends JFrame{
 	UserFile uf = new UserFile();
 	MissionFile mf = new MissionFile();
 	static int idx = -1;
+	User u = new User();
 	
 	public MainFrame(){
 		go_main();
@@ -63,6 +64,18 @@ public class MainFrame extends JFrame{
 		store_button.setBounds(210, 120, 200, 190);
 		store_button.addActionListener(new StoreButtonListener());
 		
+		JButton box_button = new JButton();
+		box_button.setContentAreaFilled(false);
+		box_button.setDefaultCapable(false);
+		box_button.setFocusPainted(false);
+		box_button.setOpaque(false);
+		box_button.setIcon(new ImageIcon("boxes.png"));
+		box_button.setRolloverIcon(new ImageIcon("boxes_c.png"));
+		box_button.setBackground(null);
+		box_button.setBorderPainted(false);
+		box_button.setBounds(50, 300, 188, 158);
+		box_button.addActionListener(new BoxButtonListener());
+		
 		JTextArea missionInfo = new JTextArea();
 		missionInfo.setBounds(735, 48, 250, 220);
 		missionInfo.setEditable(false);
@@ -94,6 +107,7 @@ public class MainFrame extends JFrame{
 		getContentPane().add(farm_button);
 		getContentPane().add(home_button);
 		getContentPane().add(store_button);
+		getContentPane().add(box_button);
 		getContentPane().add(quit_button);
 		getContentPane().add(missionInfo);
 		getContentPane().add(userInfo);
@@ -133,6 +147,15 @@ public class MainFrame extends JFrame{
 			store.go();
 		}
 	}
+	class BoxButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent event)
+		{
+			JOptionPane.showMessageDialog(null, "I'm fruitBox! I'll give you fruitBoxes", "Message", JOptionPane.INFORMATION_MESSAGE);
+			UserFile.Users.get(idx).setHave_box(true);
+			uf.fileSave();
+		}
+	}
+	
 	class SaveQuitButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)

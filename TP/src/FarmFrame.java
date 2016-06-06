@@ -28,6 +28,7 @@ import javax.swing.event.ListSelectionListener;
 public class FarmFrame extends JFrame {
 	
 	UserFile f = new UserFile();
+	
 	private int idx;
 	
 	public FarmFrame() {
@@ -117,41 +118,46 @@ public class FarmFrame extends JFrame {
 
 	class gochoose_listener implements ActionListener, ListSelectionListener {
 		public void actionPerformed(ActionEvent e) {
-			frame_kind = new JFrame();
-			frame_kind.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-			int xPos = screenSize.width / 2 - 100;
-			int yPos = screenSize.height / 2 - 220;
-
-			list = new JList<String>(new String[] { "Apple", "Grape", "Orange", "Strawberry" });
-			list.setVisibleRowCount(4);
-			list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			list.addListSelectionListener(this);
-			list.setFont(new Font("Dialog", Font.BOLD, 15));
 			
-			
-			JButton ok_btn = new JButton("Ok");
-			ok_btn.addActionListener(new ok_listener());
-
-			JButton close_btn = new JButton("Close");
-			close_btn.addActionListener(new close_listener());
-
-			
-		//	tf = new JTextField(20);
-			
-			JLabel notice = new JLabel(" Choose one which you want");
-			notice.setFont(new Font("Dialog",Font.BOLD,15));
-			
-			frame_kind.add(BorderLayout.NORTH, list);
-			frame_kind.add(BorderLayout.WEST, ok_btn);
-			frame_kind.add(BorderLayout.EAST, close_btn);
-			frame_kind.add(BorderLayout.CENTER, notice);
-	//		frame_kind.add(BorderLayout.SOUTH, tf);
-
-			frame_kind.setSize(350, 250);
-			frame_kind.setLocation(xPos, yPos);
-			frame_kind.setVisible(true);
+			if(UserFile.Users.get(idx).isHave_box()){
+				frame_kind = new JFrame();
+				frame_kind.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	
+				int xPos = screenSize.width / 2 - 100;
+				int yPos = screenSize.height / 2 - 220;
+	
+				list = new JList<String>(new String[] { "Apple", "Grape", "Orange", "Strawberry" });
+				list.setVisibleRowCount(4);
+				list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				list.addListSelectionListener(this);
+				list.setFont(new Font("Dialog", Font.BOLD, 15));
+				
+				
+				JButton ok_btn = new JButton("Ok");
+				ok_btn.addActionListener(new ok_listener());
+	
+				JButton close_btn = new JButton("Close");
+				close_btn.addActionListener(new close_listener());
+	
+				
+			//	tf = new JTextField(20);
+				
+				JLabel notice = new JLabel(" Choose one which you want");
+				notice.setFont(new Font("Dialog",Font.BOLD,15));
+				
+				frame_kind.add(BorderLayout.NORTH, list);
+				frame_kind.add(BorderLayout.WEST, ok_btn);
+				frame_kind.add(BorderLayout.EAST, close_btn);
+				frame_kind.add(BorderLayout.CENTER, notice);
+		//		frame_kind.add(BorderLayout.SOUTH, tf);
+	
+				frame_kind.setSize(350, 250);
+				frame_kind.setLocation(xPos, yPos);
+				frame_kind.setVisible(true);
+			}
+			else
+				JOptionPane.showMessageDialog(null,"You don't have Box!\nGo to main and get Boxes","Box Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 		public void valueChanged(ListSelectionEvent e) {

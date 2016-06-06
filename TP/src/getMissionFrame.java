@@ -22,6 +22,7 @@ public class getMissionFrame extends JFrame {
 	}
 
 	UserFile f = new UserFile();
+
 	static int idx = -1;
 	static Mission[] m = new Mission[5];
 
@@ -174,6 +175,7 @@ public class getMissionFrame extends JFrame {
 				//System.out.println(UserFile.Users.get(idx).toString());
 			}else {
 				JOptionPane.showMessageDialog(null, "FAULT! You already got the Mission! You lose 300 Money:(", "Message", JOptionPane.INFORMATION_MESSAGE);
+				
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()-300);
 				f.fileSave();
 			}
