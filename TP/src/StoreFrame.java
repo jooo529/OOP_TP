@@ -99,6 +99,11 @@ public class StoreFrame extends JFrame {
 				
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 				
+				juice_apple = 0;
+				juice_grape = 0;
+				juice_straw = 0;
+				juice_orange = 0;
+				
 				juice_button.setVisible(false);
 			}
 		});
