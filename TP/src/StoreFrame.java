@@ -277,7 +277,7 @@ public class StoreFrame extends JFrame {
 				STRAWBERRY[i].setIcon(strawberry);
 				strawberry_panel.add(STRAWBERRY[i]);
 
-			}
+			}//
 			
 			this.add(apple_panel);
 			this.add(orange_panel);
