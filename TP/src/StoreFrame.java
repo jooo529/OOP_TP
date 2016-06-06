@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class StoreFrame extends JFrame {
@@ -20,16 +21,21 @@ public class StoreFrame extends JFrame {
 	private UserFile f = new UserFile();
 
 	private Container container;
-	private ImageIcon Sale = new ImageIcon("Sale_button.png");
-	private JButton market = new JButton();
-	private JButton go_back = new JButton();
+	private ImageIcon guest1 = new ImageIcon("guest1.png");
+	private ImageIcon guest2 = new ImageIcon("guest2.png");
+	private ImageIcon guest3 = new ImageIcon("guest3.png");
+	private ImageIcon guest4 = new ImageIcon("guest4.png");
 
+	private JButton go_back = new JButton();
+	private JButton juice_button = new JButton("!!!!!");
+	private JPanel guestP1, guestP2, guestP3, guestP4;
 	JLabel userAPPLE_label, userGRAPE_label, userORANGE_label, userSTRAWBERRY_label, userMONEY_label;
 
 	private int number_apple = 0;
 	private int number_orange = 0;
 	private int number_straw = 0;
 	private int number_grape = 0;
+	private int juice_price = 0;
 
 	private int i;
 
@@ -48,15 +54,9 @@ public class StoreFrame extends JFrame {
 
 		container = this.getContentPane();
 
+		PopUpMarket refri = new PopUpMarket();
+
 		storeIm = new ImageIcon("Store.png");
-		market.setIcon(Sale);
-		market.setContentAreaFilled(false);
-		market.setDefaultCapable(false);
-		market.setFocusPainted(false);
-		market.setOpaque(false);
-		market.setRolloverIcon(new ImageIcon("Sale_button_s.png"));
-		market.setBackground(null);
-		market.setBorderPainted(false);
 
 		go_back.setContentAreaFilled(false);
 		go_back.setDefaultCapable(false);
@@ -68,30 +68,84 @@ public class StoreFrame extends JFrame {
 		go_back.setBorderPainted(false);
 		go_back.addActionListener(new goback_listener());
 
-		market.addActionListener(new ActionListener() {
+		juice_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PopUpMarket a = new PopUpMarket();
-
+			
+				if(guestP1.isVisible())
+					guestP1.setVisible(false);
+				else if(guestP2.isVisible())
+					guestP2.setVisible(false);
+				else if(guestP3.isVisible())
+					guestP3.setVisible(false);
+				else if(guestP4.isVisible())
+					guestP4.setVisible(false);
+				else{
+					JOptionPane.showMessageDialog(juice_button, "No guest ", "Title", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+				
+				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
+				
+				juice_button.setVisible(false);
 			}
 		});
+		guestP2 = new JPanel() {
+
+			public void paintComponent(Graphics g) {
+				g.drawImage(guest2.getImage(), 0, 0, this);
+			}
+		};
+
+		guestP3 = new JPanel() {
+
+			public void paintComponent(Graphics g) {
+				g.drawImage(guest3.getImage(), 0, 0, this);
+			}
+		};
+
+		guestP4 = new JPanel() {
+
+			public void paintComponent(Graphics g) {
+				g.drawImage(guest4.getImage(), 0, 0, this);
+			}
+		};
+
+		guestP1 = new JPanel() {
+
+			public void paintComponent(Graphics g) {
+				g.drawImage(guest1.getImage(), 0, 0, this);
+			}
+		};
 
 		JPanel back_ground = new JPanel() {
 
 			public void paintComponent(Graphics g) {
-				g.drawImage(storeIm.getImage(), 0, 0, this);
+				g.drawImage(storeIm.getImage(), 400, 0, this);
 			}
 		};
 
 		back_ground.setLayout(null);
 		container.add(BorderLayout.CENTER, back_ground);
-		
-		go_back.setBounds(900, 400, 60, 60);
-		market.setBounds(405, 310, Sale.getIconWidth(), Sale.getIconHeight());
 
-		back_ground.add(market);
+		go_back.setBounds(900, 400, 60, 60);
+		refri.setBounds(0, 0, 300, 590);
+		juice_button.setBounds(500, 100, 100, 50);
+		juice_button.setVisible(false);
+		guestP1.setBounds(500, 300, guest1.getIconWidth(), guest1.getIconHeight());
+		guestP2.setBounds(500+guest1.getIconWidth(), 300, guest2.getIconWidth(), guest2.getIconHeight());
+		guestP3.setBounds(500+guest2.getIconWidth()+guest1.getIconWidth(), 300, guest3.getIconWidth(), guest3.getIconHeight());
+		guestP4.setBounds(500+guest3.getIconWidth()+guest2.getIconWidth()+guest1.getIconWidth(), 300, guest4.getIconWidth(), guest4.getIconHeight());
+		
+		
+		back_ground.add(guestP4);
+		back_ground.add(guestP3);
+		back_ground.add(guestP2);
+		back_ground.add(guestP1);
+		back_ground.add(juice_button);
 		back_ground.add(go_back);
+		back_ground.add(refri);
 
 		JPanel menupanel = new JPanel();
 
@@ -146,7 +200,7 @@ public class StoreFrame extends JFrame {
 		}
 	}
 
-	class PopUpMarket extends JFrame {
+	class PopUpMarket extends JPanel {
 
 		private JButton[] APPLE = new JButton[100];
 		private JButton[] GRAPE = new JButton[100];
@@ -161,43 +215,12 @@ public class StoreFrame extends JFrame {
 
 		public PopUpMarket() {
 
-			this.setVisible(true);
-			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			this.setSize(400, 800);
-
-			Font font = new Font("Dialog", Font.BOLD, 12);
-			Font font2 = new Font("Dialog", Font.BOLD, 15);
+			this.setSize(400, 590);
 
 			apple = new ImageIcon("apple1.png");
 			orange = new ImageIcon("orange.png");
 			strawberry = new ImageIcon("strawberry.png");
 			grape = new ImageIcon("grape.png");
-
-			JPanel menupanel2 = new JPanel();
-
-			JButton goback = new JButton();
-			goback.setContentAreaFilled(false);
-			goback.setDefaultCapable(false);
-			goback.setFocusPainted(false);
-			goback.setOpaque(false);
-			goback.setIcon(new ImageIcon("button_exit.png"));
-			goback.setRolloverIcon(new ImageIcon("button_exit_s.png"));
-			goback.setBackground(null);
-			goback.setBorderPainted(false);
-			goback.addActionListener(new quit_listener());
-
-			JLabel price = new JLabel("\"PRICE\" APPLE: 500, ORANGE: 700, GRAPE: 800, STRAWBERRY: 600");
-			price.setFont(font);
-
-			JLabel sell = new JLabel("  Click fruit");
-			sell.setFont(font2);
-
-			menupanel2.add(sell);
-			menupanel2.add(userMONEY_label);
-			menupanel2.add(goback);
-
-			this.getContentPane().add(BorderLayout.NORTH, menupanel2);
-			this.getContentPane().add(BorderLayout.SOUTH, price);
 
 			JPanel west = new JPanel();
 			JPanel east = new JPanel();
@@ -251,8 +274,8 @@ public class StoreFrame extends JFrame {
 			east.add(BorderLayout.WEST, orange_panel);
 			east.add(BorderLayout.EAST, strawberry_panel);
 
-			this.getContentPane().add(BorderLayout.WEST, west);
-			this.getContentPane().add(BorderLayout.EAST, east);
+			this.add(BorderLayout.WEST, west);
+			this.add(BorderLayout.EAST, east);
 
 		}
 
@@ -284,8 +307,11 @@ public class StoreFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + 500);
+			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
+			// + 500);
 			UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() - 1);
+			juice_price = juice_price + 500;
+			juice_button.setVisible(true);
 			changeImfo();
 			setVisible(false);
 
@@ -302,9 +328,12 @@ public class StoreFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + 700);
+			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
+			// + 700);
 			UserFile.Users.get(idx).setOrange((UserFile.Users.get(idx).getOrange() - 1));
+			juice_price = juice_price + 700;
 			changeImfo();
+			juice_button.setVisible(true);
 			setVisible(false);
 
 		}
@@ -320,9 +349,12 @@ public class StoreFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + 600);
+			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
+			// + 600);
 			UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() - 1);
+			juice_price = juice_price + 600;
 			changeImfo();
+			juice_button.setVisible(true);
 			setVisible(false);
 
 		}
@@ -337,9 +369,12 @@ public class StoreFrame extends JFrame {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + 800);
+			// UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney()
+			// + 800);
 			UserFile.Users.get(idx).setGrape(UserFile.Users.get(idx).getGrape() - 1);
+			juice_price = juice_price + 500;
 			changeImfo();
+			juice_button.setVisible(true);
 			setVisible(false);
 
 		}
