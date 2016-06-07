@@ -140,6 +140,7 @@ public class Sign extends UserFile implements ActionListener{
 					u.setMissionNum(0);
 					u.setMission("-");
 					u.setDoMission(new String[]{"-","-","-","-","-"});
+					u.setSuccess5(false);
 					u.setLastlogindata("-");
 					u.setNowlogindata("-");
 					u.setUsercheckQuestion(inQ);

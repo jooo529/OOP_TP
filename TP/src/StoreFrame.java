@@ -103,6 +103,20 @@ public class StoreFrame extends GameFrame {
 				guest4.getIconWidth(), guest4.getIconHeight());
 		/* that image panels set bounds and sizes is finish */
 
+		if(UserFile.Users.get(idx).getMissionNum()==5){
+			String str[] = UserFile.Users.get(idx).getDoMission();
+			if(str[1].equals("1")){
+				guestP1.setVisible(false);
+				guestP2.setVisible(false);
+				guestP3.setVisible(false);
+			}else if(str[1].equals("2")){
+				guestP1.setVisible(false);
+				guestP2.setVisible(false);		
+			}else if(str[1].equals("3")){
+				guestP1.setVisible(false);
+			}
+		}
+		
 		/* adding component in back_ground */
 		back_ground.add(guestP4);
 		back_ground.add(guestP3);
@@ -194,9 +208,10 @@ public class StoreFrame extends GameFrame {
 					guestP2.setVisible(false);
 				else if (guestP3.isVisible())
 					guestP3.setVisible(false);
-				else if (guestP4.isVisible())
+				else if (guestP4.isVisible()){
 					guestP4.setVisible(false);
-				else {
+					UserFile.Users.get(idx).setSuccess5(true);	
+				}else {
 					JOptionPane.showMessageDialog(juice_apple_button, "No guest ", "Title",
 							JOptionPane.INFORMATION_MESSAGE);
 					return;
@@ -207,8 +222,8 @@ public class StoreFrame extends GameFrame {
 
 				UserFile.Users.get(idx).setAppleRefri((UserFile.Users.get(idx).getAppleRefri() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-				UserFile.Users.get(idx).setAppleJuice(UserFile.Users.get(idx).getAppleJuice()+1);
-				
+				UserFile.Users.get(idx).setAppleJuice(UserFile.Users.get(idx).getAppleJuice() + 1);
+
 				juice_price = 0;
 				changeImfo(2);
 				juice_apple_button.setVisible(false);
@@ -240,8 +255,8 @@ public class StoreFrame extends GameFrame {
 
 				UserFile.Users.get(idx).setOrangeRefri((UserFile.Users.get(idx).getOrangeRefri() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-				UserFile.Users.get(idx).setOrangeJuice(UserFile.Users.get(idx).getOrangeJuice()+1);
-				
+				UserFile.Users.get(idx).setOrangeJuice(UserFile.Users.get(idx).getOrangeJuice() + 1);
+
 				juice_price = 0;
 				changeImfo(2);
 				juice_orange_button.setVisible(false);
@@ -272,8 +287,8 @@ public class StoreFrame extends GameFrame {
 
 				UserFile.Users.get(idx).setStrawberryRefri((UserFile.Users.get(idx).getStrawberryRefri() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-				UserFile.Users.get(idx).setStrawberryJuice(UserFile.Users.get(idx).getStrawberryJuice()+1);
-				
+				UserFile.Users.get(idx).setStrawberryJuice(UserFile.Users.get(idx).getStrawberryJuice() + 1);
+
 				juice_price = 0;
 				changeImfo(2);
 				juice_straw_button.setVisible(false);
@@ -304,8 +319,8 @@ public class StoreFrame extends GameFrame {
 
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 				UserFile.Users.get(idx).setGrapeRefri((UserFile.Users.get(idx).getGrapeRefri() - 1));
-				UserFile.Users.get(idx).setGrapeJuice(UserFile.Users.get(idx).getGrapeJuice()+1);
-				
+				UserFile.Users.get(idx).setGrapeJuice(UserFile.Users.get(idx).getGrapeJuice() + 1);
+
 				juice_price = 0;
 				changeImfo(2);
 				juice_grape_button.setVisible(false);
@@ -325,43 +340,38 @@ public class StoreFrame extends GameFrame {
 
 			}
 		});
-		
+
 		f.fileSave();
 
 	}
 
 	void drawImage() {
 
+		guestP1 = new JPanel() {
+			public void paintComponent(Graphics g) {
+				g.drawImage(guest1.getImage(), 0, 0, this);
+			}
+		};
+		
 		guestP2 = new JPanel() {
-
 			public void paintComponent(Graphics g) {
 				g.drawImage(guest2.getImage(), 0, 0, this);
 			}
 		};
 
 		guestP3 = new JPanel() {
-
 			public void paintComponent(Graphics g) {
 				g.drawImage(guest3.getImage(), 0, 0, this);
 			}
 		};
 
 		guestP4 = new JPanel() {
-
 			public void paintComponent(Graphics g) {
 				g.drawImage(guest4.getImage(), 0, 0, this);
 			}
 		};
 
-		guestP1 = new JPanel() {
-
-			public void paintComponent(Graphics g) {
-				g.drawImage(guest1.getImage(), 0, 0, this);
-			}
-		};
-
 		back_ground = new JPanel() {
-
 			public void paintComponent(Graphics g) {
 				g.drawImage(storeIm.getImage(), 300, 0, this);
 			}

@@ -20,12 +20,8 @@ public class User {
 	private int applebox, grapebox, orangebox, strawberrybox;
 	private int appleJuice, grapeJuice, orangeJuice, strawberryJuice;
 	private int appleRefri, grapeRefri, orangeRefri, strawberryRefri;
-//	private int which_box;
-//	private boolean apple_box;
-//	private boolean orange_box;
-//	private boolean grape_box;
-//	private boolean strawberry_box;
-	private ArrayList<String> FruitBox = new ArrayList<String>(); 
+
+	private String[] ConsumerBox; 
 
 	public int getIndex() {
 		return index;
@@ -229,49 +225,19 @@ public class User {
 				+ "Orangebox=" + orangebox + "+ StrawBerrybox=" + strawberrybox + "]";
 	}
 	
-	
-	
-//	public boolean isApple_box() {
-//		return apple_box;
-//	}
-//	public void setApple_box(boolean apple_box) {
-//		this.apple_box = apple_box;
-//	}
-//	public boolean isOrange_box() {
-//		return orange_box;
-//	}
-//	public void setOrange_box(boolean orange_box) {
-//		this.orange_box = orange_box;
-//	}
-//	public boolean isGrape_box() {
-//		return grape_box;
-//	}
-//	public void setGrape_box(boolean grape_box) {
-//		this.grape_box = grape_box;
-//	}
-//	public boolean isStrawberry_box() {
-//		return strawberry_box;
-//	}
-//	public void setStrawberry_box(boolean strawberry_box) {
-//		this.strawberry_box = strawberry_box;
-//	}
-//	public int getWhich_box() {
-//		return which_box;
-//	}
-//	public void setWhich_box(int which_box) {
-//		this.which_box = which_box;
-//	}
-
 	@Override
 	public String toString() {
 		return "User [index=" + index + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
 				+ ", money=" + money + ", level=" + level + ", missionNum=" + missionNum + ", mission=" + mission
-				+ ", doMission=" + Arrays.toString(doMission) + ", lastlogindata=" + lastlogindata + ", nowlogindata="
-				+ nowlogindata + ", usercheckQuestion=" + usercheckQuestion + ", usercheckAnswer=" + usercheckAnswer
-				+ ", Fruit=" + Fruit + ", apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry="
-				+ StrawBerry + ", applebox=" + applebox + ", grapebox=" + grapebox + ", orangebox=" + orangebox
-				+ ", strawberrybox=" + strawberrybox + ", FruitBox=" + FruitBox + "]";
+				+ ", doMission=" + Arrays.toString(doMission) + ", success5=" + success5 + ", lastlogindata="
+				+ lastlogindata + ", nowlogindata=" + nowlogindata + ", usercheckQuestion=" + usercheckQuestion
+				+ ", usercheckAnswer=" + usercheckAnswer + ", Fruit=" + Fruit + ", apple=" + apple + ", grape=" + grape
+				+ ", orange=" + orange + ", StrawBerry=" + StrawBerry + ", applebox=" + applebox + ", grapebox="
+				+ grapebox + ", orangebox=" + orangebox + ", strawberrybox=" + strawberrybox + ", appleJuice="
+				+ appleJuice + ", grapeJuice=" + grapeJuice + ", orangeJuice=" + orangeJuice + ", strawberryJuice="
+				+ strawberryJuice + ", appleRefri=" + appleRefri + ", grapeRefri=" + grapeRefri + ", orangeRefri="
+				+ orangeRefri + ", strawberryRefri=" + strawberryRefri + ", ConsumerBox=" + Arrays.toString(ConsumerBox)
+				+ "]";
 	}
-
-
+	
 }

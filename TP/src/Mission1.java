@@ -2,8 +2,6 @@
 public class Mission1 extends MissionFile implements Mission {
 
 	int randomFruitnum = (int) (Math.random() * 5 + 1);
-	int randomConsumer = (int) (Math.random() * 5 + 3);
-	int randomJuice = (int) (Math.random()*3 + 1);
 	int randomFruittype = (int) (Math.random() * 4);
 	
 	public String helpMission() {

@@ -27,6 +27,7 @@ public class UserFile {
 				u.setMission(st.nextToken());
 				String[] doMission = {st.nextToken(),st.nextToken(),st.nextToken(),st.nextToken(),st.nextToken()};
 				u.setDoMission(doMission);
+				u.setSuccess5(Boolean.parseBoolean(st.nextToken()));
 				u.setLastlogindata(st.nextToken());
 				u.setNowlogindata(st.nextToken());
 				u.setUsercheckQuestion(st.nextToken());
@@ -85,6 +86,8 @@ public class UserFile {
 				fw.write(Users.get(i).getDoMission()[3]);
 				fw.write(",");
 				fw.write(Users.get(i).getDoMission()[4]);
+				fw.write(",");
+				fw.write(""+Users.get(i).getSuccess5());
 				fw.write(",");
 				fw.write(Users.get(i).getLastlogindata());
 				fw.write(",");
