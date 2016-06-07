@@ -39,6 +39,10 @@ public class UserFile {
 				u.setGrapebox(Integer.parseInt(st.nextToken()));
 				u.setOrangebox(Integer.parseInt(st.nextToken()));
 				u.setStrawberrybox(Integer.parseInt(st.nextToken()));
+				u.setAppleRefri(Integer.parseInt(st.nextToken()));
+				u.setGrapeRefri(Integer.parseInt(st.nextToken()));
+				u.setOrangeRefri(Integer.parseInt(st.nextToken()));
+				u.setStrawberryRefri(Integer.parseInt(st.nextToken()));
 //				u.setApple_box(Boolean.parseBoolean(st.nextToken()));
 //				u.setGrape_box(Boolean.parseBoolean(st.nextToken()));
 //				u.setOrange_box(Boolean.parseBoolean(st.nextToken()));
@@ -105,6 +109,14 @@ public class UserFile {
 				fw.write("" + Users.get(i).getOrangebox());
 				fw.write(",");
 				fw.write("" + Users.get(i).getStrawberrybox());
+				fw.write(",");
+				fw.write("" + Users.get(i).getAppleRefri());
+				fw.write(",");
+				fw.write("" + Users.get(i).getGrapeRefri());
+				fw.write(",");
+				fw.write("" + Users.get(i).getOrangeRefri());
+				fw.write(",");
+				fw.write("" + Users.get(i).getStrawberryRefri());
 				fw.write(",");
 //				fw.write("" + Users.get(i).isApple_box());
 //				fw.write(",");

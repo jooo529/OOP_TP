@@ -17,9 +17,9 @@ public class Mission3 extends MissionFile implements Mission{
 	
 	public Boolean checkMission(int idx, int fruitNum1, int fruitNum2, int fruitNum3, int fruitNum4) {
 		Boolean success = false;
-		if(fruitNum1==UserFile.Users.get(idx).getAppleRefri()&&fruitNum2==UserFile.Users.get(idx).getGrapeRefri()
-				&&fruitNum3==UserFile.Users.get(idx).getOrangeRefri()
-				&&fruitNum4==UserFile.Users.get(idx).getStrawberryRefri()) success = true;
+		if(0==UserFile.Users.get(idx).getApplebox()&&0==UserFile.Users.get(idx).getGrapebox()
+				&&0==UserFile.Users.get(idx).getOrangebox()
+				&&0==UserFile.Users.get(idx).getStrawberrybox()) success = true;
 		return success;
 	}
 	

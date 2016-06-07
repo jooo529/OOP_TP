@@ -269,11 +269,6 @@ public class checkFrame extends JFrame {
 			success = ((Mission3)m[2]).checkMission(idx,Integer.parseInt(doMission[1]),Integer.parseInt(doMission[2]),
 					Integer.parseInt(doMission[3]),Integer.parseInt(doMission[4]));
 			if(success){
-				UserFile.Users.get(idx).setMissionNum(0);
-				UserFile.Users.get(idx).setAppleRefri(0);
-				UserFile.Users.get(idx).setGrapeRefri(0);
-				UserFile.Users.get(idx).setOrangeRefri(0);
-				UserFile.Users.get(idx).setStrawberryRefri(0);
 				if(UserFile.Users.get(idx).getLevel()==3) ClearMission(4);
 					else aboveClearMission();
 			}else notClearMission();
