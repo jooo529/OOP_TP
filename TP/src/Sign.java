@@ -135,11 +135,11 @@ public class Sign extends UserFile implements ActionListener{
 					u.setPwd(inPwd);
 					u.setName(inName);
 					u.setPhoneNum(inPhone);
+					u.setMoney(0);
 					u.setLevel(0);
 					u.setMissionNum(0);
 					u.setMission("-");
 					u.setDoMission(new String[]{"-","-","-","-","-"});
-					u.setMoney(0);
 					u.setLastlogindata("-");
 					u.setNowlogindata("-");
 					u.setUsercheckQuestion(inQ);
@@ -150,8 +150,8 @@ public class Sign extends UserFile implements ActionListener{
 					u.setAppleRefri(0);
 					u.setGrape(0);
 					u.setGrapebox(0);
-					u.setAppleJuice(0);
-					u.setAppleRefri(0);
+					u.setGrapeJuice(0);
+					u.setGrapeRefri(0);
 					u.setOrange(0);
 					u.setOrangebox(0);
 					u.setOrangeJuice(0);

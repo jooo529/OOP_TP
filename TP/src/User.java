@@ -150,6 +150,31 @@ public class User {
 	public void setStrawBerry(int StrawBerry){
 		this.StrawBerry = StrawBerry;
 	}
+	
+	public int getApplebox() {
+		return applebox;
+	}
+	public void setApplebox(int applebox) {
+		this.applebox = applebox;
+	}
+	public int getGrapebox() {
+		return grapebox;
+	}
+	public void setGrapebox(int grapebox) {
+		this.grapebox = grapebox;
+	}
+	public int getOrangebox() {
+		return orangebox;
+	}
+	public void setOrangebox(int orangebox) {
+		this.orangebox = orangebox;
+	}
+	public int getStrawberrybox() {
+		return strawberrybox;
+	}
+	public void setStrawberrybox(int strawberrybox) {
+		this.strawberrybox = strawberrybox;
+	}
 	public int getAppleJuice() {
 		return appleJuice;
 	}
@@ -200,8 +225,8 @@ public class User {
 		this.strawberryRefri = strawberryRefri;
 	}
 	public String toStringFruitBox() {
-		return "[Applebox=" + applebox + ", Grapebox=" + grapebox + ", "
-				+ "Orangebox=" + orangebox + ", StrawBerrybox=" + strawberrybox + "]";
+		return "[Applebox=" + applebox + "+ Grapebox=" + grapebox + "+ "
+				+ "Orangebox=" + orangebox + "+ StrawBerrybox=" + strawberrybox + "]";
 	}
 	
 	
@@ -236,30 +261,7 @@ public class User {
 //	public void setWhich_box(int which_box) {
 //		this.which_box = which_box;
 //	}
-	public int getApplebox() {
-		return applebox;
-	}
-	public void setApplebox(int applebox) {
-		this.applebox = applebox;
-	}
-	public int getGrapebox() {
-		return grapebox;
-	}
-	public void setGrapebox(int grapebox) {
-		this.grapebox = grapebox;
-	}
-	public int getOrangebox() {
-		return orangebox;
-	}
-	public void setOrangebox(int orangebox) {
-		this.orangebox = orangebox;
-	}
-	public int getStrawberrybox() {
-		return strawberrybox;
-	}
-	public void setStrawberrybox(int strawberrybox) {
-		this.strawberrybox = strawberrybox;
-	}
+
 	@Override
 	public String toString() {
 		return "User [index=" + index + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
