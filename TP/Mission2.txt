@@ -2,15 +2,12 @@
 You have to make some fruitboxes! 
 You can learn 'value and variable's relation' in this mission.
 
-If you have fruits,
-(=if you have value)
+If you have fruits,(=if you have value)
 You can put fruits in Box.
 (=you can save value in variable)
 
-
 You must have each fruits like this :
-
-Apple :      4 or More! makes one AppleBox!
-Grape :      2 or More!   makes one GrapeBox!
-Orange :     4 or More!   makes one OrangeBox!
-Strawberry : 8 or More!   makes one StrawberryBox!
+Apple :      4 or More! -> one AppleBox!
+Grape :      2 or More! -> one GrapeBox!
+Orange :     4 or More! -> one OrangeBox!
+Strawberry : 8 or More! -> one StrawberryBox!

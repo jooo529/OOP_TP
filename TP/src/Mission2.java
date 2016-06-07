@@ -1,35 +1,50 @@
 
-public class Mission2 extends MissionFile implements Mission{
+public class Mission2 extends MissionFile implements Mission {
 
-	@Override
+	int randomFruitnum1 = (int) (Math.random() * 4 + 1);
+	int randomFruitnum2 = (int) (Math.random() * 4 + 1);
+	int randomFruitnum3 = (int) (Math.random() * 4 + 1);
+	int randomFruitnum4 = (int) (Math.random() * 4 + 1);
+	int randomConsumer = (int) (Math.random() * 5 + 3);
+	int randomJuice = (int) (Math.random() * 3 + 1);
+	int randomFruittype = (int) (Math.random() * 4);
+
 	public String helpMission() {
 		return fileLoad("Mission2.txt");
 	}
 
-	@Override
-	public void checkMission() {
-		// TODO Auto-generated method stub
-		
+	public Boolean checkMission(int idx, int fruitNum, String str) {
+		return false;
+	}
+	public Boolean checkMission(int idx, int fruitNum1,int fruitNum2,int fruitNum3,int fruitNum4 ) {
+		Boolean success = false;
+		if (fruitNum1 <= UserFile.Users.get(idx).getApplebox() && fruitNum2 <= UserFile.Users.get(idx).getGrapebox()
+				&& fruitNum3 <= UserFile.Users.get(idx).getOrangebox()
+				&& fruitNum4 <= UserFile.Users.get(idx).getStrawberrybox())	success = true;
+		return success;
 	}
 
-	@Override
 	public String getMission(int idx) {
-		String str = "<Mission 2>" + "\nYou have to make some fruitboxes!\n\n"
-				+ "You must have each fruits like this :\nApple :      4 or More! makes one AppleBox!"
-				+ "Grape :      2 or More!   makes one GrapeBox!\n"
-				+ "Orange :     4 or More!   makes one OrangeBox!\n"
-				+ "Strawberry : 8 or More!   makes one StrawberryBox!" + "\n_________________________________________"
-				+ "\n\nGet" + randomFruitnum + "  " + fruit[randomFruittype]+"Boxes!";
+		String str = "<Mission 2>" + "\nYou have to make some fruitboxes!\n" + "Make " + randomFruitnum1
+				+ "AppleBox(es), " + randomFruitnum2 + "GrapeBox(es),\n " + randomFruitnum3 + "orangeBox(es)"
+				+ randomFruitnum4 + "StrawberrryBox(es) at least!";
 		return str;
 	}
 
-	@Override
 	public String[] savedMission() {
-		String[] myMission = new String[3];
-		myMission[0] = "2";//missionNumber
-		myMission[1] = ""+randomFruitnum;//fruitNumberYouhaveto
-		myMission[2] = fruit[randomFruittype];//fruitNameYouhaveto
+		String[] myMission = new String[5];
+		myMission[0] = "2";// missionNumber
+		myMission[1] = "" + randomFruitnum1;// fruitNumberYouhaveto
+		myMission[2] = "" + randomFruitnum2;// fruitNumberYouhaveto
+		myMission[3] = "" + randomFruitnum3;// fruitNumberYouhaveto
+		myMission[4] = "" + randomFruitnum4;// fruitNumberYouhaveto
 		return myMission;
+	}
+
+	public String progressMission() {
+		return "Make " + randomFruitnum1
+				+ " AppleBox(es)+" + randomFruitnum2 + "GrapeBox(es)+" + randomFruitnum3 + "orangeBox(es)+"
+				+ randomFruitnum4 + "StrawberrryBox(es) at least!";
 	}
 
 }

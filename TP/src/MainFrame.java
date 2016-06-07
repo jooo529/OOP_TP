@@ -112,11 +112,17 @@ public class MainFrame extends GameFrame{
 		missionInfo.setLineWrap(true);
 		
 		if (UserFile.Users.get(idx).getLevel() == 0)	missionInfo.setText(mf.fileLoad("Mission0.txt"));
-		else if (UserFile.Users.get(idx).getLevel() == 1)	missionInfo.setText(mf.fileLoad("Mission1.txt"));
-		else if (UserFile.Users.get(idx).getLevel() == 2)	missionInfo.setText(mf.fileLoad("Mission2.txt"));
-		else if (UserFile.Users.get(idx).getLevel() == 3)	missionInfo.setText(mf.fileLoad("Mission3.txt"));
-		else if (UserFile.Users.get(idx).getLevel() == 4)	missionInfo.setText(mf.fileLoad("Mission4.txt"));
-		else if (UserFile.Users.get(idx).getLevel() == 5)	missionInfo.setText(mf.fileLoad("Mission5.txt"));
+		else if (UserFile.Users.get(idx).getMissionNum() == 1)	
+			missionInfo.setText(UserFile.Users.get(idx).getMission()+"\n--------------\n"+mf.fileLoad("Mission1.txt"));
+		else if (UserFile.Users.get(idx).getMissionNum() == 2)
+			missionInfo.setText(UserFile.Users.get(idx).getMission()+"\n--------------\n"+mf.fileLoad("Mission2.txt"));
+		else if (UserFile.Users.get(idx).getMissionNum() == 3)
+			missionInfo.setText(UserFile.Users.get(idx).getMission()+"\n--------------\n"+mf.fileLoad("Mission3.txt"));
+		else if (UserFile.Users.get(idx).getMissionNum() == 4)
+			missionInfo.setText(UserFile.Users.get(idx).getMission()+"\n--------------\n"+mf.fileLoad("Mission4.txt"));
+		else if (UserFile.Users.get(idx).getMissionNum() == 5)
+			missionInfo.setText(UserFile.Users.get(idx).getMission()+"\n--------------\n"+mf.fileLoad("Mission5.txt"));
+		else missionInfo.setText("You aren't going on Mission. Get Mission!");
 		
 		JButton quit_button = new JButton("Save and Quit");
 		quit_button.setBounds(735, 450, 250, 80);
@@ -124,6 +130,7 @@ public class MainFrame extends GameFrame{
 			public void actionPerformed(ActionEvent event)
 			{
 				for(int i=0; i<UserFile.Users.size(); i++){
+					//UserFile.Users.get(i).setMissionNum(0);
 					UserFile.Users.get(i).setIndex(-1);
 					f.fileSave();
 				}

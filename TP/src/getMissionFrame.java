@@ -208,20 +208,19 @@ public class getMissionFrame extends JFrame {
 			try {
 				if (UserFile.Users.get(idx).getMissionNum() < 1) {// getMission
 					UserFile.Users.get(idx).setMissionNum(missionLvl);
-					UserFile.Users.get(idx).setDoMission(m[UserFile.Users.get(idx).getLevel() - 1].savedMission());
+					UserFile.Users.get(idx).setDoMission(m[UserFile.Users.get(idx).getMissionNum() - 1].savedMission());
+					UserFile.Users.get(idx).setMission(m[UserFile.Users.get(idx).getMissionNum() - 1].progressMission());
 				} else {
 					JOptionPane.showMessageDialog(null, "FAULT! You already got the Mission! You lose 300 Money:(",
 							"Message", JOptionPane.INFORMATION_MESSAGE);
-
 					UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() - 300);
-					f.fileSave();
 				}
+				f.fileSave();
 			} catch (IndexOutOfBoundsException e) {
 				e.printStackTrace();
 			} catch (HeadlessException e2) {
 				e2.printStackTrace();
 			}
-			// System.out.println(UserFile.Users.get(idx).toString());
 			setVisible(false);
 		}
 	}

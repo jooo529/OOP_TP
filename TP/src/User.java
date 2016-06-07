@@ -4,8 +4,7 @@ import java.util.*;
 public class User {
 	
 	private int index;
-	private String id;
-	private String pwd;
+	private String id, pwd;
 	private String name;
 	private String phoneNum;
 	private int money;
@@ -13,19 +12,14 @@ public class User {
 	private int missionNum;
 	private String mission;
 	private String[] doMission; 
-	private String lastlogindata;
-	private String nowlogindata;
-	private String usercheckQuestion;
-	private String usercheckAnswer;
+	private Boolean success5;
+	private String lastlogindata, nowlogindata;
+	private String usercheckQuestion, usercheckAnswer;
 	private String Fruit;//
-	private int apple;
-	private int grape;
-	private int orange;
-	private int StrawBerry;
-	private int applebox;
-	private int grapebox;
-	private int orangebox;
-	private int strawberrybox;
+	private int apple, grape, orange, StrawBerry;
+	private int applebox, grapebox, orangebox, strawberrybox;
+	private int appleJuice, grapeJuice, orangeJuice, strawberryJuice;
+	private int appleRefri, grapeRefri, orangeRefri, strawberryRefri;
 //	private int which_box;
 //	private boolean apple_box;
 //	private boolean orange_box;
@@ -84,11 +78,23 @@ public class User {
 	public void setMissionNum(int missionNum) {
 		this.missionNum = missionNum;
 	}
+	public String getMission() {
+		return mission;
+	}
+	public void setMission(String mission) {
+		this.mission = mission;
+	}
 	public String[] getDoMission() {
 		return doMission;
 	}
 	public void setDoMission(String[] doMission) {
 		this.doMission = doMission;
+	}
+	public Boolean getSuccess5() {
+		return success5;
+	}
+	public void setSuccess5(Boolean success5) {
+		this.success5 = success5;
 	}
 	public String getLastlogindata() {
 		return lastlogindata;
@@ -144,9 +150,58 @@ public class User {
 	public void setStrawBerry(int StrawBerry){
 		this.StrawBerry = StrawBerry;
 	}
-	
-	public String toStringFruit() {
-		return "[apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry=" + StrawBerry + "]";
+	public int getAppleJuice() {
+		return appleJuice;
+	}
+	public void setAppleJuice(int appleJuice) {
+		this.appleJuice = appleJuice;
+	}
+	public int getGrapeJuice() {
+		return grapeJuice;
+	}
+	public void setGrapeJuice(int grapeJuice) {
+		this.grapeJuice = grapeJuice;
+	}
+	public int getOrangeJuice() {
+		return orangeJuice;
+	}
+	public void setOrangeJuice(int orangeJuice) {
+		this.orangeJuice = orangeJuice;
+	}
+	public int getStrawberryJuice() {
+		return strawberryJuice;
+	}
+	public void setStrawberryJuice(int strawberryJuice) {
+		this.strawberryJuice = strawberryJuice;
+	}
+
+	public int getAppleRefri() {
+		return appleRefri;
+	}
+	public void setAppleRefri(int appleRefri) {
+		this.appleRefri = appleRefri;
+	}
+	public int getGrapeRefri() {
+		return grapeRefri;
+	}
+	public void setGrapeRefri(int grapeRefri) {
+		this.grapeRefri = grapeRefri;
+	}
+	public int getOrangeRefri() {
+		return orangeRefri;
+	}
+	public void setOrangeRefri(int orangeRefri) {
+		this.orangeRefri = orangeRefri;
+	}
+	public int getStrawberryRefri() {
+		return strawberryRefri;
+	}
+	public void setStrawberryRefri(int strawberryRefri) {
+		this.strawberryRefri = strawberryRefri;
+	}
+	public String toStringFruitBox() {
+		return "[Applebox=" + applebox + ", Grapebox=" + grapebox + ", "
+				+ "Orangebox=" + orangebox + ", StrawBerrybox=" + strawberrybox + "]";
 	}
 	
 	

@@ -24,6 +24,9 @@ public class UserFile {
 				u.setMoney(Integer.parseInt(st.nextToken()));
 				u.setLevel(Integer.parseInt(st.nextToken()));
 				u.setMissionNum(Integer.parseInt(st.nextToken()));
+				u.setMission(st.nextToken());
+				String[] doMission = {st.nextToken(),st.nextToken(),st.nextToken(),st.nextToken(),st.nextToken()};
+				u.setDoMission(doMission);
 				u.setLastlogindata(st.nextToken());
 				u.setNowlogindata(st.nextToken());
 				u.setUsercheckQuestion(st.nextToken());
@@ -36,6 +39,7 @@ public class UserFile {
 				u.setGrapebox(Integer.parseInt(st.nextToken()));
 				u.setOrangebox(Integer.parseInt(st.nextToken()));
 				u.setStrawberrybox(Integer.parseInt(st.nextToken()));
+				
 //				u.setApple_box(Boolean.parseBoolean(st.nextToken()));
 //				u.setGrape_box(Boolean.parseBoolean(st.nextToken()));
 //				u.setOrange_box(Boolean.parseBoolean(st.nextToken()));
@@ -66,6 +70,18 @@ public class UserFile {
 				fw.write("" + Users.get(i).getLevel());
 				fw.write(",");
 				fw.write("" + Users.get(i).getMissionNum());
+				fw.write(",");
+				fw.write(Users.get(i).getMission());
+				fw.write(",");
+				fw.write(Users.get(i).getDoMission()[0]);
+				fw.write(",");
+				fw.write(Users.get(i).getDoMission()[1]);
+				fw.write(",");
+				fw.write(Users.get(i).getDoMission()[2]);
+				fw.write(",");
+				fw.write(Users.get(i).getDoMission()[3]);
+				fw.write(",");
+				fw.write(Users.get(i).getDoMission()[4]);
 				fw.write(",");
 				fw.write(Users.get(i).getLastlogindata());
 				fw.write(",");
