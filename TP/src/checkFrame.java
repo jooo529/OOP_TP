@@ -246,11 +246,7 @@ public class checkFrame extends JFrame {
 		Boolean success = false; 
 		if(doMission[0].equals("1")){
 			int num = Integer.parseInt(doMission[1]);
-			System.out.println(num);
-			System.out.println(m[0].getClass());
-			System.out.println(idx);
 			success = m[0].checkMission(idx,num,doMission[2]);
-			System.out.println(success);
 			if(success){
 				UserFile.Users.get(idx).setMissionNum(0);
 				if(UserFile.Users.get(idx).getLevel()==1) ClearMission(2);
@@ -270,10 +266,6 @@ public class checkFrame extends JFrame {
 					Integer.parseInt(doMission[3]),Integer.parseInt(doMission[4]));
 			if(success){
 				UserFile.Users.get(idx).setMissionNum(0);
-				UserFile.Users.get(idx).setAppleRefri(0);
-				UserFile.Users.get(idx).setGrapeRefri(0);
-				UserFile.Users.get(idx).setOrangeRefri(0);
-				UserFile.Users.get(idx).setStrawberryRefri(0);
 				if(UserFile.Users.get(idx).getLevel()==3) ClearMission(4);
 					else aboveClearMission();
 			}else notClearMission();
@@ -289,7 +281,7 @@ public class checkFrame extends JFrame {
 				if(UserFile.Users.get(idx).getLevel()==4) ClearMission(5);
 					else aboveClearMission();
 			}else notClearMission();
-		}else{
+		}else if(doMission[0].equals("5")){
 			int num = Integer.parseInt(doMission[1]);
 			success = m[4].checkMission(idx,num,doMission[2]);
 			if(success){
@@ -297,6 +289,7 @@ public class checkFrame extends JFrame {
 				if(UserFile.Users.get(idx).getLevel()==5){
 					JOptionPane.showMessageDialog(null, "You clear Mission perfectly!\nYou earn 1000 Money:)","Message", JOptionPane.INFORMATION_MESSAGE);
 					UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + 1000);	
+					UserFile.Users.get(idx).setSuccess5(false);
 				}else aboveClearMission();
 			}else notClearMission();
 		}

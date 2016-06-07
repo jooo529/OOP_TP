@@ -2,10 +2,7 @@
 public class Mission3 extends MissionFile implements Mission{
 
 	static int index;
-	int randomFruitnum = (int) (Math.random() * 5 + 1);
-	int randomConsumer = (int) (Math.random() * 5 + 3);
-	int randomJuice = (int) (Math.random()*3 + 1);
-	int randomFruittype = (int) (Math.random() * 4);
+
 	
 	public String helpMission() {
 		return fileLoad("Mission3.txt");
@@ -17,9 +14,11 @@ public class Mission3 extends MissionFile implements Mission{
 	
 	public Boolean checkMission(int idx, int fruitNum1, int fruitNum2, int fruitNum3, int fruitNum4) {
 		Boolean success = false;
-		if(fruitNum1==UserFile.Users.get(idx).getAppleRefri()&&fruitNum2==UserFile.Users.get(idx).getGrapeRefri()
-				&&fruitNum3==UserFile.Users.get(idx).getOrangeRefri()
-				&&fruitNum4==UserFile.Users.get(idx).getStrawberryRefri()) success = true;
+		Boolean appleNgrape = false;
+		Boolean orangeNstraw = false;
+		if(fruitNum1<=UserFile.Users.get(idx).getAppleRefri()&&fruitNum2<=UserFile.Users.get(idx).getGrapeRefri()) appleNgrape = true;
+		if(fruitNum3<=UserFile.Users.get(idx).getOrangeRefri()&&fruitNum4<=UserFile.Users.get(idx).getStrawberryRefri()) orangeNstraw = true;
+		if(appleNgrape&&orangeNstraw) success = true;
 		return success;
 	}
 	

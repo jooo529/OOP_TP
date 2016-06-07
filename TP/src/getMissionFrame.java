@@ -248,7 +248,7 @@ public class getMissionFrame extends JFrame {
 				missionLvl=3;
 			} else if (event.getSource() == mission4) {
 				mission.setText(m[3].getMission(idx));
-				missionLvl=5;
+				missionLvl=4;
 			} else if (event.getSource() == mission5) {
 				mission.setText(m[4].getMission(idx));
 				missionLvl=5;

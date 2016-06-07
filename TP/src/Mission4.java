@@ -1,8 +1,6 @@
 
 public class Mission4 extends MissionFile implements Mission{
 
-	int randomFruitnum = (int) (Math.random() * 5 + 1);
-	int randomConsumer = (int) (Math.random() * 5 + 3);
 	int randomJuice = (int) (Math.random()*3 + 1);
 	int randomFruittype = (int) (Math.random() * 4);
 	
@@ -30,7 +28,7 @@ public class Mission4 extends MissionFile implements Mission{
 				+ "\nGo to store read recipe of Juice"
 				+ "\nand take some fruitboxes\nout of refrigerator.\n"
 				+ "Then make fruit juice."
-				+ "\n_________________________________________" + "\n\nJust make"+randomJuice
+				+ "\n_________________________________________" + "\n\nJust make"+randomJuice+" "
 				+ fruit[randomFruittype] + "juice and give it to me!";
 		return str;
 	}
@@ -45,7 +43,7 @@ public class Mission4 extends MissionFile implements Mission{
 	}
 
 	public String progressMission() {
-		return "make" + randomJuice +" "+ fruit[randomFruittype] + "juice and give it to Mom!";
+		return "make " + randomJuice +" "+ fruit[randomFruittype] + " juice and give it to Mom!";
 	}
 
 
