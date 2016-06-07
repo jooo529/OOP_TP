@@ -31,12 +31,13 @@ public class Mission3 extends MissionFile implements Mission{
 	}
 
 	public String[] savedMission() {
-		String[] myMission = new String[5];
+		String[] myMission = new String[6];
 		myMission[0] = "3";//missionNumber
 		myMission[1] = ""+UserFile.Users.get(index).getApplebox();//fruitAppleboxNumbYouhaveto
 		myMission[2] = ""+UserFile.Users.get(index).getGrapebox();//fruitGrapeboxNumbYouhaveto
 		myMission[3] = ""+UserFile.Users.get(index).getOrangebox();//fruitOrangeboxNumbYouhaveto
 		myMission[4] = ""+UserFile.Users.get(index).getStrawberrybox();//fruitStrawberryboxNumbYouhaveto
+		myMission[5] = "-";
 		return myMission;
 	}
 

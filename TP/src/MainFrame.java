@@ -95,7 +95,7 @@ public class MainFrame extends GameFrame{
 		box_button.addActionListener(new BoxButtonListener());
 		
 		JTextArea missionInfo = new JTextArea();
-		missionInfo.setBounds(735, 48, 250, 370);
+		missionInfo.setBounds(735, 48, 250, 400);
 		missionInfo.setEditable(false);
 
 		JTextField userInfo = new JTextField(toUserInfo(), JLabel.CENTER);
@@ -130,7 +130,6 @@ public class MainFrame extends GameFrame{
 			public void actionPerformed(ActionEvent event)
 			{
 				for(int i=0; i<UserFile.Users.size(); i++){
-					//UserFile.Users.get(i).setMissionNum(0);
 					UserFile.Users.get(i).setIndex(-1);
 					f.fileSave();
 				}

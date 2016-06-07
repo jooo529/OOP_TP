@@ -29,12 +29,13 @@ public class Mission2 extends MissionFile implements Mission {
 	}
 
 	public String[] savedMission() {
-		String[] myMission = new String[5];
+		String[] myMission = new String[6];
 		myMission[0] = "2";// missionNumber
 		myMission[1] = "" + randomFruitnum1;// fruitNumberYouhaveto
 		myMission[2] = "" + randomFruitnum2;// fruitNumberYouhaveto
 		myMission[3] = "" + randomFruitnum3;// fruitNumberYouhaveto
 		myMission[4] = "" + randomFruitnum4;// fruitNumberYouhaveto
+		myMission[5] = "-";
 		return myMission;
 	}
 

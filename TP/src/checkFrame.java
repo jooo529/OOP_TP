@@ -286,12 +286,15 @@ public class checkFrame extends JFrame {
 			success = m[4].checkMission(idx,num,doMission[2]);
 			if(success){
 				UserFile.Users.get(idx).setMissionNum(0);
+				UserFile.Users.get(idx).setConsumerBox(null);
 				if(UserFile.Users.get(idx).getLevel()==5){
 					JOptionPane.showMessageDialog(null, "You clear Mission perfectly!\nYou earn 1000 Money:)","Message", JOptionPane.INFORMATION_MESSAGE);
-					UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + 1000);	
-					UserFile.Users.get(idx).setSuccess5(false);
+					UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + 1000);
 				}else aboveClearMission();
-			}else notClearMission();
+			}else {
+				notClearMission();
+				UserFile.Users.get(idx).setConsumerBox(null);
+			}
 		}
 		f.fileSave();
 	}

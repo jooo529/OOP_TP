@@ -1,5 +1,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.awt.*;
 
 import javax.swing.BoxLayout;
@@ -36,11 +39,9 @@ public class StoreFrame extends GameFrame {
 	private JPanel back_ground, guestP1, guestP2, guestP3, guestP4;
 
 	/* Crating variables that have the number of fruit box */
-	static int number_apple = 0;
-	static int number_orange = 0;
-	static int number_straw = 0;
-	static int number_grape = 0;
 	private int juice_price = 0;
+
+	static ArrayList<String> consumer = new ArrayList<String>();
 
 	/* Constructor */
 	public StoreFrame() {
@@ -103,20 +104,38 @@ public class StoreFrame extends GameFrame {
 				guest4.getIconWidth(), guest4.getIconHeight());
 		/* that image panels set bounds and sizes is finish */
 
-		if(UserFile.Users.get(idx).getMissionNum()==5){
+		if (UserFile.Users.get(idx).getMissionNum() == 5) {
 			String str[] = UserFile.Users.get(idx).getDoMission();
-			if(str[1].equals("1")){
+			JLabel p1 = new JLabel(UserFile.Users.get(idx).getDoMission()[2]);
+			p1.setBackground(Color.GRAY);
+			JLabel p2 = new JLabel(UserFile.Users.get(idx).getDoMission()[3]);
+			p2.setBackground(Color.GRAY);
+			JLabel p3 = new JLabel(UserFile.Users.get(idx).getDoMission()[4]);
+			p3.setBackground(Color.GRAY);
+			JLabel p4 = new JLabel(UserFile.Users.get(idx).getDoMission()[5]);
+			p4.setBackground(Color.GRAY);
+			if (str[1].equals("1")) {
+				guestP1.setVisible(false);	guestP2.setVisible(false);	guestP3.setVisible(false);
+				p4.setBounds(guestP4.bounds().x+30,guestP4.bounds().y-60,100,100); back_ground.add(p4);
+			} else if (str[1].equals("2")) {
 				guestP1.setVisible(false);
 				guestP2.setVisible(false);
-				guestP3.setVisible(false);
-			}else if(str[1].equals("2")){
+				p3.setBounds(guestP3.bounds().x+38,guestP3.bounds().y+62,100,100); back_ground.add(p3);
+				p4.setBounds(guestP4.bounds().x+30,guestP4.bounds().y-60,100,100); back_ground.add(p4);
+			} else if (str[1].equals("3")) {
 				guestP1.setVisible(false);
-				guestP2.setVisible(false);		
-			}else if(str[1].equals("3")){
-				guestP1.setVisible(false);
+				p2.setBounds(guestP2.bounds().x,guestP2.bounds().y-62,100,100); back_ground.add(p2);
+				p3.setBounds(guestP3.bounds().x+38,guestP3.bounds().y+62,100,100); back_ground.add(p3);
+				p4.setBounds(guestP4.bounds().x+30,guestP4.bounds().y-60,100,100); back_ground.add(p4);
+			}else{
+				p1.setBounds(guestP1.bounds().x+20,guestP1.bounds().y-62,100,100); back_ground.add(p1);
+				p2.setBounds(guestP2.bounds().x,guestP2.bounds().y-62,100,100); back_ground.add(p2);
+				p3.setBounds(guestP3.bounds().x+38,guestP3.bounds().y+62,100,100); back_ground.add(p3);
+				p4.setBounds(guestP4.bounds().x+30,guestP4.bounds().y-60,100,100); back_ground.add(p4);
+			
 			}
 		}
-		
+
 		/* adding component in back_ground */
 		back_ground.add(guestP4);
 		back_ground.add(guestP3);
@@ -208,10 +227,9 @@ public class StoreFrame extends GameFrame {
 					guestP2.setVisible(false);
 				else if (guestP3.isVisible())
 					guestP3.setVisible(false);
-				else if (guestP4.isVisible()){
+				else if (guestP4.isVisible()) {
 					guestP4.setVisible(false);
-					UserFile.Users.get(idx).setSuccess5(true);	
-				}else {
+				} else {
 					JOptionPane.showMessageDialog(juice_apple_button, "No guest ", "Title",
 							JOptionPane.INFORMATION_MESSAGE);
 					return;
@@ -223,6 +241,7 @@ public class StoreFrame extends GameFrame {
 				UserFile.Users.get(idx).setAppleRefri((UserFile.Users.get(idx).getAppleRefri() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 				UserFile.Users.get(idx).setAppleJuice(UserFile.Users.get(idx).getAppleJuice() + 1);
+				consumer.add("apple");
 
 				juice_price = 0;
 				changeImfo(2);
@@ -256,6 +275,7 @@ public class StoreFrame extends GameFrame {
 				UserFile.Users.get(idx).setOrangeRefri((UserFile.Users.get(idx).getOrangeRefri() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 				UserFile.Users.get(idx).setOrangeJuice(UserFile.Users.get(idx).getOrangeJuice() + 1);
+				consumer.add("orange");
 
 				juice_price = 0;
 				changeImfo(2);
@@ -288,6 +308,7 @@ public class StoreFrame extends GameFrame {
 				UserFile.Users.get(idx).setStrawberryRefri((UserFile.Users.get(idx).getStrawberryRefri() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 				UserFile.Users.get(idx).setStrawberryJuice(UserFile.Users.get(idx).getStrawberryJuice() + 1);
+				consumer.add("strawberry");
 
 				juice_price = 0;
 				changeImfo(2);
@@ -320,6 +341,7 @@ public class StoreFrame extends GameFrame {
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
 				UserFile.Users.get(idx).setGrapeRefri((UserFile.Users.get(idx).getGrapeRefri() - 1));
 				UserFile.Users.get(idx).setGrapeJuice(UserFile.Users.get(idx).getGrapeJuice() + 1);
+				consumer.add("grape");
 
 				juice_price = 0;
 				changeImfo(2);
@@ -352,7 +374,7 @@ public class StoreFrame extends GameFrame {
 				g.drawImage(guest1.getImage(), 0, 0, this);
 			}
 		};
-		
+
 		guestP2 = new JPanel() {
 			public void paintComponent(Graphics g) {
 				g.drawImage(guest2.getImage(), 0, 0, this);
@@ -381,6 +403,7 @@ public class StoreFrame extends GameFrame {
 
 	class goback_listener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			UserFile.Users.get(idx).setConsumerBox(consumer);
 			changeImfo(2);
 			f.fileSave();
 			setVisible(false);
@@ -435,11 +458,12 @@ public class StoreFrame extends GameFrame {
 			strawberry_panel.setBackground(new Color(52, 121, 199));
 			orange_panel.setBackground(new Color(52, 121, 199));
 
+			f.fileLoad();
 			/* get user information about fruit */
-			number_apple = UserFile.Users.get(idx).getAppleRefri();
-			number_grape = UserFile.Users.get(idx).getGrapeRefri();
-			number_orange = UserFile.Users.get(idx).getOrangeRefri();
-			number_straw = UserFile.Users.get(idx).getStrawberryRefri();
+			int number_apple = UserFile.Users.get(idx).getAppleRefri();
+			int number_grape = UserFile.Users.get(idx).getGrapeRefri();
+			int number_orange = UserFile.Users.get(idx).getOrangeRefri();
+			int number_straw = UserFile.Users.get(idx).getStrawberryRefri();
 
 			pushStack.setSize(this.getSize());
 			pushStack.addActionListener(new ActionListener() {
@@ -662,7 +686,6 @@ public class StoreFrame extends GameFrame {
 		JPanel strawberry_panel = new JPanel();
 		JPanel orange_panel = new JPanel();
 		private JLabel apple_lb, orange_lb, straw_lb, grape_lb;
-		int nA, nG, nO, nS;
 		int cnA = -1;
 		int cnG = -1;
 		int cnO = -1;
@@ -706,29 +729,21 @@ public class StoreFrame extends GameFrame {
 			strawberry_panel.setBackground(new Color(52, 121, 199));
 			orange_panel.setBackground(new Color(52, 121, 199));
 
-			nA = UserFile.Users.get(idx).getApplebox();
-			nG = UserFile.Users.get(idx).getGrapebox();
-			nO = UserFile.Users.get(idx).getOrangebox();
-			nS = UserFile.Users.get(idx).getStrawberrybox();
-
 			aB = new JButton();
 			aB.setIcon(apple);
 			aB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					cnA++;
 					if (UserFile.Users.get(idx).getApplebox() == 0) {
-						JOptionPane.showMessageDialog(null, " You Put All Apple Boxes you have!", "Message",
+						JOptionPane.showMessageDialog(null, " 00You Put All Apple Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
-					} else if (cnA <= UserFile.Users.get(idx).getApplebox()) {
-						number_apple++;
+					} else {
 						APPLE_BOX[cnA] = new JLabel();
 						APPLE_BOX[cnA].setIcon(apple);
 						apple_panel.add(APPLE_BOX[cnA]);
 						UserFile.Users.get(idx).setApplebox(UserFile.Users.get(idx).getApplebox() - 1);
 						UserFile.Users.get(idx).setAppleRefri(UserFile.Users.get(idx).getAppleRefri() + 1);
-					} else
-						JOptionPane.showMessageDialog(null, " You Put All Apple Boxes you have!", "Message",
-								JOptionPane.INFORMATION_MESSAGE);
+					}
 					f.fileSave();
 				}
 			});
@@ -739,18 +754,15 @@ public class StoreFrame extends GameFrame {
 				public void actionPerformed(ActionEvent e) {
 					cnG++;
 					if (UserFile.Users.get(idx).getGrapebox() == 0) {
-						JOptionPane.showMessageDialog(null, " You Put All Grape Boxes you have!", "Message",
+						JOptionPane.showMessageDialog(null, " 00You Put All Grape Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
-					} else if (cnG <= UserFile.Users.get(idx).getGrapebox()) {
-						number_grape++;
+					} else {
 						GRAPE_BOX[cnG] = new JLabel();
 						GRAPE_BOX[cnG].setIcon(grape);
 						grape_panel.add(GRAPE_BOX[cnG]);
 						UserFile.Users.get(idx).setGrapebox(UserFile.Users.get(idx).getGrapebox() - 1);
 						UserFile.Users.get(idx).setGrapeRefri(UserFile.Users.get(idx).getGrapeRefri() + 1);
-					} else
-						JOptionPane.showMessageDialog(null, " You Put All grape Boxes you have!", "Message",
-								JOptionPane.INFORMATION_MESSAGE);
+					}
 					f.fileSave();
 				}
 			});
@@ -761,18 +773,15 @@ public class StoreFrame extends GameFrame {
 				public void actionPerformed(ActionEvent e) {
 					cnO++;
 					if (UserFile.Users.get(idx).getOrangebox() == 0) {
-						JOptionPane.showMessageDialog(null, " You Put All Orange Boxes you have!", "Message",
+						JOptionPane.showMessageDialog(null, " 00You Put All Orange Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
-					} else if (cnO <= UserFile.Users.get(idx).getOrangebox()) {
-						number_orange++;
+					}else{	
 						ORANGE_BOX[cnO] = new JLabel();
 						ORANGE_BOX[cnO].setIcon(orange);
 						orange_panel.add(ORANGE_BOX[cnO]);
 						UserFile.Users.get(idx).setOrangebox(UserFile.Users.get(idx).getOrangebox() - 1);
 						UserFile.Users.get(idx).setOrangeRefri(UserFile.Users.get(idx).getOrangeRefri() + 1);
-					} else
-						JOptionPane.showMessageDialog(null, " You Put All Orange Boxes you have!", "Message",
-								JOptionPane.INFORMATION_MESSAGE);
+					}
 					f.fileSave();
 				}
 			});
@@ -783,18 +792,15 @@ public class StoreFrame extends GameFrame {
 				public void actionPerformed(ActionEvent e) {
 					cnS++;
 					if (UserFile.Users.get(idx).getStrawberrybox() == 0) {
-						JOptionPane.showMessageDialog(null, " You Put All Strawberry Boxes you have!", "Message",
+						JOptionPane.showMessageDialog(null, " 00You Put All Strawberry Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
-					} else if (cnS <= UserFile.Users.get(idx).getStrawberrybox()) {
-						number_straw++;
+					} else{
 						STRAWBERRY_BOX[cnS] = new JLabel();
 						STRAWBERRY_BOX[cnS].setIcon(strawberry);
 						strawberry_panel.add(STRAWBERRY_BOX[cnS]);
 						UserFile.Users.get(idx).setStrawberrybox(UserFile.Users.get(idx).getStrawberrybox() - 1);
 						UserFile.Users.get(idx).setStrawberryRefri(UserFile.Users.get(idx).getStrawberryRefri() + 1);
-					} else
-						JOptionPane.showMessageDialog(null, " You Put All Strawberry Boxes you have!", "Message",
-								JOptionPane.INFORMATION_MESSAGE);
+					}
 					f.fileSave();
 				}
 			});
@@ -814,7 +820,12 @@ public class StoreFrame extends GameFrame {
 			cartFrame.add(cartBPanel, BorderLayout.SOUTH);
 			cartFrame.setVisible(true);
 			cartFrame.setResizable(true);
-			cartFrame.setDefaultCloseOperation(cartFrame.DISPOSE_ON_CLOSE);
+			cartFrame.addWindowListener(new WindowAdapter() {
+				public void windowClosingevent(WindowEvent e) {
+					cartFrame.dispose();
+					f.fileSave();
+				}
+			});
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			// 창을 중앙에 위치시킬 수 있다.
 			int xPos = screenSize.width / 2 - cartFrame.getSize().width / 2;
@@ -823,7 +834,7 @@ public class StoreFrame extends GameFrame {
 			cartFrame.invalidate();
 			cartFrame.validate();
 			cartFrame.repaint();
-
+			f.fileSave();
 		}
 	}
 }

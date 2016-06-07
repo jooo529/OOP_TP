@@ -12,7 +12,6 @@ public class User {
 	private int missionNum;
 	private String mission;
 	private String[] doMission; 
-	private Boolean success5;
 	private String lastlogindata, nowlogindata;
 	private String usercheckQuestion, usercheckAnswer;
 	private String Fruit;//
@@ -21,8 +20,14 @@ public class User {
 	private int appleJuice, grapeJuice, orangeJuice, strawberryJuice;
 	private int appleRefri, grapeRefri, orangeRefri, strawberryRefri;
 
-	private String[] ConsumerBox; 
+	private ArrayList<String> ConsumerBox = new ArrayList<String>(); 
 
+	public ArrayList<String> getConsumerBox() {
+		return ConsumerBox;
+	}
+	public void setConsumerBox(ArrayList<String> consumerBox) {
+		ConsumerBox = consumerBox;
+	}
 	public int getIndex() {
 		return index;
 	}
@@ -85,12 +90,6 @@ public class User {
 	}
 	public void setDoMission(String[] doMission) {
 		this.doMission = doMission;
-	}
-	public Boolean getSuccess5() {
-		return success5;
-	}
-	public void setSuccess5(Boolean success5) {
-		this.success5 = success5;
 	}
 	public String getLastlogindata() {
 		return lastlogindata;
@@ -224,20 +223,18 @@ public class User {
 		return "[Applebox=" + applebox + "+ Grapebox=" + grapebox + "+ "
 				+ "Orangebox=" + orangebox + "+ StrawBerrybox=" + strawberrybox + "]";
 	}
-	
 	@Override
 	public String toString() {
 		return "User [index=" + index + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
 				+ ", money=" + money + ", level=" + level + ", missionNum=" + missionNum + ", mission=" + mission
-				+ ", doMission=" + Arrays.toString(doMission) + ", success5=" + success5 + ", lastlogindata="
-				+ lastlogindata + ", nowlogindata=" + nowlogindata + ", usercheckQuestion=" + usercheckQuestion
-				+ ", usercheckAnswer=" + usercheckAnswer + ", Fruit=" + Fruit + ", apple=" + apple + ", grape=" + grape
-				+ ", orange=" + orange + ", StrawBerry=" + StrawBerry + ", applebox=" + applebox + ", grapebox="
-				+ grapebox + ", orangebox=" + orangebox + ", strawberrybox=" + strawberrybox + ", appleJuice="
-				+ appleJuice + ", grapeJuice=" + grapeJuice + ", orangeJuice=" + orangeJuice + ", strawberryJuice="
-				+ strawberryJuice + ", appleRefri=" + appleRefri + ", grapeRefri=" + grapeRefri + ", orangeRefri="
-				+ orangeRefri + ", strawberryRefri=" + strawberryRefri + ", ConsumerBox=" + Arrays.toString(ConsumerBox)
-				+ "]";
+				+ ", doMission=" + Arrays.toString(doMission) + ", lastlogindata=" + lastlogindata + ", nowlogindata="
+				+ nowlogindata + ", usercheckQuestion=" + usercheckQuestion + ", usercheckAnswer=" + usercheckAnswer
+				+ ", Fruit=" + Fruit + ", apple=" + apple + ", grape=" + grape + ", orange=" + orange + ", StrawBerry="
+				+ StrawBerry + ", applebox=" + applebox + ", grapebox=" + grapebox + ", orangebox=" + orangebox
+				+ ", strawberrybox=" + strawberrybox + ", appleJuice=" + appleJuice + ", grapeJuice=" + grapeJuice
+				+ ", orangeJuice=" + orangeJuice + ", strawberryJuice=" + strawberryJuice + ", appleRefri=" + appleRefri
+				+ ", grapeRefri=" + grapeRefri + ", orangeRefri=" + orangeRefri + ", strawberryRefri=" + strawberryRefri
+				+ ", ConsumerBox=" + ConsumerBox + "]";
 	}
-	
+		
 }

@@ -1,14 +1,36 @@
+import java.util.ArrayList;
+
 public class Mission5 extends MissionFile implements Mission {
 
 	int randomConsumer = (int) (Math.random() * 4 + 1);
+	int randomFruittype1 = (int) (Math.random() * 4);
+	int randomFruittype2 = (int) (Math.random() * 4);
+	int randomFruittype3 = (int) (Math.random() * 4);
+	int randomFruittype4 = (int) (Math.random() * 4);
 	
 	public String helpMission() {
 		return fileLoad("Mission5.txt");
 	}
 
 	public Boolean checkMission(int idx, int fruitNum, String str) {
-		System.out.println("hello");
-		Boolean success = UserFile.Users.get(idx).getSuccess5();
+		ArrayList<String> check = new ArrayList<String>();
+		check = UserFile.Users.get(idx).getConsumerBox();	
+		Boolean success = true;
+		if(fruitNum==1){
+			if(!check.get(0).equals(UserFile.Users.get(idx).getDoMission()[5])) success = false;
+		}else if(fruitNum==2){
+			if(!check.get(0).equals(UserFile.Users.get(idx).getDoMission()[4])) success = false;
+			if(!check.get(1).equals(UserFile.Users.get(idx).getDoMission()[5])) success = false;
+		}else if(fruitNum==3){
+			if(!check.get(0).equals(UserFile.Users.get(idx).getDoMission()[3])) success = false;
+			if(!check.get(1).equals(UserFile.Users.get(idx).getDoMission()[4])) success = false;
+			if(!check.get(2).equals(UserFile.Users.get(idx).getDoMission()[5])) success = false;
+		}else if(fruitNum==4){
+			if(!check.get(0).equals(UserFile.Users.get(idx).getDoMission()[2])) success = false;
+			if(!check.get(1).equals(UserFile.Users.get(idx).getDoMission()[3])) success = false;
+			if(!check.get(2).equals(UserFile.Users.get(idx).getDoMission()[4])) success = false;
+			if(!check.get(3).equals(UserFile.Users.get(idx).getDoMission()[5])) success = false;
+		}
 		return success;
 	}
 
@@ -21,10 +43,13 @@ public class Mission5 extends MissionFile implements Mission {
 	}
 
 	public String[] savedMission() {
-		String[] myMission = new String[5];
+		String[] myMission = new String[6];
 		myMission[0] = "5";// missionNumber
 		myMission[1] = "" + randomConsumer;
-		myMission[2] = myMission[3] = myMission[4] = "-";
+		myMission[2] = fruit[randomFruittype1];
+		myMission[3] = fruit[randomFruittype2];
+		myMission[4] = fruit[randomFruittype3];
+		myMission[5] = fruit[randomFruittype4];
 		return myMission;
 	}
 
