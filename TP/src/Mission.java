@@ -1,18 +1,12 @@
-import java.util.ArrayList;
 
 public interface Mission {
 
-	String fruit[] = {"apple","grape","orange","strawberry"};
-	int randomFruitnum = (int) (Math.random() * 5 + 1);
-	int randomConsumer = (int) (Math.random() * 5 + 3);
-	int randomFruittype = (int) (Math.random() * 4);
+	String fruit[] = { "apple", "grape", "orange", "strawberry" };
 
-	public String helpMission();;
-
-	public void checkMission();
-
+	public String helpMission();
+	public String progressMission();
+	public Boolean checkMission(int idx, int Num, String str);
 	public String getMission(int idx);
-
 	public String[] savedMission();
 
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class HomeFrame extends JFrame {
+public class HomeFrame extends GameFrame {
 
 	public HomeFrame() {
 		// set frame's state
@@ -28,7 +28,6 @@ public class HomeFrame extends JFrame {
 		this.go_home();
 	}
 
-	private UserFile f = new UserFile();
 	private BufferedImage im_background;
 	private ImageIcon tb;
 	private JButton Exit = new JButton("Exit");
@@ -36,10 +35,6 @@ public class HomeFrame extends JFrame {
 	private Container container;
 	private JPanel back_ground;
 	private JPanel menupanel;
-
-	private Font font = new Font("Dialog", Font.BOLD, 15); // 20은 글자 크기
-
-	static int idx = -1;
 
 	public void go_home() {
 
@@ -96,28 +91,10 @@ public class HomeFrame extends JFrame {
 		back_ground.add(character);
 		back_ground.add(Exit);
 
-		for (int i = 0; i < UserFile.Users.size(); i++) {
-			if (UserFile.Users.get(i).getIndex() > -1)
-				idx = i;
-		}
+		getUserIdx();
 
-		JLabel userID_label = new JLabel("U s e r   :   " + UserFile.Users.get(idx).getId());
-		userID_label.setFont(font);
-
-		JLabel userMONEY_label = new JLabel("           M o n e y   :   " + UserFile.Users.get(idx).getMoney());
-		userMONEY_label.setFont(font);
-
-		JLabel userLEVEL_label = new JLabel("           L e v e l   :   " + UserFile.Users.get(idx).getLevel());
-		userLEVEL_label.setFont(font);
-
-		JLabel enter = new JLabel("                      ");
-
-		menupanel = new JPanel();
-		menupanel.add(userID_label);
-		menupanel.add(userLEVEL_label);
-		menupanel.add(userMONEY_label);
-		menupanel.add(enter);
-		// menupanel.add(Exit);
+		menupanel = userImfoPane(2);
+		
 		container.add(BorderLayout.NORTH, menupanel);
 
 	}

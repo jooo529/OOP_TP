@@ -25,6 +25,8 @@ public class StoreFrame extends GameFrame {
 
 	/* button */
 	private JButton go_back = new JButton();
+	private JButton cart = new JButton();
+	private JButton recipe = new JButton("recipe");
 	private JButton juice_apple_button = new JButton();
 	private JButton juice_orange_button = new JButton();
 	private JButton juice_straw_button = new JButton();
@@ -68,6 +70,16 @@ public class StoreFrame extends GameFrame {
 		go_back.setBorderPainted(false);
 		go_back.addActionListener(new goback_listener());
 
+		cart.setContentAreaFilled(false);
+		cart.setDefaultCapable(false);
+		cart.setFocusPainted(false);
+		cart.setOpaque(false);
+		cart.setIcon(new ImageIcon("Refri.png"));
+		cart.setRolloverIcon(new ImageIcon("RefriOpen.png"));
+		cart.setBackground(null);
+		cart.setBorderPainted(false);
+		cart.addActionListener(new CartListener());
+		
 		/* adding ActionListener in juice button */
 		juice_button_add_Actionlistenr();
 
@@ -76,11 +88,13 @@ public class StoreFrame extends GameFrame {
 
 		/* Juice button setting */
 		juice_button_setting();
-
+		
 		/* image panels set bounds and sizes */
 		back_ground.setLayout(null);
+		cart.setBounds(320, 30, 60, 108);
 		go_back.setBounds(900, 400, 60, 60);
 		refri.setBounds(0, 0, 300, 590);
+		recipe.setBounds(800,100,60,60);
 		guestP1.setBounds(500, 300, guest1.getIconWidth(), guest1.getIconHeight());
 		guestP2.setBounds(500 + guest1.getIconWidth(), 300, guest2.getIconWidth(), guest2.getIconHeight());
 		guestP3.setBounds(500 + guest2.getIconWidth() + guest1.getIconWidth(), 300, guest3.getIconWidth(),
@@ -99,6 +113,8 @@ public class StoreFrame extends GameFrame {
 		back_ground.add(juice_straw_button);
 		back_ground.add(juice_grape_button);
 		back_ground.add(go_back);
+		back_ground.add(cart);
+		back_ground.add(recipe);
 		back_ground.add(refri);
 		/* adding component in back_ground finish */
 
@@ -291,6 +307,19 @@ public class StoreFrame extends GameFrame {
 				juice_grape_button.setVisible(false);
 			}
 		});
+		
+		recipe.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(recipe, "<Fruit juice recipe> \n apple juice\n-needs  4 apples(=one appleBox)\n-click appleBox!\n "
+						+ "orange juice\n-needs 4 oranges(=one orangeBox)\n-click orangeBox! \n"
+						+ "grape juice\n-needs N 2 grapes(=one grapeBox)\n-click grapeBox! \n"
+						+ "strawberry juice\n-needs 8 strawberrys(=one strawberryBox)\n-click strawberryBox!",
+						"RECIPE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+		});
 
 	}
 
@@ -343,13 +372,20 @@ public class StoreFrame extends GameFrame {
 		}
 	}
 
-	class Refrigerator extends JPanel {
+	class Refrigerator extends JPanel{
 
 		private JButton[] APPLE_BOX = new JButton[100];
 		private JButton[] GRAPE_BOX = new JButton[100];
 		private JButton[] ORANGE_BOX = new JButton[100];
 		private JButton[] STRAWBERRY_BOX = new JButton[100];
+		
+		private JButton pushStack = new JButton("PUSH ALL BOX");
 
+		JPanel apple_panel = new JPanel();
+		JPanel grape_panel = new JPanel();
+		JPanel strawberry_panel = new JPanel();
+		JPanel orange_panel = new JPanel();
+		
 		private JLabel apple_lb, orange_lb, straw_lb, grape_lb;
 
 		private int i;
@@ -358,6 +394,7 @@ public class StoreFrame extends GameFrame {
 
 			this.setSize(350, 590);
 			this.setLayout(new GridLayout(1, 4));
+			this.setBackground(new Color(52, 121, 199));
 
 			Font font = new Font("Dialog", Font.BOLD, 11);
 
@@ -371,11 +408,6 @@ public class StoreFrame extends GameFrame {
 			straw_lb.setFont(font);
 			grape_lb.setFont(font);
 
-			JPanel apple_panel = new JPanel();
-			JPanel grape_panel = new JPanel();
-			JPanel strawberry_panel = new JPanel();
-			JPanel orange_panel = new JPanel();
-
 			apple_panel.setLayout(new BoxLayout(apple_panel, BoxLayout.Y_AXIS));
 			grape_panel.setLayout(new BoxLayout(grape_panel, BoxLayout.Y_AXIS));
 			strawberry_panel.setLayout(new BoxLayout(strawberry_panel, BoxLayout.Y_AXIS));
@@ -387,11 +419,24 @@ public class StoreFrame extends GameFrame {
 			orange_panel.setBackground(new Color(52, 121, 199));
 
 			/* get user information about fruit */
-			number_apple = UserFile.Users.get(idx).getApplebox();
-			number_grape = UserFile.Users.get(idx).getGrapebox();
-			number_orange = UserFile.Users.get(idx).getOrangebox();
-			number_straw = UserFile.Users.get(idx).getStrawberrybox();
+			number_apple = UserFile.Users.get(idx).getAppleRefri();
+			number_grape = UserFile.Users.get(idx).getGrapeRefri();
+			number_orange = UserFile.Users.get(idx).getOrangeRefri();
+			number_straw = UserFile.Users.get(idx).getStrawberryRefri();
 
+			pushStack.setSize(this.getSize());
+			pushStack.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e) {
+					add(apple_panel);
+					add(grape_panel);
+					add(orange_panel);
+					add(strawberry_panel);
+					pushStack.setVisible(false);
+				}
+			});
+			
+			this.add(pushStack);
+			
 			/* add fruit box name labels in panel */
 			apple_panel.add(apple_lb);
 			orange_panel.add(orange_lb);
@@ -402,23 +447,19 @@ public class StoreFrame extends GameFrame {
 			for (i = 0; i < number_apple; i++) {
 				APPLE_BOX[i] = new AppleButton();
 				APPLE_BOX[i].setIcon(apple);
-
 				apple_panel.add(APPLE_BOX[i]);
-
 			}
 
 			for (i = 0; i < number_grape; i++) {
 				GRAPE_BOX[i] = new GrapeButton();
 				GRAPE_BOX[i].setIcon(grape);
 				grape_panel.add(GRAPE_BOX[i]);
-
 			}
 
 			for (i = 0; i < number_orange; i++) {
 				ORANGE_BOX[i] = new OrangeButton();
 				ORANGE_BOX[i].setIcon(orange);
 				orange_panel.add(ORANGE_BOX[i]);
-
 			}
 
 			for (i = 0; i < number_straw; i++) {
@@ -429,13 +470,12 @@ public class StoreFrame extends GameFrame {
 			} /* end of creating button */
 
 			/* adding buttons in panel */
-			this.add(apple_panel);
-			this.add(grape_panel);
-			this.add(orange_panel);
-			this.add(strawberry_panel);
+		//	this.add(apple_panel);
+		//	this.add(grape_panel);
+		//	this.add(orange_panel);
+		//	this.add(strawberry_panel);
 
 		}
-
 	}
 
 	/* Fruit Button CLASS */
@@ -589,5 +629,101 @@ public class StoreFrame extends GameFrame {
 		}
 
 	}
+	public class CartListener implements ActionListener {
+		JFrame cartFrame = new JFrame();
+		JPanel cartPanel = new JPanel();
+		private JButton[] APPLE_BOX = new JButton[100];
+		private JButton[] GRAPE_BOX = new JButton[100];
+		private JButton[] ORANGE_BOX = new JButton[100];
+		private JButton[] STRAWBERRY_BOX = new JButton[100];
+		JPanel apple_panel = new JPanel();
+		JPanel grape_panel = new JPanel();
+		JPanel strawberry_panel = new JPanel();
+		JPanel orange_panel = new JPanel();
+		private JLabel apple_lb, orange_lb, straw_lb, grape_lb;
+		int nA, nG, nO, nS;
+		
+		public CartListener(){
+			cartPanel.setBackground(new Color(52, 121, 199));
+			cartPanel.repaint();
+		}
+		
+		public void actionPerformed(ActionEvent arg0) {
+			cartFrame.setSize(350,590);
+			cartPanel.setLayout(new GridLayout(1, 4));
+			cartPanel.setBackground(new Color(52, 121, 199));
+		
+			Font font = new Font("Dialog", Font.BOLD, 11);
 
+			apple_lb = new JLabel("APPLE BOX");
+			orange_lb = new JLabel("ORANGE BOX");
+			straw_lb = new JLabel("STRAWBERRY BOX");
+			grape_lb = new JLabel("GRAPE BOX");
+
+			apple_lb.setFont(font);
+			orange_lb.setFont(font);
+			straw_lb.setFont(font);
+			grape_lb.setFont(font);
+
+			apple_panel.setLayout(new BoxLayout(apple_panel, BoxLayout.Y_AXIS));
+			grape_panel.setLayout(new BoxLayout(grape_panel, BoxLayout.Y_AXIS));
+			strawberry_panel.setLayout(new BoxLayout(strawberry_panel, BoxLayout.Y_AXIS));
+			orange_panel.setLayout(new BoxLayout(orange_panel, BoxLayout.Y_AXIS));
+
+			apple_panel.setBackground(new Color(52, 121, 199));
+			grape_panel.setBackground(new Color(52, 121, 199));
+			strawberry_panel.setBackground(new Color(52, 121, 199));
+			orange_panel.setBackground(new Color(52, 121, 199));
+
+			nA = UserFile.Users.get(idx).getApplebox();
+			nG = UserFile.Users.get(idx).getGrapebox();
+			nO = UserFile.Users.get(idx).getOrangebox();
+			nS = UserFile.Users.get(idx).getStrawberrybox();
+
+			/* add fruit box name labels in panel */
+			apple_panel.add(apple_lb);
+			orange_panel.add(orange_lb);
+			grape_panel.add(grape_lb);
+			strawberry_panel.add(straw_lb);
+
+			/* crate fruit button */
+			for (int i = 0; i < nA; i++) {
+				APPLE_BOX[i] = new AppleButton();
+				APPLE_BOX[i].setIcon(apple);
+				apple_panel.add(APPLE_BOX[i]);
+			}
+
+			for (int i = 0; i < nG; i++) {
+				GRAPE_BOX[i] = new GrapeButton();
+				GRAPE_BOX[i].setIcon(grape);
+				grape_panel.add(GRAPE_BOX[i]);
+			}
+
+			for (int i = 0; i < nO; i++) {
+				ORANGE_BOX[i] = new OrangeButton();
+				ORANGE_BOX[i].setIcon(orange);
+				orange_panel.add(ORANGE_BOX[i]);
+			}
+
+			for (int i = 0; i < nS; i++) {
+				STRAWBERRY_BOX[i] = new StrawButton();
+				STRAWBERRY_BOX[i].setIcon(strawberry);
+				strawberry_panel.add(STRAWBERRY_BOX[i]);
+			} 
+			cartPanel.add(apple_panel);
+			cartPanel.add(grape_panel);
+			cartPanel.add(orange_panel);
+			cartPanel.add(strawberry_panel);
+			cartFrame.add(cartPanel);
+			cartFrame.setVisible(true);
+			cartFrame.setResizable(true);
+			cartFrame.setDefaultCloseOperation(cartFrame.DISPOSE_ON_CLOSE);
+			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+			//창을 중앙에 위치시킬 수 있다.
+			int xPos = screenSize.width/2 - cartFrame.getSize().width/2 ;
+			int yPos = screenSize.height/2 - cartFrame.getSize().height/2 ;
+			cartFrame.setLocation(xPos-300,yPos);	
+			
+		}
+	}
 }

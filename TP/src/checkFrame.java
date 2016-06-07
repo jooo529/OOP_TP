@@ -188,17 +188,12 @@ public class checkFrame extends JFrame {
 
 		public void actionPerformed(ActionEvent event) {
 			try {
-				if (UserFile.Users.get(idx).getLevel() != k) { // if your level
-																// is low
-					JOptionPane.showMessageDialog(null, "FAULT! You aren't in level " + k + "! You lose 500Money:(",
+				if (UserFile.Users.get(idx).getMissionNum() != k) { // 진행하고있는 미션을 선택하지 않았을때
+					JOptionPane.showMessageDialog(null, "FAULT!nYou aren't in mission " + k + "! You lose 500Money:(",
 							"Message", JOptionPane.INFORMATION_MESSAGE);
 					UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() - 500);
 					f.fileSave();
-				} else {
-					// 미션 제대로 수행했을때와 안했을때!
-					// ㅗ도sgaksd;lgjsdlgkjs;akldgj;dㄴ;ㅗ돠괻
-					System.out.println("!!");
-				}
+				} else checkMission();
 			} catch (IndexOutOfBoundsException e) {
 				e.printStackTrace();
 			}
@@ -244,6 +239,85 @@ public class checkFrame extends JFrame {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void checkMission() {
+		String[] doMission = UserFile.Users.get(idx).getDoMission();
+		Boolean success = false; 
+		if(doMission[0].equals("1")){
+			int num = Integer.parseInt(doMission[1]);
+			System.out.println(num);
+			System.out.println(m[0].getClass());
+			System.out.println(idx);
+			success = m[0].checkMission(idx,num,doMission[2]);
+			System.out.println(success);
+			if(success){
+				UserFile.Users.get(idx).setMissionNum(0);
+				if(UserFile.Users.get(idx).getLevel()==1) ClearMission(2);
+					else aboveClearMission();
+			}else notClearMission();
+		}else if(doMission[0].equals("2")){
+			int num = Integer.parseInt(doMission[1]);
+			success = ((Mission2)m[1]).checkMission(idx,Integer.parseInt(doMission[1]),Integer.parseInt(doMission[2]),
+					Integer.parseInt(doMission[3]),Integer.parseInt(doMission[4]));
+			if(success){
+				UserFile.Users.get(idx).setMissionNum(0);
+				if(UserFile.Users.get(idx).getLevel()==2) ClearMission(3);
+					else aboveClearMission();
+			}else notClearMission();			
+		}else if(doMission[0].equals("3")){
+			success = ((Mission3)m[2]).checkMission(idx,Integer.parseInt(doMission[1]),Integer.parseInt(doMission[2]),
+					Integer.parseInt(doMission[3]),Integer.parseInt(doMission[4]));
+			if(success){
+				UserFile.Users.get(idx).setMissionNum(0);
+				UserFile.Users.get(idx).setAppleRefri(0);
+				UserFile.Users.get(idx).setGrapeRefri(0);
+				UserFile.Users.get(idx).setOrangeRefri(0);
+				UserFile.Users.get(idx).setStrawberryRefri(0);
+				if(UserFile.Users.get(idx).getLevel()==3) ClearMission(4);
+					else aboveClearMission();
+			}else notClearMission();
+		}else if(doMission[0].equals("4")){
+			int num = Integer.parseInt(doMission[1]);
+			success = m[3].checkMission(idx,num,doMission[2]);
+			if(success){
+				UserFile.Users.get(idx).setMissionNum(0);
+				UserFile.Users.get(idx).setAppleJuice(0);
+				UserFile.Users.get(idx).setGrapeJuice(0);
+				UserFile.Users.get(idx).setOrangeJuice(0);
+				UserFile.Users.get(idx).setStrawberryJuice(0);
+				if(UserFile.Users.get(idx).getLevel()==4) ClearMission(5);
+					else aboveClearMission();
+			}else notClearMission();
+		}else{
+			int num = Integer.parseInt(doMission[1]);
+			success = m[4].checkMission(idx,num,doMission[2]);
+			if(success){
+				UserFile.Users.get(idx).setMissionNum(0);
+				if(UserFile.Users.get(idx).getLevel()==5){
+					JOptionPane.showMessageDialog(null, "You clear Mission perfectly!\nYou earn 1000 Money:)","Message", JOptionPane.INFORMATION_MESSAGE);
+					UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + 1000);	
+				}else aboveClearMission();
+			}else notClearMission();
+		}
+		f.fileSave();
+	}
+
+	private void ClearMission(int nextlvl) {
+		JOptionPane.showMessageDialog(null, "Level Up! You clear Mission perfectly!\nYou earn 1000 Money:)","Message", JOptionPane.INFORMATION_MESSAGE);
+		UserFile.Users.get(idx).setLevel(nextlvl);
+		UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + 1000);
+	}
+
+	private void aboveClearMission() {
+		JOptionPane.showMessageDialog(null, "You clear Mission perfectly!\nYou earn 300 Money:)","Message", JOptionPane.INFORMATION_MESSAGE);
+		UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + 300);
+	}
+
+	private void notClearMission() {
+		JOptionPane.showMessageDialog(null, "You don't clear Mission yet!\nYou lose 500 Money:(\nYour Mission:"
+				+UserFile.Users.get(idx).getMission(),"Message", JOptionPane.INFORMATION_MESSAGE);
+		UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() - 500);
 	}
 
 }
