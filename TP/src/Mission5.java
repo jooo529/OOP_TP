@@ -31,7 +31,7 @@ public class Mission5 extends MissionFile implements Mission{
 	}
 
 	public String progressMission() {
-		return "There are "+ randomConsumer + " cunsumers in store!" + "\nSell juices for all of them";
+		return "There are "+ randomConsumer + " cunsumers in store!" + "\t\tSell juices for all of them";
 	}
 	
 }

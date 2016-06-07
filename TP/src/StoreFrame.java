@@ -205,9 +205,10 @@ public class StoreFrame extends GameFrame {
 				JOptionPane.showMessageDialog(juice_apple_button, "APPLE JUICE! " + "\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
-				UserFile.Users.get(idx).setApplebox((UserFile.Users.get(idx).getApplebox() - 1));
+				UserFile.Users.get(idx).setAppleRefri((UserFile.Users.get(idx).getAppleRefri() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-
+				UserFile.Users.get(idx).setAppleJuice(UserFile.Users.get(idx).getAppleJuice()+1);
+				
 				juice_price = 0;
 				changeImfo(2);
 				juice_apple_button.setVisible(false);
@@ -237,9 +238,10 @@ public class StoreFrame extends GameFrame {
 				JOptionPane.showMessageDialog(juice_orange_button, "ORANGE JUICE! " + "\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
-				UserFile.Users.get(idx).setOrangebox((UserFile.Users.get(idx).getOrangebox() - 1));
+				UserFile.Users.get(idx).setOrangeRefri((UserFile.Users.get(idx).getOrangeRefri() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-
+				UserFile.Users.get(idx).setOrangeJuice(UserFile.Users.get(idx).getOrangeJuice()+1);
+				
 				juice_price = 0;
 				changeImfo(2);
 				juice_orange_button.setVisible(false);
@@ -268,9 +270,10 @@ public class StoreFrame extends GameFrame {
 				JOptionPane.showMessageDialog(juice_straw_button, "STRAWBERRY" + "\nPRICE: " + juice_price,
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
-				UserFile.Users.get(idx).setStrawberrybox((UserFile.Users.get(idx).getStrawberrybox() - 1));
+				UserFile.Users.get(idx).setStrawberryRefri((UserFile.Users.get(idx).getStrawberryRefri() - 1));
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-
+				UserFile.Users.get(idx).setStrawberryJuice(UserFile.Users.get(idx).getStrawberryJuice()+1);
+				
 				juice_price = 0;
 				changeImfo(2);
 				juice_straw_button.setVisible(false);
@@ -300,8 +303,9 @@ public class StoreFrame extends GameFrame {
 						"JUICE IMFOMATION", JOptionPane.INFORMATION_MESSAGE);
 
 				UserFile.Users.get(idx).setMoney(UserFile.Users.get(idx).getMoney() + juice_price);
-				UserFile.Users.get(idx).setGrapebox((UserFile.Users.get(idx).getGrapebox() - 1));
-
+				UserFile.Users.get(idx).setGrapeRefri((UserFile.Users.get(idx).getGrapeRefri() - 1));
+				UserFile.Users.get(idx).setGrapeJuice(UserFile.Users.get(idx).getGrapeJuice()+1);
+				
 				juice_price = 0;
 				changeImfo(2);
 				juice_grape_button.setVisible(false);
@@ -321,6 +325,8 @@ public class StoreFrame extends GameFrame {
 
 			}
 		});
+		
+		f.fileSave();
 
 	}
 
@@ -694,17 +700,16 @@ public class StoreFrame extends GameFrame {
 			nG = UserFile.Users.get(idx).getGrapebox();
 			nO = UserFile.Users.get(idx).getOrangebox();
 			nS = UserFile.Users.get(idx).getStrawberrybox();
-			
 
 			aB = new JButton();
 			aB.setIcon(apple);
 			aB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					cnA++;
-					if(UserFile.Users.get(idx).getApplebox()==0){
+					if (UserFile.Users.get(idx).getApplebox() == 0) {
 						JOptionPane.showMessageDialog(null, " You Put All Apple Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
-					} else	if (cnA <= UserFile.Users.get(idx).getApplebox()) {
+					} else if (cnA <= UserFile.Users.get(idx).getApplebox()) {
 						number_apple++;
 						APPLE_BOX[cnA] = new JLabel();
 						APPLE_BOX[cnA].setIcon(apple);
@@ -714,7 +719,7 @@ public class StoreFrame extends GameFrame {
 					} else
 						JOptionPane.showMessageDialog(null, " You Put All Apple Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
-					cartFrame.repaint();
+					f.fileSave();
 				}
 			});
 			cartBPanel.add(aB);
@@ -723,7 +728,7 @@ public class StoreFrame extends GameFrame {
 			gB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					cnG++;
-					if(UserFile.Users.get(idx).getGrapebox()==0){
+					if (UserFile.Users.get(idx).getGrapebox() == 0) {
 						JOptionPane.showMessageDialog(null, " You Put All Grape Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
 					} else if (cnG <= UserFile.Users.get(idx).getGrapebox()) {
@@ -736,7 +741,7 @@ public class StoreFrame extends GameFrame {
 					} else
 						JOptionPane.showMessageDialog(null, " You Put All grape Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
-					cartFrame.repaint();
+					f.fileSave();
 				}
 			});
 			cartBPanel.add(gB);
@@ -745,7 +750,7 @@ public class StoreFrame extends GameFrame {
 			oB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					cnO++;
-					if(UserFile.Users.get(idx).getOrangebox()==0){
+					if (UserFile.Users.get(idx).getOrangebox() == 0) {
 						JOptionPane.showMessageDialog(null, " You Put All Orange Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
 					} else if (cnO <= UserFile.Users.get(idx).getOrangebox()) {
@@ -758,7 +763,7 @@ public class StoreFrame extends GameFrame {
 					} else
 						JOptionPane.showMessageDialog(null, " You Put All Orange Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
-					cartFrame.repaint();
+					f.fileSave();
 				}
 			});
 			cartBPanel.add(oB);
@@ -767,7 +772,7 @@ public class StoreFrame extends GameFrame {
 			sB.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					cnS++;
-					if(UserFile.Users.get(idx).getStrawberrybox()==0){
+					if (UserFile.Users.get(idx).getStrawberrybox() == 0) {
 						JOptionPane.showMessageDialog(null, " You Put All Strawberry Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
 					} else if (cnS <= UserFile.Users.get(idx).getStrawberrybox()) {
@@ -780,7 +785,8 @@ public class StoreFrame extends GameFrame {
 					} else
 						JOptionPane.showMessageDialog(null, " You Put All Strawberry Boxes you have!", "Message",
 								JOptionPane.INFORMATION_MESSAGE);
-					}
+					f.fileSave();
+				}
 			});
 			cartBPanel.add(sB);
 

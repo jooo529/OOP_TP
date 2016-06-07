@@ -30,7 +30,7 @@ public class Mission4 extends MissionFile implements Mission{
 				+ "\nGo to store read recipe of Juice"
 				+ "\nand take some fruitboxes\nout of refrigerator.\n"
 				+ "Then make fruit juice."
-				+ "\n_________________________________________" + "\n\nJust make"+randomJuice
+				+ "\n_________________________________________" + "\n\nJust make"+randomJuice+" "
 				+ fruit[randomFruittype] + "juice and give it to me!";
 		return str;
 	}
@@ -45,7 +45,7 @@ public class Mission4 extends MissionFile implements Mission{
 	}
 
 	public String progressMission() {
-		return "make" + randomJuice +" "+ fruit[randomFruittype] + "juice and give it to Mom!";
+		return "make " + randomJuice +" "+ fruit[randomFruittype] + " juice and give it to Mom!";
 	}
 
 
