@@ -9,13 +9,12 @@ import javax.swing.*;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
+//asdasdsad
 public class FarmingFrame extends GameFrame {
 
 	public FarmingFrame() {
 		go_farming();
 	}
-
 	ImageIcon[] im;
 	JButton[] ary;
 	Container container;
