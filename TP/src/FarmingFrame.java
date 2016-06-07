@@ -268,13 +268,6 @@ public class FarmingFrame extends GameFrame {
 
 	}
 
-	void changeFruit() {
-		userAPPLE_label.setText(" 			A p p l e   :   " + UserFile.Users.get(idx).getApple());
-		userGRAPE_label.setText(" 			G r a p e   :   " + UserFile.Users.get(idx).getGrape());
-		userORANGE_label.setText(" 			O r a n g e   :   " + UserFile.Users.get(idx).getOrange());
-		userSTRAWBERRY_label.setText(" 			S t r a w b e r r y   :   " + UserFile.Users.get(idx).getStrawBerry());
-	}
-
 	class reset implements ActionListener {
 		int k;
 
