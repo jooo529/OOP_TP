@@ -9,12 +9,13 @@ import javax.swing.*;
 
 import java.util.Timer;
 import java.util.TimerTask;
-//asdasdsad
+
 public class FarmingFrame extends GameFrame {
 
 	public FarmingFrame() {
 		go_farming();
 	}
+	/*----------Declare Global Variable-------------------------------------*/
 	ImageIcon[] im;
 	JButton[] ary;
 	Container container;
@@ -36,23 +37,23 @@ public class FarmingFrame extends GameFrame {
 	ImageIcon i4;
 
 	static int fruitNum = 0;
-	
-	public void go_farming() { // 선택받은 과일이 입력받은 갯수만큼 나타나는거 구현하기
+	/*-----------------------------------------------------------------------*/
+	public void go_farming() { 
 
 		JPanel menupanel;
 		
 		container = this.getContentPane();
 		container.setLayout(new BorderLayout());
 		
-		getUserIdx();
+		getUserIdx();	//In super class method
 		
 		menupanel = userImfoPane(1);
 		
 		container.add(BorderLayout.NORTH, menupanel);
 
-	
+		/* Assign fresh fruit image and rotten fruit image according to user's selection */
 		String which = UserFile.Users.get(idx).getFruit();
-
+		//which is the fruit name that user select.
 		if (which == "Grape") {
 			i3 = i3_GRAPE;
 			i4 = i4_GRAPE;
@@ -66,7 +67,7 @@ public class FarmingFrame extends GameFrame {
 			i3 = i3_STRAWBERRY;
 			i4 = i4_STRAWBERRY;
 		}
-
+		/*--------------------------------------------------------------------------*/
 		fruitpanel = new JPanel();
 		fruitpanel.setLayout(new GridLayout(3, 3));
 
@@ -75,7 +76,7 @@ public class FarmingFrame extends GameFrame {
 		ary = new JButton[9];
 		im = new ImageIcon[9];
 
-		// ---------------------------------------------------------------------
+		/* -------Make independent 9 button image and add in array----------- */
 		im[0] = i1;
 		ary[0] = new JButton() {
 			public void paintComponent(Graphics g) {
@@ -132,23 +133,23 @@ public class FarmingFrame extends GameFrame {
 				g.drawImage(im[8].getImage(), 0, 0, null);
 			}
 		};
-		// ------------------------------------------------------------------------------
-
+		/* --------------------------------------------------------------------- */
+		/* Add 9 buttons to the panel */
 		for (int k = 0; k < 9; k++) {
 			ary[k].addActionListener(new reset(k));
 			fruitpanel.add(ary[k]);
 		}
-
+		/*---------------------------------------*/
 		JButton backbtn = new JButton("Quit Farming");
 		backbtn.addActionListener(new quit_listener());
 
 		container.add(BorderLayout.SOUTH, backbtn);
 
 		loop lp = new loop();
-		lp.go();
+		lp.go();	//Loop that images change automatically after random seconds Starts
 	}
 	
-	class quit_listener implements ActionListener {
+	class quit_listener implements ActionListener {		//if user click "Quit Farming" button
 		public void actionPerformed(ActionEvent e) {
 			
 			setVisible(false);
@@ -159,69 +160,12 @@ public class FarmingFrame extends GameFrame {
 			
 		}
 	}
-
-	class btn_game extends TimerTask {
-		int k;
-
-		public void setK(int set) {
-			k = set;
-		}
-
-		public void run() {
-			im[k] = i2;
-			fruitpanel.repaint();
-
-			Timer tmr = new Timer();
-			changeto3 ct3 = new changeto3();
-			ct3.setK(k);
-
-			int temp = (int) (Math.random() * 10 + 2) * 1000;
-			tmr.schedule(ct3, temp);
-
-		}
-
-	}
-
-	class changeto3 extends TimerTask {
-		int k;
-
-		public void setK(int set) {
-			k = set;
-		}
-
-		public void run() {
-			im[k] = i3;
-			fruitpanel.repaint();
-
-			Timer tmr = new Timer();
-			rotten rot = new rotten();
-			rot.setK(k);
-
-			tmr.schedule(rot, 8000);
-		}
-
-	}
-
-	class rotten extends TimerTask {
-		int k;
-
-		public void setK(int set) {
-			k = set;
-		}
-
-		public void run() {
-			if (im[k] == i3) {
-				im[k] = i4;
-				fruitpanel.repaint();
-			}
-		}
-	}
-
+	
 	class loop {
 
 		public void go() {
 			int[] randtime = new int[9];
-
+			/* Make random time 2 ~ 11 seconds */
 			randtime[0] = (int) (Math.random() * 10 + 2) * 1000;
 			randtime[1] = (int) (Math.random() * 10 + 2) * 1000;
 			randtime[2] = (int) (Math.random() * 10 + 2) * 1000;
@@ -231,7 +175,8 @@ public class FarmingFrame extends GameFrame {
 			randtime[6] = (int) (Math.random() * 10 + 2) * 1000;
 			randtime[7] = (int) (Math.random() * 10 + 2) * 1000;
 			randtime[8] = (int) (Math.random() * 10 + 2) * 1000;
-
+			/*------------------------------------------------*/
+			/* Create 9 btn_game Objects */
 			btn_game sch1 = new btn_game();
 			btn_game sch2 = new btn_game();
 			btn_game sch3 = new btn_game();
@@ -241,9 +186,11 @@ public class FarmingFrame extends GameFrame {
 			btn_game sch7 = new btn_game();
 			btn_game sch8 = new btn_game();
 			btn_game sch9 = new btn_game();
-
-			Timer tm = new Timer();
-
+			/*---------------------------*/
+			
+			Timer tm = new Timer();		// To change automatically, Create Timer Object.
+			
+		/* Change image(now is ground) to small tree after random seconds independently */
 			sch1.setK(0);
 			tm.schedule(sch1, randtime[0]);
 			sch2.setK(1);
@@ -262,19 +209,78 @@ public class FarmingFrame extends GameFrame {
 			tm.schedule(sch8, randtime[7]);
 			sch9.setK(8);
 			tm.schedule(sch9, randtime[8]);
+			/*------------------------------------------------------------------*/
+		}
+
+	}
+	
+	class btn_game extends TimerTask {
+		int k;
+
+		public void setK(int set) {
+			k = set;
+		}
+
+		public void run() {
+			im[k] = i2;		//Change index k's button image to small tree image
+			fruitpanel.repaint();	//To show user changed button image
+
+			Timer tmr = new Timer();
+			changeto3 ct3 = new changeto3();
+			ct3.setK(k);
+
+			int temp = (int) (Math.random() * 10 + 2) * 1000;	//2~11 seconds Random time
+			tmr.schedule(ct3, temp);	//after random seconds, change image to fresh fruit
 
 		}
 
 	}
 
-	class reset implements ActionListener {
+	class changeto3 extends TimerTask {
 		int k;
+
+		public void setK(int set) {
+			k = set;
+		}
+
+		public void run() {
+			im[k] = i3;		//Change index k's button image to fresh fruit image
+			fruitpanel.repaint();		//To show user changed button image
+
+			Timer tmr = new Timer();
+			rotten rot = new rotten();
+			rot.setK(k);
+
+			tmr.schedule(rot, 8000);	//after 8 seconds, fruit goes rotten
+		}
+
+	}
+
+	class rotten extends TimerTask {
+		int k;
+
+		public void setK(int set) {
+			k = set;
+		}
+
+		public void run() {
+			if (im[k] == i3) {
+				im[k] = i4;		//Change index k's button image to rotten fruit image
+				fruitpanel.repaint();	//To show user changed button image
+			}					//When the button's image is rotten fruit image,
+		}						//Image doesn't change automatically
+	}
+	/* Click the Image button */
+	class reset implements ActionListener {	//When the button's image is fresh fruit or
+		int k;								//rotten fruit image, change to ground image
 
 		public reset(int i) {
 			k = i;
 		}
 
 		public void actionPerformed(ActionEvent e) {
+			
+			//If fruit image is fresh,
 			if (im[k] == i3_APPLE){
 				UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() + 1);
 				fruitNum++;
@@ -287,8 +293,10 @@ public class FarmingFrame extends GameFrame {
 			}else if (im[k] == i3_STRAWBERRY){
 				UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() + 1);
 				fruitNum++;
-			}// ------------ Increase Fruit Variable
+			}// ------------ Increase Fruit Variable (+1)
 
+			
+			//If fruit image is rotten
 			else if (im[k] == i4_APPLE && UserFile.Users.get(idx).getApple() > 0){
 				UserFile.Users.get(idx).setApple(UserFile.Users.get(idx).getApple() - 1);
 				fruitNum--;
@@ -301,11 +309,11 @@ public class FarmingFrame extends GameFrame {
 			}else if (im[k] == i4_STRAWBERRY && UserFile.Users.get(idx).getStrawBerry() > 0){
 				UserFile.Users.get(idx).setStrawBerry(UserFile.Users.get(idx).getStrawBerry() - 1);
 				fruitNum--;
-			}
-			changeImfo(1);
+			}// ---------------Decrease Fruit Variable (-1)
 			
+			changeImfo(1);		//To show user changing number of fruits	
 			
-			if (im[k] == i3 || im[k] == i4) {
+			if (im[k] == i3 || im[k] == i4) {	//Change Image to Ground, and Repeat Again!
 				im[k] = i1;
 				int randtime = (int) (Math.random() * 10 + 2) * 1000;
 				btn_game sch = new btn_game();

@@ -14,10 +14,10 @@ public class FarmDisplay {
 		farm_fr.setResizable(false);
 		farm_fr.setDefaultCloseOperation(LoginFrame.DISPOSE_ON_CLOSE);
 		
-		//전체 창 사이즈
+		//Full window size
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		  
-		//창을 중앙에 위치시킬 수 있다.
+		//Locate window at center
 		int xPos = screenSize.width/2 - farm_fr.getSize().width/2 ;
 		int yPos = screenSize.height/2 - farm_fr.getSize().height/2 ;
 
@@ -31,10 +31,10 @@ public class FarmDisplay {
 		farming_fr.setResizable(false);
 		farming_fr.setDefaultCloseOperation(LoginFrame.DISPOSE_ON_CLOSE);
 		
-		//전체 창 사이즈
+		//Full window size
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		  
-		//창을 중앙에 위치시킬 수 있다.
+		//Locate window at center
 		int xPos = screenSize.width/2 - farming_fr.getSize().width/2 ;
 		int yPos = screenSize.height/2 - farming_fr.getSize().height/2 ;
 

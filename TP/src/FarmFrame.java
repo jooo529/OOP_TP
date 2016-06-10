@@ -8,7 +8,6 @@ import javax.swing.event.*;
 public class FarmFrame extends GameFrame {
 
 	public FarmFrame() {
-		UserFile.Users.get(idx).setFruit(null);
 		go_farm();
 	}
 /*----------Declare Global Variable----------*/
